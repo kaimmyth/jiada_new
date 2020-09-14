@@ -357,4 +357,4 @@
 
 <!-- ============================================================== -->
 <!-- Start right Content here -->
-<!-- ============================================================== --><?php /**PATH D:\xampp\htdocs\jiada\resources\views/layouts/menubar.blade.php ENDPATH**/ ?>
+<!-- ============================================================== --><?php /**PATH D:\xampp\htdocs\jiada_new\resources\views/layouts/menubar.blade.php ENDPATH**/ ?>

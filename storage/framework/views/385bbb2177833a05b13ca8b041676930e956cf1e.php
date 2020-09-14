@@ -174,4 +174,4 @@
  
 	
 
-<?php /**PATH D:\xampp\htdocs\jiada\resources\views/static-pages/footer.blade.php ENDPATH**/ ?>
+<?php /**PATH D:\xampp\htdocs\jiada_new\resources\views/static-pages/footer.blade.php ENDPATH**/ ?>

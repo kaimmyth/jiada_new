@@ -474,4 +474,4 @@
 
 </body>
 
-</html><?php /**PATH D:\xampp\htdocs\jiada\resources\views/static-pages/index.blade.php ENDPATH**/ ?>
+</html><?php /**PATH D:\xampp\htdocs\jiada_new\resources\views/static-pages/index.blade.php ENDPATH**/ ?>

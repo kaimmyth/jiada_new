@@ -58,4 +58,4 @@
     </nav>
 </div>
 
-<!-- //Header --><?php /**PATH D:\xampp\htdocs\jiada\resources\views/static-pages/header.blade.php ENDPATH**/ ?>
+<!-- //Header --><?php /**PATH D:\xampp\htdocs\jiada_new\resources\views/static-pages/header.blade.php ENDPATH**/ ?>

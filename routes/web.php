@@ -25,6 +25,9 @@ Route::get('/admin_login', function () {
 	return view('admin.admin-login');
 });
 
+Route::get('customer/list-enterprises','EnterpriseController@list_enterprise');
+Route::get('customer/add-enterprises','EnterpriseController@view_add');
+Route::post('customer/save-enterprises','EnterpriseController@add_enterprise');
 Auth::routes();
 
 Route::get('user-profile', 'HomeController@UserProfile');
@@ -36,9 +39,9 @@ Route::get('dashboard', 'HomeController@Dashboard');
 Route::prefix('land')->group(function () {
 	Route::any('listing', 'Landcontroller@index');
 	Route::any('edit/{id}', 'Landcontroller@UpdateLand');
-	Route::get('viewland/{id}','Landcontroller@view_land_details');
+	Route::get('viewland/{id}', 'Landcontroller@view_land_details');
 	Route::any('add', 'Landcontroller@AddLands');
-	Route::get('delete/{id}','Landcontroller@delete_land');
+	Route::get('delete/{id}', 'Landcontroller@delete_land');
 	Route::any('land&bank-details', 'Landcontroller@LandBankDetails');
 	Route::any('area-location', 'Landcontroller@AreaLocation');
 	Route::any('create/assign-customer', 'Landcontroller@AssignCustomer');
@@ -50,47 +53,47 @@ Route::prefix('land')->group(function () {
 	Route::post('serach_pcc_land/{q}', 'Landcontroller@PccLand');
 	Route::post('allocate/pcc/{id}', 'Landcontroller@Allocate_Pcc');
 	Route::any('serachpccland/{q}', 'Landcontroller@SearchPccLand');
-	Route::any('customer/add-pcc/{id}','Landcontroller@AddPccCustomer');
-	Route::any('filter-pcc/{q}','Landcontroller@PccLand');
+	Route::any('customer/add-pcc/{id}', 'Landcontroller@AddPccCustomer');
+	Route::any('filter-pcc/{q}', 'Landcontroller@PccLand');
 
 
-	Route::any('invoice/{q}','Landcontroller@LandInvoice');
+	Route::any('invoice/{q}', 'Landcontroller@LandInvoice');
 
 
 	/*Transfer*/
-	Route::get('registration','Landcontroller@Registration');
-	Route::get('transfer-registration','Landcontroller@Registration_Transfer');
-	Route::get('searchtransfercontract/{query}','Landcontroller@SerachTransferContract');
+	Route::get('registration', 'Landcontroller@Registration');
+	Route::get('transfer-registration', 'Landcontroller@Registration_Transfer');
+	Route::get('searchtransfercontract/{query}', 'Landcontroller@SerachTransferContract');
 	Route::any('serachtransfercustomers/{q}', 'Landcontroller@searchTransferCustomer');
-	Route::any('transfercustomer/add/{id}','Landcontroller@AddTransferCustomer');
-	Route::any('ragistration/transfer','Landcontroller@Create_Transfer_Registration');
+	Route::any('transfercustomer/add/{id}', 'Landcontroller@AddTransferCustomer');
+	Route::any('ragistration/transfer', 'Landcontroller@Create_Transfer_Registration');
 	/* End */
-	Route::any('customer/add','Landcontroller@AddCustomers');
-	Route::any('customer/view&edit/{id}','Landcontroller@Edit_Customers');
-	Route::any('customercompany/view/{id}','Landcontroller@view_company_customers');
-	Route::get('customer/delete/{id}','Landcontroller@Delete_Customer');
+	Route::any('customer/add', 'Landcontroller@AddCustomers');
+	Route::any('customer/view&edit/{id}', 'Landcontroller@Edit_Customers');
+	Route::any('customercompany/view/{id}', 'Landcontroller@view_company_customers');
+	Route::get('customer/delete/{id}', 'Landcontroller@Delete_Customer');
 	Route::any('serachcustomers/{q}', 'Landcontroller@SearchCustomer');
 	Route::any('wserachcustomers/{q}', 'Landcontroller@WizardSearchCustomer');
-	Route::any('customer/add/{id}','Landcontroller@AddContractCustomer');
-	Route::post('customer/update','Landcontroller@update_customer');		
-	Route::any('wcustomer/add/{id}','Landcontroller@AddWizardContractCustomer');
+	Route::any('customer/add/{id}', 'Landcontroller@AddContractCustomer');
+	Route::post('customer/update', 'Landcontroller@update_customer');
+	Route::any('wcustomer/add/{id}', 'Landcontroller@AddWizardContractCustomer');
 	Route::any('serachland/{q}', 'Landcontroller@SearchLand');
-	Route::any('land/add/{id}','Landcontroller@AddSearchLand');
-	Route::any('wserachland/{q}','Landcontroller@WizardSearchLand');
-	Route::any('land/wizard/add/{id}','Landcontroller@AddwizardSearchLand');
-	Route::any('create/registration','Landcontroller@CreateRegistration');
-	Route::any('create/new-regis-no','Landcontroller@CreateNewRegNo');
-	Route::get('registration_create','Landcontroller@Create_Registration');
-	Route::get('chnage_phase/{id}','Landcontroller@Get_Phase_Name');
-	Route::get('registration/history/{land_id}','Landcontroller@Get_Registration_history');
-	Route::get('transfer_land/{land_id}','Landcontroller@viewtransfer_land');
-	Route::post('registration/edit/{id}','Landcontroller@Get_Registration_details');
-	Route::get('registration/edit/{id}','Landcontroller@Get_Registration_details');
-	Route::get('registration/edit/{id}/{land_id}','Landcontroller@Get_Registration_info');
-	Route::get('registration/delete/{id}','Landcontroller@Registration_Delete');
-	Route::get('transfer_history','Landcontroller@transfer_history');
-	Route::get('registration_editFetch/{id}','Landcontroller@registration_editFetch');
-	Route::post('editSave/registration','Landcontroller@registration_editSave');
+	Route::any('land/add/{id}', 'Landcontroller@AddSearchLand');
+	Route::any('wserachland/{q}', 'Landcontroller@WizardSearchLand');
+	Route::any('land/wizard/add/{id}', 'Landcontroller@AddwizardSearchLand');
+	Route::any('create/registration', 'Landcontroller@CreateRegistration');
+	Route::any('create/new-regis-no', 'Landcontroller@CreateNewRegNo');
+	Route::get('registration_create', 'Landcontroller@Create_Registration');
+	Route::get('chnage_phase/{id}', 'Landcontroller@Get_Phase_Name');
+	Route::get('registration/history/{land_id}', 'Landcontroller@Get_Registration_history');
+	Route::get('transfer_land/{land_id}', 'Landcontroller@viewtransfer_land');
+	Route::post('registration/edit/{id}', 'Landcontroller@Get_Registration_details');
+	Route::get('registration/edit/{id}', 'Landcontroller@Get_Registration_details');
+	Route::get('registration/edit/{id}/{land_id}', 'Landcontroller@Get_Registration_info');
+	Route::get('registration/delete/{id}', 'Landcontroller@Registration_Delete');
+	Route::get('transfer_history', 'Landcontroller@transfer_history');
+	Route::get('registration_editFetch/{id}', 'Landcontroller@registration_editFetch');
+	Route::post('editSave/registration', 'Landcontroller@registration_editSave');
 });
 
 Route::prefix('area-location')->group(function () {
@@ -113,16 +116,16 @@ Route::any('update/sectro-phase', 'Landcontroller@update_sector_phase');
 Route::any('edit/sectro-block/{id}', 'Landcontroller@edit_block');
 Route::any('update/sectro-block', 'Landcontroller@update_sector_block');
 
-Route::any('customer/add','Landcontroller@AddCustomer');
+Route::any('customer/add', 'Landcontroller@AddCustomer');
 
-Route::get('customer/view/{id}','Landcontroller@ViewCustomer');
+Route::get('customer/view/{id}', 'Landcontroller@ViewCustomer');
 
-/* view contacted User for company*/ 
+/* view contacted User for company*/
 
 Route::get('message', 'MessageController@message_form');
 
 /* Company contact by user*/
-Route::post('contact_customer','CompanyProfileController@contact_customer');
+Route::post('contact_customer', 'CompanyProfileController@contact_customer');
 
 /* Ticket form */
 Route::any('ticket-form', 'TicketController@Ticket_Form');
@@ -142,11 +145,11 @@ Route::get('display-ticket/{id}', 'TicketController@ticket_listing');
 /* Users all routes*/
 Route::get('users', 'MasterController@users_listing');
 Route::post('add/users', 'MasterController@add_users');
-Route::get('add/users/from','MasterController@add_users_form');
+Route::get('add/users/from', 'MasterController@add_users_form');
 Route::get('users/destroy/{id}', 'MasterController@delete_users');
-Route::get('edit/users/from/{id}','MasterController@users_edit');
+Route::get('edit/users/from/{id}', 'MasterController@users_edit');
 Route::any('users/edit/{id}', 'MasterController@users_edit');
-Route::post('update/users','MasterController@update_user');
+Route::post('update/users', 'MasterController@update_user');
 /* Department all routes*/
 Route::get('department', 'MasterController@Department_Listing');
 Route::post('add/department', 'MasterController@Add_Department');
@@ -167,15 +170,15 @@ Route::get('subcategory/destroy/{id}', 'MasterController@Delete_Subcategory');
 Route::any('subcategory/edit/{id}', 'MasterController@Subcategory_Edit');
 
 /* Leads */
-Route::get('leads','LeadsController@index');
-Route::any('leads/create','LeadsController@Create');
-Route::any('filter-leads','LeadsController@FilterLeads');
-Route::get('leads/distroy/{id}','LeadsController@distroy');
-Route::get('leads/view/{id}','LeadsController@LeadsView');
-Route::any('leads/view/{id}','LeadsController@LeadsView');
-Route::get('leads/edit/{id}','LeadsController@edit');
-Route::post('leads/view/create/calleventtaskemail','LeadsController@CreateEventTaskCallEmail');
-Route::any('leads/bulk/upload','LeadsController@BulkUploadLeads');
+Route::get('leads', 'LeadsController@index');
+Route::any('leads/create', 'LeadsController@Create');
+Route::any('filter-leads', 'LeadsController@FilterLeads');
+Route::get('leads/distroy/{id}', 'LeadsController@distroy');
+Route::get('leads/view/{id}', 'LeadsController@LeadsView');
+Route::any('leads/view/{id}', 'LeadsController@LeadsView');
+Route::get('leads/edit/{id}', 'LeadsController@edit');
+Route::post('leads/view/create/calleventtaskemail', 'LeadsController@CreateEventTaskCallEmail');
+Route::any('leads/bulk/upload', 'LeadsController@BulkUploadLeads');
 
 /* Priority */
 Route::get('priority_lavels', 'MasterController@PriorityLavels_Listing');
@@ -191,60 +194,60 @@ Route::prefix('company')->group(function () {
 	Route::get('destroy/{id}', 'CompanyController@destroy');
 	Route::any('edit/{id}', 'CompanyController@edit');
 });
-Route::get('pcc/pcc_action_view','PccActionController@pcc_action_list');
-Route::get('pcc/pcc_from','PccActionController@pccform_view');
-Route::post('pcc/pcc_from/add','PccActionController@pccform_add');
-Route::get('pcc/pcc_actionview/{id}','PccActionController@pcc_action_view');
-Route::get('pcc/edit_from/{id}','PccActionController@edit_pcc_form');
-Route::post('pcc/pcc_from/update','PccActionController@pccform_update');
-Route::get('pcc/entity_search/{enitity_id}','PccActionController@search_entity');
-Route::get('pcc/searchLand/{query}','PccActionController@SearchLand');
-Route::get('pcc/searchcompany/{query}','PccActionController@SearchCustomer');
-Route::get('pcc/getland/{id}','PccActionController@AddwizardSearchLand');
-Route::get('pcc/getcompany/{id}','PccActionController@AddContractCustomer');
-Route::get('pcc/pcc_agenda/freeze/{id}','PccActionController@freeze_Pcc');
-Route::post('pcc/pccAgenda_final_save','PccActionController@save_finalPcc');
-Route::get('pcc/{action_type}/{action_cat}/{element}','PccActionController@allocated_pcc');
-Route::get('pcc/searchRegisterRecord/{query}','PccActionController@searchRegister');
-Route::get('pcc/getregister/{id}','PccActionController@getregister');
+Route::get('pcc/pcc_action_view', 'PccActionController@pcc_action_list');
+Route::get('pcc/pcc_from', 'PccActionController@pccform_view');
+Route::post('pcc/pcc_from/add', 'PccActionController@pccform_add');
+Route::get('pcc/pcc_actionview/{id}', 'PccActionController@pcc_action_view');
+Route::get('pcc/edit_from/{id}', 'PccActionController@edit_pcc_form');
+Route::post('pcc/pcc_from/update', 'PccActionController@pccform_update');
+Route::get('pcc/entity_search/{enitity_id}', 'PccActionController@search_entity');
+Route::get('pcc/searchLand/{query}', 'PccActionController@SearchLand');
+Route::get('pcc/searchcompany/{query}', 'PccActionController@SearchCustomer');
+Route::get('pcc/getland/{id}', 'PccActionController@AddwizardSearchLand');
+Route::get('pcc/getcompany/{id}', 'PccActionController@AddContractCustomer');
+Route::get('pcc/pcc_agenda/freeze/{id}', 'PccActionController@freeze_Pcc');
+Route::post('pcc/pccAgenda_final_save', 'PccActionController@save_finalPcc');
+Route::get('pcc/{action_type}/{action_cat}/{element}', 'PccActionController@allocated_pcc');
+Route::get('pcc/searchRegisterRecord/{query}', 'PccActionController@searchRegister');
+Route::get('pcc/getregister/{id}', 'PccActionController@getregister');
 // Route::get('pcc/searchunit/{id}','PccActionController@ ');
 
-Route::get('entity_master','MasterController@Entity_Listing');
+Route::get('entity_master', 'MasterController@Entity_Listing');
 Route::post('add/entity_master', 'MasterController@Add_Entity');
 Route::get('entity_master/destroy/{id}', 'MasterController@Delete_Entity');
 Route::any('entity_master/edit/{id}', 'MasterController@Edit_Entity');
 
 
 // pcc all route 
-Route::get('pcc_master','MasterController@PccMaster_Listing');
+Route::get('pcc_master', 'MasterController@PccMaster_Listing');
 Route::post('add/pcc_master', 'MasterController@Add_PccMaster');
 Route::get('pcc_master/destroy/{id}', 'MasterController@Delete_PccMaster');
 Route::any('pcc_master/edit/{id}', 'MasterController@Edit_PccMaster');
 
 // industries all route 
-Route::get('industries_master','MasterController@IndustriesMaster_Listing');
+Route::get('industries_master', 'MasterController@IndustriesMaster_Listing');
 Route::get('add/industries_master', 'MasterController@Add_IndustriesMaster');
 Route::get('industries_master/destroy/{id}', 'MasterController@Delete_IndustriesMaster');
-Route::any('industries_master/edit/{id}', 'MasterController@Edit_IndustriesMaster');// entity all route 
-Route::get('entity_master','MasterController@Entity_Listing');
+Route::any('industries_master/edit/{id}', 'MasterController@Edit_IndustriesMaster'); // entity all route 
+Route::get('entity_master', 'MasterController@Entity_Listing');
 Route::post('add/entity_master', 'MasterController@Add_Entity');
 Route::get('entity_master/destroy/{id}', 'MasterController@Delete_Entity');
 Route::any('entity_master/edit/{id}', 'MasterController@Edit_Entity');
 
 // pcc all route 
-Route::get('pcc_master','MasterController@PccMaster_Listing');
+Route::get('pcc_master', 'MasterController@PccMaster_Listing');
 Route::post('add/pcc_master', 'MasterController@Add_PccMaster');
 Route::get('pcc_master/destroy/{id}', 'MasterController@Delete_PccMaster');
 Route::any('pcc_master/edit/{id}', 'MasterController@Edit_PccMaster');
 
 // industries all route 
-Route::get('industries_master','MasterController@IndustriesMaster_Listing');
+Route::get('industries_master', 'MasterController@IndustriesMaster_Listing');
 Route::post('add/industries_master', 'MasterController@Add_IndustriesMaster');
 Route::get('industries_master/destroy/{id}', 'MasterController@Delete_IndustriesMaster');
 Route::any('industries_master/edit/{id}', 'MasterController@Edit_IndustriesMaster');
 
 // material all route 
-Route::get('material_master','MasterController@MaterialMaster_Listing');
+Route::get('material_master', 'MasterController@MaterialMaster_Listing');
 Route::post('add/material_master', 'MasterController@Add_MaterialMaster');
 Route::get('material_master/destroy/{id}', 'MasterController@Delete_MaterialMaster');
 Route::any('material_master/edit/{id}', 'MasterController@Edit_MaterialMaster');
@@ -262,56 +265,56 @@ Route::get('status_master', 'MasterController@Status_Listing');
 Route::post('add/status_master', 'MasterController@Add_Status');
 Route::get('status_master/destroy/{id}', 'MasterController@Delete_Status');
 Route::any('status_master/edit/{id}', 'MasterController@Status_Edit');
-Route::any('get_statusid/{StatusID}','TicketController@get_Statuslist');
+Route::any('get_statusid/{StatusID}', 'TicketController@get_Statuslist');
 // uom master
 Route::get('uom_master', 'MasterController@Uom_Listing');
 Route::post('add/uom_master', 'MasterController@Add_Uom');
 Route::get('uom_master/destroy/{id}', 'MasterController@Delete_Uom');
 Route::any('uom_master/edit/{id}', 'MasterController@Uom_Edit');
 Route::get('/', function () {
-    return view('static-pages.index');
+	return view('static-pages.index');
 });
-Route::get('/homepage',function () {
-    return view('static-pages.index');
+Route::get('/homepage', function () {
+	return view('static-pages.index');
 });
 Route::get('/career', function () {
-    return view('static-pages.career');
+	return view('static-pages.career');
 });
 
 Route::get('/log', function () {
-    return view('static-pages.login');
+	return view('static-pages.login');
 });
 
 Route::get('/master-plan', function () {
-    return view('static-pages.master-plan');
+	return view('static-pages.master-plan');
 });
 
 // Route::get('/ticket_page', function () {
 //     return view('static-pages.ticket');
 // });
-Route ::get('/ticket_page','TicketController@view_oss_touser');
-Route::post('add_ticket_by_user','TicketController@add_ticket_by_user');
+Route::get('/ticket_page', 'TicketController@view_oss_touser');
+Route::post('add_ticket_by_user', 'TicketController@add_ticket_by_user');
 
 Route::get('/portal', function () {
 	return view('admin.portal_login');
 });
-Route::get('user/forget_password','forgetPasswordController@view_page');
-Route::post('check_email','forgetPasswordController@check_email');
-Route::get('resetpassword/update{id}/{email}','forgetPasswordController@change_password');
-Route::post('updatepassword','forgetPasswordController@update_password');
-Route::get('comapny-profile/{id}','CompanyProfileController@viewsite');
-Route::get('/unit','UnitListingController@get_industries_name');
-Route::get('unit-listing/industry-filter','UnitListingController@filter_industry');
-Route::post('savecontact','VisiterContactController@savecontact');
-Route::get('create/compan_website/{id}','CompanyProfileController@web_create_form');
-Route::post('add/company_website','CompanyProfileController@add_comapany_details_website');
-Route::get('portal/{company_name}','CompanyProfileController@viewportal');
-Route::get('list/all_unit','UnitListingController@view_all_unit');
+Route::get('user/forget_password', 'forgetPasswordController@view_page');
+Route::post('check_email', 'forgetPasswordController@check_email');
+Route::get('resetpassword/update{id}/{email}', 'forgetPasswordController@change_password');
+Route::post('updatepassword', 'forgetPasswordController@update_password');
+Route::get('comapny-profile/{id}', 'CompanyProfileController@viewsite');
+Route::get('/unit', 'UnitListingController@get_industries_name');
+Route::get('unit-listing/industry-filter', 'UnitListingController@filter_industry');
+Route::post('savecontact', 'VisiterContactController@savecontact');
+Route::get('create/compan_website/{id}', 'CompanyProfileController@web_create_form');
+Route::post('add/company_website', 'CompanyProfileController@add_comapany_details_website');
+Route::get('portal/{company_name}', 'CompanyProfileController@viewportal');
+Route::get('list/all_unit', 'UnitListingController@view_all_unit');
 
-/* @Ashish Agarwal for autocomplete Search*/ 
-Route::get('/unit/{id}/{label}','UnitListingController@get_industries_name');
-Route::get('search-material','UnitListingController@search');
+/* @Ashish Agarwal for autocomplete Search*/
+Route::get('/unit/{id}/{label}', 'UnitListingController@get_industries_name');
+Route::get('search-material', 'UnitListingController@search');
 
 /* For bar chart data*/
-Route::get('bar-chart','HomeController@barChart');
-Route::get('pie-chart','HomeController@pieChart');
+Route::get('bar-chart', 'HomeController@barChart');
+Route::get('pie-chart', 'HomeController@pieChart');

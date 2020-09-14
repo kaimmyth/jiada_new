@@ -60,4 +60,4 @@
         </div>
     </body>
 </html>
-<?php /**PATH D:\xampp\htdocs\jiada\resources\views/errors/minimal.blade.php ENDPATH**/ ?>
+<?php /**PATH D:\xampp\htdocs\jiada_new\resources\views/errors/minimal.blade.php ENDPATH**/ ?>

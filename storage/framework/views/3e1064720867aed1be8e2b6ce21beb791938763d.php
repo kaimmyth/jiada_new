@@ -393,4 +393,4 @@
 </div>
 <!--end of content-->
 </div>
-<!--end of content page--><?php /**PATH D:\xampp\htdocs\jiada\resources\views/admin/home.blade.php ENDPATH**/ ?>
+<!--end of content page--><?php /**PATH D:\xampp\htdocs\jiada_new\resources\views/admin/home.blade.php ENDPATH**/ ?>

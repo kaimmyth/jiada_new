@@ -463,4 +463,4 @@ background-position: center;
 
 <!-- Left Menu Panel -->
 <?php echo $__env->make('layouts.menubar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-<?php endif; ?><?php /**PATH D:\xampp\htdocs\jiada\resources\views/layouts/header.blade.php ENDPATH**/ ?>
+<?php endif; ?><?php /**PATH D:\xampp\htdocs\jiada_new\resources\views/layouts/header.blade.php ENDPATH**/ ?>
