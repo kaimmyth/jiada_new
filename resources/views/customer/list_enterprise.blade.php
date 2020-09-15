@@ -41,7 +41,9 @@
                                         <table id="datatable1" class="table  table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <thead style="background: #b6e9ff;">
                                                 <tr>
-                                                    <th> Name</th>
+                                                    <th> Unit Name</th>
+                                                    <th> Name </th>
+                                                    <th> Phone No. </th>
                                                     <th> Type</th>
                                                     <th> Address</th>
                                                     <th style="width: 2%;"> Status</th>
@@ -50,7 +52,30 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                
+                                                @if(count($enterprises)!=0)
+                                                    @foreach($enterprises as $key_e=>$value_e)
+                                                    <tr>
+                                                        <td>{{$value_e->nameofUnit}}</td>
+                                                        <td>{{$value_e->nameOfPromoteer}}</td>
+                                                        <td>{{$value_e->cantactNo}}</td>
+                                                        <td>{{$value_e->landType}}</td>
+                                                        <td>{{$value_e->address}}</td>
+                                                        <td>{{$value_e->statusofUnit}}</td>
+                                                        
+                                                        <td>{{date('d/m/Y',strtotime($value_e->created_at))}}</td>
+                                                        <td class="actions">
+                                                            &nbsp;&nbsp;&nbsp;
+                                                            <a href="{{ URL::to('customer/fetch-enterprises',Crypt::encrypt($value_e->id))}}" class="on-default "  data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="fas fa-edit" style="color:green;"></i></a>
+                                                            <a href="{{ URL::to('customer/delete-enterprises',Crypt::encrypt($value_e->id))}}" class="on-default remove-row" onclick="return confirm('Are you sure you want to delete this item?');" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="fas fa-trash" style="color:red;"></i></a>
+                                                         </td>
+                                                    </tr>
+                                                    @endforeach
+                                                    
+                                                @else
+                                                <tr>
+                                                    <td colspan="8">No Data Found</td>
+                                                </tr>
+                                                @endif
                                             </tbody>
                                         </table>
                                     </div>

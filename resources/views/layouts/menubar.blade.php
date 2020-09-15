@@ -212,7 +212,7 @@
 					<a href="{{url('land/registration')}}" class="waves-effect"><i class="ion-android-user-menu"></i>&nbsp;&nbsp;REGISTRATIONS</a>
 				</li>
 				<li>
-				    <a href="{{URL::to('land/customer')}}" class="waves-effect"><i class="ion-android-add-contact"></i>&nbsp;&nbsp;<span>CUSTOMERS</span></a>
+				    <a href="{{URL::to('customer/list-enterprises')}}" class="waves-effect"><i class="ion-android-add-contact"></i>&nbsp;&nbsp;<span>CUSTOMERS</span></a>
 			    </li>
 				<!-- <li><a href="{{URL::to('pcc/pcc_action_view')}}" class="waves-effect"><i class="ion-android-add-contact"></i>&nbsp;&nbsp;<span>PCC  AGENDA</span></a></li> -->
 
@@ -284,7 +284,7 @@
 				@endif
 				@if(in_array(4, @$module_id))
 				<li>
-				    <a href="{{URL::to('land/customer')}}" class="waves-effect"><i class="ion-android-add-contact"></i>&nbsp;&nbsp;<span>CUSTOMERS</span></a>
+				    <a href="{{URL::to('customer/list-enterprises')}}" class="waves-effect"><i class="ion-android-add-contact"></i>&nbsp;&nbsp;<span>CUSTOMERS</span></a>
 			    </li>
 				@endif
 				@if(in_array(5, @$module_id))

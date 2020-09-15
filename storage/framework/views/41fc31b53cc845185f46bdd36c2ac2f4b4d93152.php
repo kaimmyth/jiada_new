@@ -14,7 +14,12 @@
             line-height: 8px;
         }
     }
-
+    label {
+		font-weight: 500;
+		font-family: "Roboto", sans-serif;
+		color: #003a69;
+		line-height: initial!important;
+	}
     .panel-heading:hover {
         background-color: #dddbdb;
     }
@@ -26,13 +31,11 @@
                 <?php echo csrf_field(); ?>
                 <div class="row" id="dashboard-row">
                     <div class="col-sm-12">
-                        <h4 class="pull-left page-title" style="color: #000; font-weight:200;"><i class="ion-arrow-right-b"></i> &nbsp;Customer :&nbsp; Add / <a href="javascript::void(0);" onclick="history.back();">Back</a></h4>
+                        <h4 class="pull-left page-title" style="color: #000; font-weight:200;"><i class="ion-arrow-right-b"></i> &nbsp;Customer :&nbsp;<?php if($enterprises->id): ?> <?php echo e("Edit"); ?> <?php else: ?> <?php echo e('Add'); ?>  <?php endif; ?>  / <a href="javascript::void(0);" onclick="history.back();">Back</a></h4>
                         <ol class="breadcrumb pull-right">
                         </ol>
                     </div>
                 </div>
-                <!----------------------------------------form starts from here---------------------------------->
-                <!--------------------------------first row-------------------------------------->
                 <div class="row col-md-12">
                     <div class="col-md-12">
                         <h4> Basic Details</h4></br></br></br>
@@ -40,20 +43,20 @@
                     <div class="col-md-4">
                         <div class="form-group"><br>
                             <label>Name Of Unit / Enterprise:&nbsp;</label>
-                            <input type="text" class="form-control" name="nameofUnit" id="nameofUnit">
+                            <input type="text" class="form-control" name="nameofUnit" value="<?php echo e(@$enterprises->nameofUnit); ?>" required id="nameofUnit">
+                            <input type="hidden" class="form-control" name="unit_id" value="<?php echo e(@$enterprises->id); ?>"  id="unit_id">
                         </div>
                     </div>
-
                     <div class="col-md-4">
                         <div class="form-group"><br>
                             <label>Date Of DOP:&nbsp;</label>
-                            <input type="date" class="form-control" name="dateofDOP" id="dateofDOP">
+                            <input type="date" class="form-control" value="<?php echo e(@$enterprises->dateOfDop); ?>" name="dateOfDop" id="dateOfDop">
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group"><br>
                             <label>Name Of Promoter: &nbsp;</label>
-                            <input type="email" class="form-control" name="nameOfPromoteer" id="nameOfPromoteer">
+                            <input type="text" class="form-control"  value="<?php echo e(@$enterprises->nameOfPromoteer); ?>" name="nameOfPromoteer" required id="nameOfPromoteer">
                         </div>
                     </div>
                 </div>
@@ -67,13 +70,18 @@
                         <div class="form-group">
                             <br><br>
                             <label>Contact No:&nbsp;</label>
-                            <input type="text" class="form-control" name="cantactNo" id="cantactNo">
+                            <input type="text" class="form-control" min="1" value="<?php echo e(@$enterprises->cantactNo); ?>" required name="cantactNo" id="cantactNo">
                             <br><br>
                             <label>District:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </label>
-                            <input type="text" class="form-control" name="district" id="district">
+                            <select class="form-control" name="district"  id="district" required>
+                                <option>--select--</option>
+                                <option <?php if(@$enterprises->district=="Jamshedpur"): ?> <?php echo e("Selected"); ?> <?php endif; ?>>Jamshedpur</option>
+                                <option <?php if(@$enterprises->district=="seraikela"): ?> <?php echo e("Selected"); ?> <?php endif; ?>>seraikela</option>
+                                <option <?php if(@$enterprises->district=="East Singhbhum"): ?> <?php echo e("Selected"); ?> <?php endif; ?>>East Singhbhum</option>
+                            </select>
                             <br><br>
                             <label>Sector:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                            <input type="text" class="form-control" name="sector" id="sector">
+                            <input type="text" class="form-control" value="<?php echo e(@$enterprises->sector); ?>" required name="sector" id="sector">
                         </div>
                     </div>
 
@@ -81,10 +89,10 @@
                         <div class="form-group">
                             <br>
                             <label>Email:&nbsp;</label>
-                            <input type="text" class="form-control" name="email" id="email">
+                            <input type="email" class="form-control" value="<?php echo e(@$enterprises->email); ?>" required name="email" id="email">
                             <br><br>
                             <label>Block:&nbsp;</label>
-                            <input type="text" class="form-control" name="block" id="block">
+                            <input type="text" class="form-control" value="<?php echo e(@$enterprises->block); ?>" required name="block" id="block">
                         </div>
                     </div>
 
@@ -92,13 +100,13 @@
                         <div class="form-group">
                             <br><br>
                             <label>Address:&nbsp;</label>
-                            <input type="text" class="form-control" name="address" id="address">
+                            <input type="text" class="form-control" value="<?php echo e(@$enterprises->address); ?>" name="address" id="address">
                             <br><br>
                             <label>Land Type:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                            <select class="form-control" name="landType" id="landType">
+                            <select class="form-control" name="landType"  id="landType" required>
                                 <option>--select--</option>
-                                <option>Goverment</option>
-                                <option>Private</option>
+                                <option <?php if(@$enterprises->landType=="Goverment"): ?> <?php echo e("Selected"); ?> <?php endif; ?>>Goverment</option>
+                                <option <?php if(@$enterprises->landType=="Private"): ?> <?php echo e("Selected"); ?> <?php endif; ?>>Private</option>
                             </select>
                         </div>
                     </div>
@@ -112,7 +120,7 @@
                         <div class="form-group">
                             <br>
                             <label>Regular Employee:&nbsp;</label>
-                            <input type="text" class="form-control" name="regularEmployee" id="regularEmployee">
+                            <input type="text" class="form-control" min="1" value="<?php echo e(@$enterprises->regularEmployee); ?>" required name="regularEmployee" id="regularEmployee">
                             <br>
                         </div>
                     </div>
@@ -121,7 +129,7 @@
                         <br>
                         <div class="form-group">
                             <label> Contractual Employee:&nbsp;</label>
-                            <input type="text" class="form-control" name="contractualEmployee" id="contractualEmployee">
+                            <input type="text" class="form-control" min="1" value="<?php echo e(@$enterprises->contractualEmployee); ?>" required name="contractualEmployee" id="contractualEmployee">
                         </div>
 
                     </div>
@@ -130,7 +138,7 @@
                         <br>
                         <div class="form-group">
                             <label>Daily Basis Employee: &nbsp;</label>
-                            <input type="email" class="form-control" name="dailyBasis" id="dailyBasis">
+                            <input type="text" class="form-control" min="1" value="<?php echo e(@$enterprises->dailyBasis); ?>" required name="dailyBasis" id="dailyBasis">
                         </div>
                         <br> <br>
                     </div>
@@ -145,10 +153,10 @@
                         <div class="form-group">
                             <br><br>
                             <label>Product:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </label>
-                            <input type="text" name="products" class="form-control" id="products">
+                            <input type="text" name="products" class="form-control" value="<?php echo e(@$enterprises->products); ?>" id="products" required>
                             <br><br>
                             <label>TurnOver FY 17-18:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                            <input type="text" class="form-control" name="turnOverInFy1" id="turnOverInFy1">
+                            <input type="text" min="1" class="form-control" value="<?php echo e(@$enterprises->turnOverInFy1); ?>" name="turnOverInFy1" id="turnOverInFy1">
                         </div>
                     </div>
 
@@ -156,15 +164,15 @@
                         <div class="form-group">
                             <br><br>
                             <label>Type Of Unit:&nbsp;</label>
-                            <select class="form-control" name="typeOfUnit" id="typeOfUnit">
+                            <select class="form-control" name="typeOfUnit" id="typeOfUnit" required>
                                 <option>--select--</option>
-                                <option>Mega</option>
-                                <option>Small</option>
-                                <option>Micro</option>
+                                <option <?php if(@$enterprises->typeOfUnit=="Mega"): ?> <?php echo e("Selected"); ?> <?php endif; ?>>Mega</option>
+                                <option <?php if(@$enterprises->typeOfUnit=="Small"): ?> <?php echo e("Selected"); ?> <?php endif; ?>>Small</option>
+                                <option <?php if(@$enterprises->typeOfUnit=="Micro"): ?> <?php echo e("Selected"); ?> <?php endif; ?>>Micro</option>
                             </select>
                             <br><br>
                             <label>Turn Over (FY 18-19):&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </label>
-                            <input type="text" class="form-control" name="turnOverInFy2" id="turnOverInFy1">
+                            <input type="text" class="form-control" min="1" value="<?php echo e(@$enterprises->turnOverInFy2); ?>" name="turnOverInFy2" id="turnOverInFy1">
                         </div>
                     </div>
 
@@ -172,10 +180,10 @@
                         <div class="form-group">
                             <br><br>
                             <label>Investment:&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                            <input type="text" class="form-control" name="investment" id="investment">
+                            <input type="text" class="form-control" name="investment" value="<?php echo e(@$enterprises->investment); ?>" id="investment">
                             <br><br>
                             <label>Indirect Employment:&nbsp;</label>
-                            <input type="text" class="form-control" name="indirectEmployment" id="indirectEmployment">
+                            <input type="text" class="form-control"  min="1" required value="<?php echo e(@$enterprises->indirectEmployment); ?>" name="indirectEmployment" id="indirectEmployment">
                         </div>
                     </div>
                 </div><br>
@@ -183,14 +191,14 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>No Of Male Employee(Direct):&nbsp;</label>
-                            <input type="text" class="form-control" name="noofMaleEmployeeDirect" id="noofMaleEmployeeDirect">
+                            <input type="text" class="form-control" min="1" value="<?php echo e(@$enterprises->noofMaleEmployeeDirect); ?>" required name="noofMaleEmployeeDirect" id="noofMaleEmployeeDirect">
                             <br><br>
                             <label>Status Of Unit:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </label>
-                            <select class="form-control" name="statusofUnit" id="statusofUnit">
+                            <select class="form-control" name="statusofUnit"  required id="statusofUnit">
                                 <option>--select--</option>
-                                <option>Operational</option>
-                                <option>Closed</option>
-                                <option>Sick</option>
+                                <option <?php if(@$enterprises->statusofUnit=="Operational"): ?> <?php echo e("Selected"); ?> <?php endif; ?>>Operational</option>
+                                <option <?php if(@$enterprises->statusofUnit=="Closed"): ?> <?php echo e("Selected"); ?> <?php endif; ?>>Closed</option>
+                                <option <?php if(@$enterprises->statusofUnit=="Sick"): ?> <?php echo e("Selected"); ?> <?php endif; ?>>Sick</option>
                             </select>
                         </div>
                     </div>
@@ -198,19 +206,19 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>No Of Female Employee(Direct):&nbsp; </label>
-                            <input type="text" class="form-control" name="noofFemaleEmployeeDirect" id="noofFemaleEmployeeDirect">
+                            <input type="text" class="form-control" min="1" value="<?php echo e(@$enterprises->noofFemaleEmployeeDirect); ?>" required name="noofFemaleEmployeeDirect" id="noofFemaleEmployeeDirect">
 
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>Value Of Export:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </label>
-                            <input type="text" class="form-control" name="valueofExport" id="valueofExport">
+                            <input type="text" class="form-control" value="<?php echo e(@$enterprises->valueofExport); ?>" name="valueofExport" id="valueofExport">
                         </div>
                     </div>
                 </div>
                 <div class="row col-md-12" style="text-align: left; margin-bottom: 6px;">
-                    <center><button type="submit" class="btn btn-primary waves-effect waves-light" onclick="return company_share_value()"> Create
+                    <center><button type="submit" class="btn btn-primary waves-effect waves-light" > Submit
                         </button></center>
                 </div>
                 <!-------------------------------------------form ends here------------------------------------------>

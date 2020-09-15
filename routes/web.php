@@ -28,6 +28,8 @@ Route::get('/admin_login', function () {
 Route::get('customer/list-enterprises','EnterpriseController@list_enterprise');
 Route::get('customer/add-enterprises','EnterpriseController@view_add');
 Route::post('customer/save-enterprises','EnterpriseController@add_enterprise');
+Route::get('customer/fetch-enterprises/{id}','EnterpriseController@fetch_enterprise');
+Route::get('customer/delete-enterprises/{id}','EnterpriseController@delete_enterprises');
 Auth::routes();
 
 Route::get('user-profile', 'HomeController@UserProfile');
