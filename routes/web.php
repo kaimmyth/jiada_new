@@ -57,45 +57,41 @@ Route::prefix('land')->group(function () {
 	Route::any('serachpccland/{q}', 'Landcontroller@SearchPccLand');
 	Route::any('customer/add-pcc/{id}', 'Landcontroller@AddPccCustomer');
 	Route::any('filter-pcc/{q}', 'Landcontroller@PccLand');
-
-
-	Route::any('invoice/{q}', 'Landcontroller@LandInvoice');
-
-
+	Route::any('invoice/{q}', 'RegistrationController@LandInvoice');
 	/*Transfer*/
-	Route::get('registration', 'Landcontroller@Registration');
+	Route::get('registration', 'RegistrationController@Registration');
 	Route::get('transfer-registration', 'Landcontroller@Registration_Transfer');
 	Route::get('searchtransfercontract/{query}', 'Landcontroller@SerachTransferContract');
-	Route::any('serachtransfercustomers/{q}', 'Landcontroller@searchTransferCustomer');
-	Route::any('transfercustomer/add/{id}', 'Landcontroller@AddTransferCustomer');
+	Route::any('serachtransfercustomers/{q}', 'RegistrationController@searchTransferCustomer');
+	Route::any('transfercustomer/add/{id}', 'RegistrationController@AddTransferCustomer');
 	Route::any('ragistration/transfer', 'Landcontroller@Create_Transfer_Registration');
 	/* End */
 	Route::any('customer/add', 'Landcontroller@AddCustomers');
 	Route::any('customer/view&edit/{id}', 'Landcontroller@Edit_Customers');
 	Route::any('customercompany/view/{id}', 'Landcontroller@view_company_customers');
 	Route::get('customer/delete/{id}', 'Landcontroller@Delete_Customer');
-	Route::any('serachcustomers/{q}', 'Landcontroller@SearchCustomer');
+	Route::any('serachcustomers/{q}', 'RegistrationController@SearchCustomer');
 	Route::any('wserachcustomers/{q}', 'Landcontroller@WizardSearchCustomer');
-	Route::any('customer/add/{id}', 'Landcontroller@AddContractCustomer');
+	Route::any('customer/add/{id}', 'RegistrationController@AddWizardContractCustomer');
 	Route::post('customer/update', 'Landcontroller@update_customer');
 	Route::any('wcustomer/add/{id}', 'Landcontroller@AddWizardContractCustomer');
 	Route::any('serachland/{q}', 'Landcontroller@SearchLand');
 	Route::any('land/add/{id}', 'Landcontroller@AddSearchLand');
 	Route::any('wserachland/{q}', 'Landcontroller@WizardSearchLand');
 	Route::any('land/wizard/add/{id}', 'Landcontroller@AddwizardSearchLand');
-	Route::any('create/registration', 'Landcontroller@CreateRegistration');
+	Route::any('create/registration', 'RegistrationController@CreateRegistration');
 	Route::any('create/new-regis-no', 'Landcontroller@CreateNewRegNo');
 	Route::get('registration_create', 'Landcontroller@Create_Registration');
 	Route::get('chnage_phase/{id}', 'Landcontroller@Get_Phase_Name');
 	Route::get('registration/history/{land_id}', 'Landcontroller@Get_Registration_history');
 	Route::get('transfer_land/{land_id}', 'Landcontroller@viewtransfer_land');
-	Route::post('registration/edit/{id}', 'Landcontroller@Get_Registration_details');
-	Route::get('registration/edit/{id}', 'Landcontroller@Get_Registration_details');
+	Route::any('registration/edit/{id}', 'RegistrationController@Get_Registration_details');
+	Route::any('registration/view/{id}', 'RegistrationController@Get_Registration_details');
 	Route::get('registration/edit/{id}/{land_id}', 'Landcontroller@Get_Registration_info');
 	Route::get('registration/delete/{id}', 'Landcontroller@Registration_Delete');
 	Route::get('transfer_history', 'Landcontroller@transfer_history');
-	Route::get('registration_editFetch/{id}', 'Landcontroller@registration_editFetch');
-	Route::post('editSave/registration', 'Landcontroller@registration_editSave');
+	Route::get('registration_editFetch/{id}', 'RegistrationController@registration_editFetch');
+	Route::post('editSave/registration', 'RegistrationController@registration_editSave');
 });
 
 Route::prefix('area-location')->group(function () {

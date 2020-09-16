@@ -8,6 +8,7 @@ use App\Industries;
 use App\CompanyType;
 use App\LocationZone;
 use App\Material;
+use App\Enterprise;
 
 
 class UnitListingController extends Controller
@@ -15,7 +16,7 @@ class UnitListingController extends Controller
     public function get_industries_name(Request $request)
     {
         if(request()->segment(2)){
-            $customer_details=CustCompany::where(function ($q)
+            $customer_details=Enterprise::where(function ($q)
             {
                 $q->whereRaw('find_in_set(?,waste_materials_id)',[request()->segment(2)])
                     ->orWhereRaw('find_in_set(?,input_details_id)',[request()->segment(2)]);
@@ -24,7 +25,7 @@ class UnitListingController extends Controller
             $materials = Material::all();
         }else{
             $materials = Material::all();
-            $customer_details = CustCompany::paginate(10);
+            $customer_details = Enterprise::paginate(10);
         }
         $industries = Industries::all();
         $company_types = CompanyType::all();

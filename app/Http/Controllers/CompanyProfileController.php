@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\CustCompany;
+use App\Enterprise;
 use App\company_services;
 use App\company_product;
 use Session;
@@ -21,7 +21,7 @@ class CompanyProfileController extends Controller
 {
     public function viewsite($id="")
     {
-        $customer_details = CustCompany::where('id',$id)->first();
+        $customer_details = Enterprise::where('id',$id)->first();
         if(empty($customer_details))
         {
             return redirect('/');
@@ -41,9 +41,9 @@ class CompanyProfileController extends Controller
     //    echo current_url();
         // echo url()->current();
         $enter_url=url()->current();
-        $customer_details = CustCompany::where('company_portal_url',$enter_url)->first();
+        $customer_details = Enterprise::where('company_portal_url',$enter_url)->first();
         // return $customer_details;
-        // $customer_details = CustCompany::where('company',$company_name)->first();
+        // $customer_details = Enterprise::where('company',$company_name)->first();
         // return $customer_details;
         if(empty($customer_details))
         {
@@ -57,7 +57,7 @@ class CompanyProfileController extends Controller
     {
         // return $id;
         if(Auth::user()->users_role==3){
-            $company = CustCompany ::where('cust_id',$id)->first();
+            $company = Enterprise ::where('cust_id',$id)->first();
         //   return response()->json($company);
              if($company!="")
             {
@@ -67,7 +67,7 @@ class CompanyProfileController extends Controller
                 return Redirect::back();
             }
         }
-        $customer_details = CustCompany::where('id',$id)->first();
+        $customer_details = Enterprise::where('id',$id)->first();
         $company_services=company_services::where('comp_id',$id)->get();
         $web_material=DB::table('web_materials')->where('org_id',$id)->get();
         $company_product=company_product::where('comp_id',$id)->get();
@@ -159,7 +159,7 @@ class CompanyProfileController extends Controller
       }
       
       /* update company customer table records*/
-      $customer_company=CustCompany::where('id',$request->comp_id)
+      $customer_company=Enterprise::where('id',$request->comp_id)
                                     ->update([
                                         'company_description'=>$request->company_description,
                                         'company_portal_url'=>$request->company_portal_url,
@@ -325,7 +325,7 @@ class CompanyProfileController extends Controller
       if(Auth::user()->users_role==3){
         return redirect('create/compan_website/'.Auth::user()->id);  
       }
-        return redirect('land/customer');
+        return redirect('customer/list-enterprises');
         // $add_company_prodcut=new company_product();
         // $add_company_prodcut->product_name=$request->product_name;
         // $add_company_prodcut->product_heading=$request->product_heading;

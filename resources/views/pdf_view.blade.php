@@ -67,9 +67,9 @@
 													</td>
 													<td class="st" style="text-align: right;">
 														<h4><b>BILLING ADDRESS</b></h4>
-														<i>Name :&nbsp;<span style="color: #1D73BC;">{{$data->f_name ?? ''}} {{$data->l_name ?? ''}}.</span></i><br>
-														<i>Mobile :&nbsp;<span style="color: #1D73BC;">{{$data->mobile ?? ''}}.</span></i><br>
-														<i>Company Name :&nbsp;<span style="color: #1D73BC;">{{$data->company ?? ''}}.</span></i><br>
+														<i>Name :&nbsp;<span style="color: #1D73BC;">{{$data->nameOfPromoteer ?? ''}}.</span></i><br>
+														<i>Mobile :&nbsp;<span style="color: #1D73BC;">{{$data->cantactNo ?? ''}}.</span></i><br>
+														<i>Company Name :&nbsp;<span style="color: #1D73BC;">{{$data->nameofUnit ?? ''}}.</span></i><br>
 														<i>Address :&nbsp;<span style="color: #1D73BC;">{{$data->cust_address ?? ''}}</span></i>
 													</td>
 												</tr>
@@ -78,7 +78,7 @@
 													<td class="st">
 														<i>Land Name :&nbsp;<span style="color: #1D73BC;">{{$data->land_name ?? ''}}.</span></i><br>
 														<i>Plot No :&nbsp;<span style="color: #1D73BC;">{{$data->plot_no ?? ''}}.</span></i><br>
-														<i>Plot Size :&nbsp;<span style="color: #1D73BC;">{{$data->plot_size ?? ''}} {{$data->uom ?? ''}}.</span></i><br>
+														<i>Plot Size :&nbsp;<span style="color: #1D73BC;">{{$data->plot_size ?? ''}} {{@$data->uom ?? ''}}.</span></i><br>
 														<i>Address :&nbsp;<span style="color: #1D73BC;">{{$data->address1 ?? ''}},<br>{{$data->city ?? ''}},{{$data->state ?? ''}}-{{$data->pincode ?? ''}}</span></i>
 													</td>
 													<!-- <td class="st" style="text-align: right;">
@@ -116,7 +116,7 @@
 												<td style="font-size: 11px;">{{$data->additional_charge}}</td>
 												<td style="font-size: 11px;">{{ucwords($data->net_payable)}}</td>
 												<td style="font-size: 11px;">{{$data->net_pay}}</td>
-												<td style="font-size: 11px;">{{$data->lease_time}} @if($data->lease_duration=='m') months. @else year. @endif</td>
+												<td style="font-size: 11px;">{{$data->lease_time}} @if(@$data->lease_duration=='m') months. @else year. @endif</td>
 												<td style="font-size: 11px;">{{date('M j,Y',strtotime($data->start_date))}}.</td>
 											</tr>
 

@@ -92,7 +92,7 @@
                         <div class="form-group">
                             <input type="hidden" name="comp_id" value="{{$customer_details->id}}">
                             <label for="field-6" class="control-label">Unit Name<font color="red">*</font></label>
-                            <input type="text" readonly class="form-control" name="company" id="company" value="{{$customer_details->company}}" required="" aria-required="true" placeholder="">
+                            <input type="text" readonly class="form-control" name="company" id="company" value="{{$customer_details->nameofUnit}}" required="" aria-required="true" placeholder="">
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -266,58 +266,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card-body">
-                <!--<div class="card-header">-->
-                @if(Auth::user()->users_role==3)
-                <h4 style="border-bottom: 1px dashed#999;">Manage Account</h4>
-                @else
-                <h4 style="border-bottom: 1px dashed#999;">Create Account</h4>
-                @endif
-
-                <!--</div>-->
-                <div class="card" style="padding: 1em;">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="field-6" class="control-label">User Name<font color="red">*</font></label>
-
-                                @if($customer_details->login_details != "not found")
-                                <input type="text" class="form-control" name="comapny_user" readonly value="{{ $customer_details->login_details->username}}" aria-required="true">
-                                @else
-                                <input type="text" class="form-control" name="comapny_user" required="" value=" " aria-required="true">
-                                @endif
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="field-6" class="control-label">Email<font color="red">*</font></label>
-                                @if($customer_details->login_details!='not found')
-                                <input type="email" class="form-control" name="comapny_email" readonly aria-required="true" value="{{$customer_details->login_details->email}}">
-                                @else
-                                <input type="email" class="form-control" name="comapny_email" required="" value=" " aria-required="true">
-                                @endif
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                @if(Auth::user()->users_role==3)
-                                <label for="field-6" class="control-label">Change Password<font color="red">*</font></label>
-                                @else
-                                <label for="field-6" class="control-label">Password<font color="red">*</font></label>
-                                @endif
-                                <input type="password" class="form-control" name="comapny_password" required="" aria-required="true">
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="field-6" class="control-label">Confirm Password<font color="red">*</font></label>
-                                <input type="password" class="form-control" name="comapny_Confirm_password" required="" aria-required="true">
-                                <input type="hidden" name="customer_id" value="{{$customer_details->cust_id}}">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+           
 
             <!-- Ashish code End -->
             <div class="card-body">
@@ -401,7 +350,7 @@
                     <!--</div>-->
                     @if(count($company_product)!=0)
                     @foreach($company_product as $key_product=>$value_product)
-                    <div class="row">
+                    <div class="row col-md-12">
                         <div class="card" style="padding: 1em;">
 
                             <div class="col-md-12">
@@ -445,7 +394,7 @@
                         @else
                         <div class="card" style="padding: 1em;">
 
-                            <div class="row">
+                            <div class="row col-md-12">
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <input type="hidden" name="product_id[]">
@@ -489,12 +438,12 @@
                         </div>
                     </div>
 
-                    <!-- </div>
-            </div>   -->
-                    <!-- </div>
-            </div> -->
+                    </div>
+            </div>  
+                    </div>
+            </div>
                     <div class="col-md-10">
-                        <center><input type="submit" class="btn btn-outline-primary" value="Submit" style=" padding: 6px 22px; font-size: 14px;"></center>
+                        <center><input type="submit" class="btn btn-outline-primary" value="Submit" style=" padding: 6px 22px;margin-top: -93px;font-size: 14px;"></center>
                         <!--<input type="submit" class="btn btn-outline-primary" value="Submit">-->
                     </div>
         </form>

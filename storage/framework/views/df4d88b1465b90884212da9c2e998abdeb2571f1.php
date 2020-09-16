@@ -33,7 +33,7 @@
                     <div class="card card-border card-info">
                         <div class="card-header" style="background-image: linear-gradient(#e9f8ff, white);padding: 0px !important;">
                             <div class="card-body">
-                                
+
                                 <div class="row"><br><br><br>
 
                                     <div class="col-md-12 col-sm-12 col-12">
@@ -53,24 +53,25 @@
                                             </thead>
                                             <tbody>
                                                 <?php if(count($enterprises)!=0): ?>
-                                                    <?php $__currentLoopData = $enterprises; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key_e=>$value_e): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                    <tr>
-                                                        <td><?php echo e($value_e->nameofUnit); ?></td>
-                                                        <td><?php echo e($value_e->nameOfPromoteer); ?></td>
-                                                        <td><?php echo e($value_e->cantactNo); ?></td>
-                                                        <td><?php echo e($value_e->landType); ?></td>
-                                                        <td><?php echo e($value_e->address); ?></td>
-                                                        <td><?php echo e($value_e->statusofUnit); ?></td>
-                                                        
-                                                        <td><?php echo e(date('d/m/Y',strtotime($value_e->created_at))); ?></td>
-                                                        <td class="actions">
-                                                            &nbsp;&nbsp;&nbsp;
-                                                            <a href="<?php echo e(URL::to('customer/fetch-enterprises',Crypt::encrypt($value_e->id))); ?>" class="on-default "  data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="fas fa-edit" style="color:green;"></i></a>
-                                                            <a href="<?php echo e(URL::to('customer/delete-enterprises',Crypt::encrypt($value_e->id))); ?>" class="on-default remove-row" onclick="return confirm('Are you sure you want to delete this item?');" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="fas fa-trash" style="color:red;"></i></a>
-                                                         </td>
-                                                    </tr>
-                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                    
+                                                <?php $__currentLoopData = $enterprises; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key_e=>$value_e): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <tr>
+                                                    <td><?php echo e($value_e->nameofUnit); ?></td>
+                                                    <td><?php echo e($value_e->nameOfPromoteer); ?></td>
+                                                    <td><?php echo e($value_e->cantactNo); ?></td>
+                                                    <td><?php echo e($value_e->landType); ?></td>
+                                                    <td><?php echo e($value_e->address); ?></td>
+                                                    <td><?php echo e($value_e->statusofUnit); ?></td>
+
+                                                    <td><?php echo e(date('d/m/Y',strtotime($value_e->created_at))); ?></td>
+                                                    <td class="actions">
+                                                        &nbsp;&nbsp;&nbsp;
+                                                        <a href="<?php echo e(URL::to('customer/fetch-enterprises',Crypt::encrypt($value_e->id))); ?>" class="on-default " data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="fas fa-edit" style="color:green;"></i></a>
+                                                        <a href="<?php echo e(URL::to('customer/delete-enterprises',Crypt::encrypt($value_e->id))); ?>" class="on-default remove-row" onclick="return confirm('Are you sure you want to delete this item?');" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="fas fa-trash" style="color:red;"></i></a>
+                                                        <a href="<?php echo e(URL::to('create/compan_website',$value_e->id)); ?>" class="on-default remove-row" data-toggle="tooltip" data-original-title="Create Website" data-placement="top"><i class="fas fa-globe"></i></a>
+                                                    </td>
+                                                </tr>
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
                                                 <?php else: ?>
                                                 <tr>
                                                     <td colspan="8">No Data Found</td>
@@ -86,5 +87,4 @@
                 </div> <!-- End Row -->
             </div> <!-- card -->
         </div> <!-- container -->
-    </div> <!-- content -->
-    <?php /**PATH D:\xampp\htdocs\jiada_new\resources\views/customer/list_enterprise.blade.php ENDPATH**/ ?>
+    </div> <!-- content --><?php /**PATH D:\xampp\htdocs\jiada_new\resources\views/customer/list_enterprise.blade.php ENDPATH**/ ?>

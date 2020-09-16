@@ -30,8 +30,9 @@ class EnterpriseController extends Controller
       {
           $validator =  $request->validate([
               'nameofUnit' => 'required',
-              'nameOfPromoteer' => 'required',
               'cantactNo' => 'required',
+              'first_name' => 'required',
+            'last_name' => 'required',
               'address' => 'required',
               'district' => 'required',
               'block' => 'required',
@@ -51,8 +52,9 @@ class EnterpriseController extends Controller
         
         $validator =  $request->validate([
             'nameofUnit' => 'required',
-            'nameOfPromoteer' => 'required',
             'cantactNo' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required',
             'email' => 'required|unique:enterprise',
             'address' => 'required',
             'district' => 'required',
@@ -71,9 +73,14 @@ class EnterpriseController extends Controller
         $enterprises=new Enterprise();
       }
         $enterprises->nameofUnit=$request->nameofUnit;
-        $enterprises->nameOfPromoteer=$request->nameOfPromoteer;
+
+        $enterprises->nameOfPromoteer=$request->first_name." ".$request->last_name;
+        $enterprises->first_name=$request->first_name;
+        $enterprises->last_name=$request->last_name;
         $enterprises->dateOfDop=$request->dateOfDop;
         $enterprises->cantactNo=$request->cantactNo;
+        $enterprises->company_reg_no=$request->company_reg_no;
+        $enterprises->company_description=$request->company_description;
         $enterprises->email=$request->email;
         $enterprises->address=$request->address;
         $enterprises->district=$request->district;

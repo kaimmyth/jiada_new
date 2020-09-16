@@ -226,9 +226,9 @@ class Landcontroller extends Controller
     $toReturn['Land_details']=Land::where('id',$id)->first();
     $toReturn['land_lease_details']=Leasedata::where('id',$id)->get();
     $toReturn['lease_history']=Leasedata::
-    leftjoin('customer_company','customer_company.id','leasedata.cust_id')
+    leftjoin('enterprise','enterprise.id','leasedata.cust_id')
     ->orderBy('leasedata.id','DESC')
-    ->where('leasedata.land_id', $id)->select('leasedata.*', 'leasedata.id as Id', 'customer_company.company as company_name','customer_company.id as company_id')->get()->toArray();
+    ->where('leasedata.land_id', $id)->select('leasedata.*', 'leasedata.id as Id', 'enterprise.nameofUnit as company_name','enterprise.id as company_id')->get()->toArray();
   // return Response::json($toReturn);
   // echo "<pre>";
   // print_r($toReturn);
@@ -430,8 +430,8 @@ class Landcontroller extends Controller
     $toReturn=array();
     $toReturn['lease_details']= DB::table('leasedata')
       ->join('lands', 'lands.id', '=', 'leasedata.land_id')
-      ->leftjoin('customer_company','customer_company.id','leasedata.cust_id')
-      ->where('leasedata.id', $id)->select('leasedata.*', 'leasedata.id as Id', 'customer_company.company_type as company_type' ,'customer_company.company as company_name' ,'lands.*',  'lands.id as LandID')->first();
+      ->leftjoin('enterprise','enterprise.id','leasedata.cust_id')
+      ->where('leasedata.id', $id)->select('leasedata.*', 'leasedata.id as Id', 'enterprise.typeOfUnit as company_type' ,'enterprise.nameofUnit as company_name' ,'lands.*',  'lands.id as LandID')->first();
     $toReturn['leasedata']=Leasedata::where('id',$id)->first();
     // $toReturn['leaseInvoice']=lease_invoice::where('land_id',$toReturn['leasedata']->land_id)->get();
     $toReturn['comapany_detail']=CustCompany::where('id',@$toReturn['leasedata']->cust_id)->first();
@@ -449,9 +449,9 @@ class Landcontroller extends Controller
   public function Get_Registration_history($land_id)
   {
       $toReturn['lease_history']=Leasedata::join('lands', 'lands.id', '=', 'leasedata.land_id')
-      ->leftjoin('customer_company','customer_company.id','leasedata.cust_id')
+      ->leftjoin('enterprise','enterprise.id','leasedata.cust_id')
       ->orderBy('leasedata.id','DESC')
-      ->where('leasedata.land_id', $land_id)->select('leasedata.*', 'leasedata.id as Id', 'customer_company.company as company_name','customer_company.id as company_id','lands.*', 'lands.id as LandID')->get()->toArray();
+      ->where('leasedata.land_id', $land_id)->select('leasedata.*', 'leasedata.id as Id', 'enterprise.nameofUnit as company_name','enterprise.id as company_id','lands.*', 'lands.id as LandID')->get()->toArray();
     return Response::json($toReturn); 
   }
   public function Get_Registration_info($id,$land_id)
@@ -488,13 +488,11 @@ class Landcontroller extends Controller
 
   public function Registration(Request $request)
   {
-    try {
       $results = DB::table('leasedata')->leftJoin('lands', 'lands.id', '=', 'leasedata.land_id')
-      ->leftjoin('customer_company','customer_company.id','leasedata.cust_id')
-      ->leftJoin('customers', 'customers.id', 'leasedata.cust_id')
+      ->leftjoin('enterprise','enterprise.id','leasedata.cust_id')
         ->where(['leasedata.status' => 1])
-        ->orderBy('customer_company.id','DESC')
-        ->select('leasedata.*', 'customers.f_name', 'customers.l_name', 'customers.company','customer_company.company as company_name','customer_company.company_type as company_type' , 'lands.land_name','leasedata.land_id')->orderBy('leasedata.id','DESC')->paginate(25);
+        ->orderBy('enterprise.id','DESC')
+        ->select('leasedata.*','enterprise.nameofUnit as company_name','enterprise.typeOfUnit as company_type' , 'lands.land_name','leasedata.land_id')->orderBy('leasedata.id','DESC')->paginate(25);
 // return $results;
       if(Auth::check() && Auth::user()->users_role == 2)
         {
@@ -511,9 +509,7 @@ class Landcontroller extends Controller
 
       $data['content'] = 'customer.registration';
       return view('layouts.content', compact('data'))->with(['results' => $results ?? '','module_permission'=>$module_permission ??'','user_id'=>$user_id]);
-    } catch (\Exception $e) {
-      return $e->getMessage();
-    }
+   
   }
 
   /* PCC */
@@ -955,8 +951,6 @@ class Landcontroller extends Controller
 
   public function SearchCustomer(Request $request, $query)
   {
-    // if ($request->ajax()) {
-      
       $data=CustCompany::where('company', 'LIKE', "%{$query}%")
         ->orWhere('company_reg_no', 'LIKE', "%{$query}%")
         ->orWhere('company_type', 'LIKE', "%{$query}%")
@@ -1056,7 +1050,7 @@ class Landcontroller extends Controller
     //   return Response::json($data);
     // }
     Session::forget('RegCustData');
-    $Company=DB::table('customer_company')->where('id', $id)->first();
+    $Company=DB::table('enterprise')->where('id', $id)->first();
     return Response::json($Company);
   }
 
@@ -1081,7 +1075,7 @@ class Landcontroller extends Controller
       }
     }
     $user_id=Session::get('gorgID');
-      $Company=DB::table('customer_company')->where('status', 1)->orderBy('id','DESC')->paginate(25);
+      $Company=DB::table('enterprise')->where('status', 1)->orderBy('id','DESC')->paginate(25);
       $data['content'] = 'customer.manage_customers';
       return view('layouts.content', compact('data'))->with(['customers_data' => $Company ?? '','module_permission'=>$module_permission ??'','user_id'=>$user_id]);
     } catch (\Exception $e) {
@@ -1104,9 +1098,9 @@ class Landcontroller extends Controller
     $shareholderData=Customer::where('comp_id', $edit_company->id)->where('is_director',0)->where('is_proprietor',0)->get();
     $directorData=Customer::where('comp_id', $edit_company->id)->where('is_director',1)->where('is_proprietor',0)->get();
     
-    $datas = CustCompany::leftJoin('industries','customer_company.industry_id','=','industries.id')
-                          ->leftJoin('materials','customer_company.input_details_id','=','materials.id')
-                          ->select('customer_company.*','materials.material_name')
+    $datas = CustCompany::leftJoin('industries','enterprise.industry_id','=','industries.id')
+                          ->leftJoin('materials','enterprise.input_details_id','=','materials.id')
+                          ->select('enterprise.*','materials.material_name')
                           ->get();
      $edit_industry = Industries::get();
      $edit_remove = Customer::where('comp_id', $edit_company->id)->get('id');
@@ -2147,13 +2141,13 @@ class Landcontroller extends Controller
     $toReturn['lease_details']= DB::table('leasedata')
       // ->join('customers', 'customers.id', '=', 'leasedata.cust_id')
       ->join('lands', 'lands.id', '=', 'leasedata.land_id')
-      ->leftjoin('customer_company','customer_company.id','leasedata.cust_id')
+      ->leftjoin('enterprise','enterprise.id','leasedata.cust_id')
       ->where('leasedata.id',$id)
-      ->select('leasedata.*', 'customer_company.id as customerCopmId',
-      'customer_company.company_type as company_type',
-      'customer_company.company as company_name' ,
-      'customer_company.company_reg_no as company_reg_no' ,
-      'customer_company.address as address' ,
+      ->select('leasedata.*', 'enterprise.id as customerCopmId',
+      'enterprise.typeOfUnit as company_type',
+      'enterprise.nameofUnit as company_name' ,
+      'enterprise.company_reg_no as company_reg_no' ,
+      'enterprise.address as address' ,
       
       'lands.*','lands.id as LandID', 'leasedata.id as id')
       ->first();

@@ -65,7 +65,7 @@ class HomeController extends Controller
   public function Dashboard(Request $request)
   {
     if(Session::get('role')==1){
-        $totalcustomers = DB::table('customer_company')->where('status', '1')->count();
+        $totalcustomers = DB::table('enterprise')->where('status', '1')->count();
         $messages = DB :: table('web_contact')->count();
     }
     if(Session::get('role')==1 || Session::get('role')==2){

@@ -33,7 +33,7 @@
                     <div class="card card-border card-info">
                         <div class="card-header" style="background-image: linear-gradient(#e9f8ff, white);padding: 0px !important;">
                             <div class="card-body">
-                                
+
                                 <div class="row"><br><br><br>
 
                                     <div class="col-md-12 col-sm-12 col-12">
@@ -53,24 +53,25 @@
                                             </thead>
                                             <tbody>
                                                 @if(count($enterprises)!=0)
-                                                    @foreach($enterprises as $key_e=>$value_e)
-                                                    <tr>
-                                                        <td>{{$value_e->nameofUnit}}</td>
-                                                        <td>{{$value_e->nameOfPromoteer}}</td>
-                                                        <td>{{$value_e->cantactNo}}</td>
-                                                        <td>{{$value_e->landType}}</td>
-                                                        <td>{{$value_e->address}}</td>
-                                                        <td>{{$value_e->statusofUnit}}</td>
-                                                        
-                                                        <td>{{date('d/m/Y',strtotime($value_e->created_at))}}</td>
-                                                        <td class="actions">
-                                                            &nbsp;&nbsp;&nbsp;
-                                                            <a href="{{ URL::to('customer/fetch-enterprises',Crypt::encrypt($value_e->id))}}" class="on-default "  data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="fas fa-edit" style="color:green;"></i></a>
-                                                            <a href="{{ URL::to('customer/delete-enterprises',Crypt::encrypt($value_e->id))}}" class="on-default remove-row" onclick="return confirm('Are you sure you want to delete this item?');" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="fas fa-trash" style="color:red;"></i></a>
-                                                         </td>
-                                                    </tr>
-                                                    @endforeach
-                                                    
+                                                @foreach($enterprises as $key_e=>$value_e)
+                                                <tr>
+                                                    <td>{{$value_e->nameofUnit}}</td>
+                                                    <td>{{$value_e->nameOfPromoteer}}</td>
+                                                    <td>{{$value_e->cantactNo}}</td>
+                                                    <td>{{$value_e->landType}}</td>
+                                                    <td>{{$value_e->address}}</td>
+                                                    <td>{{$value_e->statusofUnit}}</td>
+
+                                                    <td>{{date('d/m/Y',strtotime($value_e->created_at))}}</td>
+                                                    <td class="actions">
+                                                        &nbsp;&nbsp;&nbsp;
+                                                        <a href="{{ URL::to('customer/fetch-enterprises',Crypt::encrypt($value_e->id))}}" class="on-default " data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="fas fa-edit" style="color:green;"></i></a>
+                                                        <a href="{{ URL::to('customer/delete-enterprises',Crypt::encrypt($value_e->id))}}" class="on-default remove-row" onclick="return confirm('Are you sure you want to delete this item?');" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="fas fa-trash" style="color:red;"></i></a>
+                                                        <a href="{{ URL::to('create/compan_website',$value_e->id)}}" class="on-default remove-row" data-toggle="tooltip" data-original-title="Create Website" data-placement="top"><i class="fas fa-globe"></i></a>
+                                                    </td>
+                                                </tr>
+                                                @endforeach
+
                                                 @else
                                                 <tr>
                                                     <td colspan="8">No Data Found</td>
@@ -87,4 +88,3 @@
             </div> <!-- card -->
         </div> <!-- container -->
     </div> <!-- content -->
-    

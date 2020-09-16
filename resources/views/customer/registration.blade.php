@@ -3,22 +3,22 @@
         padding: 1px 20px;
         border: none;
     }
-    .form-control {
-    -moz-border-radius: 2px;
-    -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
-    -webkit-border-radius: 2px;
-    -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
-    background-color: #ffffff;
-    border-radius: 2px;
-    border: 1px solid #b3b1b1;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    color: rgba(0, 0, 0, 0.6);
-    font-size: 14px;
-    box-shadow: 0px 0px #ffffff;
-    width: 100%;
-}
 
+    .form-control {
+        -moz-border-radius: 2px;
+        -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+        -webkit-border-radius: 2px;
+        -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+        background-color: #ffffff;
+        border-radius: 2px;
+        border: 1px solid #b3b1b1;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        color: rgba(0, 0, 0, 0.6);
+        font-size: 14px;
+        box-shadow: 0px 0px #ffffff;
+        width: 100%;
+    }
 </style>
 <div class="content-page">
     <div class="content">
@@ -45,13 +45,13 @@
                                 <div class="row"><br><br><br>
                                     <div class="col-md-12 col-sm-12 col-12">
                                         @if($user_id!=1)
-                                        @if(@$module_permission['is_add']=='yes')     
+                                        @if(@$module_permission['is_add']=='yes')
                                         <a href="{{url('land/registration_create')}}"><button type="button" class="btn btn-purple btn-rounded waves-effect waves-light m-b-5" style="float:right;margin-top: 1%;"><i class="md md-add-circle-outline"></i> Add</button></a><br>
                                         @endif
                                         @else
                                         <a href="{{url('land/registration_create')}}"><button type="button" class="btn btn-purple btn-rounded waves-effect waves-light m-b-5 ttnne" style="float:right;margin-top: 1%;"><i class="md md-add-circle-outline"></i> Add</button></a><br>
                                         @endif
-                                        <table  id="datatable1" class="table  table-bordered dt-responsive" style="border-collapse: collapse; width:100%; border-spacing: 0;">
+                                        <table id="datatable1" class="table  table-bordered dt-responsive" style="border-collapse: collapse; width:100%; border-spacing: 0;">
                                             <thead style="background: #b6e9ff;">
                                                 <tr>
                                                     <th style="width: 20%;">Companies</th>
@@ -61,36 +61,15 @@
                                                     <th style="width: 10%;">Land Name</th>
                                                     <th style="width: 10%;">Registration Date</th>
                                                     <th style="width: 2%;">Status</th>
-                                                    <th style="width: 10%; background-color: e1f1f9;" ></th>
+                                                    <th style="width: 10%; background-color: e1f1f9;"></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @if($results!='')
+                                                @if(count($results)!=0)
                                                 @foreach($results as $key => $val)
                                                 <tr>
-                                                    @php
-                                                    if ($val->trans_cust_id!='') {
-                                                    $d = DB::table('customers')->where('id',$val->trans_cust_id)->first();
-                                                    }
-                                                    @endphp
                                                     <td style="text-transform: capitalize;">{{@$val->company_name}}</td>
-                                                    <!-- <td style="text-transform: capitalize;">
-                                                        
-                                                        @if($val->company_type=="llp")
-                                                        LLP
-                                                        @elseif($val->company_type=="ltd")
-                                                        PVT. LTD
-                                                        @elseif($val->company_type=="public")
-                                                        PUBLIC
-                                                        @elseif($val->company_type=="LTD")
-                                                        LTD
-                                                        @elseif($val->company_type=="proprietorship")
-                                                        PROPRIETORSHIP
-                                                        @else
-
-                                                        @endif
-
-                                                        </td> -->
+                                                    
                                                     <td class="text-right">{{$val->application_no ?? ''}}</td>
                                                     <td class="text-right">{{$val->registration_no}}</td>
                                                     <td class="text-right">{{$val->allotment_no ?? ''}}</td>
@@ -110,27 +89,27 @@
                                                         </p>
                                                     </td>
                                                     @endif
-                                                    <td class="actions"> 
+                                                    <td class="actions">
                                                         @if($user_id!=1)
-                                                        @if(@$module_permission['is_read']=='yes') 
-                                                        <a href="javascript::void(0);" class="on-default view-row" onclick="View_Registration({{$val->id}})"data-placement="top"  title="View "><i class="fa fa-eye"></i></a> 
+                                                        @if(@$module_permission['is_read']=='yes')
+                                                        <a href="javascript::void(0);" class="on-default view-row" onclick="View_Registration({{$val->id}})" data-placement="top" title="View "><i class="fa fa-eye"></i></a>
                                                         @endif
                                                         @else
-                                                        <a href="javascript::void(0);" class="on-default view-row" onclick="View_Registration({{$val->id}})" data-placement="top" title="View " ><i class="fa fa-eye"></i></a> &nbsp;&nbsp;
+                                                        <a href="javascript::void(0);" class="on-default view-row" onclick="View_Registration({{$val->id}})" data-placement="top" title="View "><i class="fa fa-eye"></i></a> &nbsp;&nbsp;
                                                         @endif
                                                         @if($user_id!=1)
-                                                        @if(@$module_permission['is_edit']=='yes') 
+                                                        @if(@$module_permission['is_edit']=='yes')
                                                         <!-- <a href="javascript::void(0);" id="editpm" onclick="Edit_Registration({{$val->id}})" class="on-default remove-row"  title="" data-original-title="Update"><i class="fas fa-pencil-alt"></i></a> -->
-                                                        <a href="{{url('land/registration_editFetch',$val->id)}}" id="editpm" class="on-default remove-row"  title="Update" data-original-title="Update"><i class="fas fa-pencil-alt"></i></a>
-                                                       @endif
-                                                       @else
-                                                       <a href="{{url('land/registration_editFetch',$val->id)}}" id="editpm" class="on-default remove-row"  title="Update" data-original-title="Update"><i class="fas fa-pencil-alt"></i></a>
-                                                       @endif
-                                                        &nbsp;&nbsp;<a href="{{url('land/invoice',$val->id)}}" class="on-default remove-row"  title="Download Invoice" data-original-title="Download Invoice"><i class="fa fa-download"></i></a>
+                                                        <a href="{{url('land/registration_editFetch',$val->id)}}" id="editpm" class="on-default remove-row" title="Update" data-original-title="Update"><i class="fas fa-pencil-alt"></i></a>
+                                                        @endif
+                                                        @else
+                                                        <a href="{{url('land/registration_editFetch',$val->id)}}" id="editpm" class="on-default remove-row" title="Update" data-original-title="Update"><i class="fas fa-pencil-alt"></i></a>
+                                                        @endif
+                                                        &nbsp;&nbsp;<a href="{{url('land/invoice',$val->id)}}" class="on-default remove-row" title="Download Invoice" data-original-title="Download Invoice"><i class="fa fa-download"></i></a>
                                                         &nbsp;&nbsp;
-                                                        <a href="javascript::void(0);" class="on-default remove-row" onclick="View_history({{$val->land_id}})"  title="View History" data-original-title="View History"><i class="fa fa-history"></i></a>
+                                                        <a href="javascript::void(0);" class="on-default remove-row" onclick="View_history({{$val->land_id}})" title="View History" data-original-title="View History"><i class="fa fa-history"></i></a>
                                                         &nbsp;&nbsp;
-                                                        <a href="javascript::void(0);" class="on-default remove-row" onclick="transfer_land({{$val->id}})"  title="Transfer Land" data-original-title="Transfer Land"><i class="fa fa-forward"></i></a>
+                                                        <a href="javascript::void(0);" class="on-default remove-row" onclick="transfer_land({{$val->id}})" title="Transfer Land" data-original-title="Transfer Land"><i class="fa fa-forward"></i></a>
                                                         &nbsp;&nbsp;
 
                                                     </td>
@@ -193,113 +172,58 @@
                     }
                 });
                 $.ajax({
-                    url: "{{url('land/registration/edit/')}}" + '/' + id,
+                    url: "{{url('land/registration/view/')}}" + '/' + id,
                     method: "get",
                     contentType: 'application/json',
                     success: function (data) {
                         $("#customer_details").empty();
                         $("#leaseInvoice_data").empty();
                         console.log(data);
-                        for(var i=0;i<data.ltdpvt.length; i++)
-                            {
-                                if((data.comapany_detail.company_type)=="proprietorship")
-                                {
-                                     var customer_type="Proprietorship";
-                                }
-                                else
-                                {
-                                    if(data.ltdpvt[i].is_director==0)
-                                    {
-                                    var customer_type="Share Holder"
-                                    }
-                                    else
-                                    {
-                                        var customer_type="Director";
-                                    }
-                                }
-                                if(data.ltdpvt[i].f_name==null)
-                                {
-                                    data.ltdpvt[i].f_name="N/A";
-                                }
-                                if(data.ltdpvt[i].l_name==null)
-                                {
-                                    data.ltdpvt[i].l_name="N/A";
-                                }
-                                if(data.ltdpvt[i].mobile==null)
-                                {
-                                    data.ltdpvt[i].mobile="N/A";
-                                }
-                                if(data.ltdpvt[i].company_name==null)
-                                {
-                                    data.ltdpvt[i].company_name="N/A";
-                                }
-                                if(data.ltdpvt[i].email==null)
-                                {
-                                    data.ltdpvt[i].email="N/A";
-                                }
-                            //     if(data.itdpvt[i].f_name==null)
-                            //   {
-                                $("#customer_details").append("<tr><td>"+data.ltdpvt[i].f_name+"&nbsp;"+data.ltdpvt[i].l_name+"</td><td>"+customer_type+"</td><td>"+data.ltdpvt[i].mobile+"</td><td>"+data.ltdpvt[i].company+"</td><td>"+data.ltdpvt[i].email+"</td></tr>");
-                            //   }
-                            //   else
-                            //   {
-                            //       $("#customer_details").hide();
-                            //   }
-                                   
-                               }
-                            for(var i=0;i<data.leaseInvoice.length; i++)
-                            {
-                                
-                                if(data.leaseInvoice[i].based_rent==null)
-                                {
-                                    data.leaseInvoice[i].based_rent="N/A";
-                                }
-                                if(data.leaseInvoice[i].insurance==null)
-                                {
-                                    data.leaseInvoice[i].insurance="N/A";
-                                }
-                                if(data.leaseInvoice[i].additional_charge==null)
-                                {
-                                    data.leaseInvoice[i].additional_charge="N/A";
-                                }
-                                if(data.leaseInvoice[i].net_payable==null)
-                                {
-                                    data.leaseInvoice[i].net_payable="N/A";
-                                }
-                                if(data.leaseInvoice[i].start_date==null)
-                                {
-                                    data.leaseInvoice[i].start_date="N/A";
-                                }
-                                if(data.leaseInvoice[i].tax==null)
-                                {
-                                    data.leaseInvoice[i].tax="N/A";
-                                }
-                                if(data.leaseInvoice[i].maintanance==null)
-                                {
-                                    data.leaseInvoice[i].maintanance="N/A";
-                                }
-                                if(data.leaseInvoice[i].net_pay==null)
-                                {
-                                    data.leaseInvoice[i].net_pay="N/A";
-                                }
-                                if(data.leaseInvoice[i].lease_time==null)
-                                {
-                                    data.leaseInvoice[i].lease_time="N/A";
-                                }
-                                $("#leaseInvoice_data").append("<tr><td>"+data.leaseInvoice[i].based_rent+"</td><td>"+data.leaseInvoice[i].insurance+"</td><td>"+data.leaseInvoice[i].additional_charge+"</td><td>"+data.leaseInvoice[i].net_payable+"</td><td>"+data.leaseInvoice[i].start_date+"</td><td>"+data.leaseInvoice[i].tax+"</td><td>"+data.leaseInvoice[i].maintanance+"</td><td>"+data.leaseInvoice[i].net_pay+"</td><td>"+data.leaseInvoice[i].lease_time+"</td><td>");
+                        for (var i = 0; i < data.leaseInvoice.length; i++) {
+
+                            if (data.leaseInvoice[i].based_rent == null) {
+                                data.leaseInvoice[i].based_rent = "N/A";
                             }
+                            if (data.leaseInvoice[i].insurance == null) {
+                                data.leaseInvoice[i].insurance = "N/A";
+                            }
+                            if (data.leaseInvoice[i].additional_charge == null) {
+                                data.leaseInvoice[i].additional_charge = "N/A";
+                            }
+                            if (data.leaseInvoice[i].net_payable == null) {
+                                data.leaseInvoice[i].net_payable = "N/A";
+                            }
+                            if (data.leaseInvoice[i].start_date == null) {
+                                data.leaseInvoice[i].start_date = "N/A";
+                            }
+                            if (data.leaseInvoice[i].tax == null) {
+                                data.leaseInvoice[i].tax = "N/A";
+                            }
+                            if (data.leaseInvoice[i].maintanance == null) {
+                                data.leaseInvoice[i].maintanance = "N/A";
+                            }
+                            if (data.leaseInvoice[i].net_pay == null) {
+                                data.leaseInvoice[i].net_pay = "N/A";
+                            }
+                            if (data.leaseInvoice[i].lease_time == null) {
+                                data.leaseInvoice[i].lease_time = "N/A";
+                            }
+                            $("#leaseInvoice_data").append("<tr><td>" + data.leaseInvoice[i].based_rent + "</td><td>" + data.leaseInvoice[i].insurance + "</td><td>" + data.leaseInvoice[i].additional_charge + "</td><td>" + data.leaseInvoice[i].net_payable + "</td><td>" + data.leaseInvoice[i].start_date + "</td><td>" + data.leaseInvoice[i].tax + "</td><td>" + data.leaseInvoice[i].maintanance + "</td><td>" + data.leaseInvoice[i].net_pay + "</td><td>" + data.leaseInvoice[i].lease_time + "</td><td>");
+                        }
                         // document.getElementById('ids').value = data.lease_details.Id;
                         // document.getElementById('cust_ids').value = data.leasedata.cust_id;
-                        document.getElementById("plot_no").innerHTML = data.lease_details.plot_no ;
+                        document.getElementById("plot_no").innerHTML = data.lease_details.plot_no;
                         document.getElementById("plot_name").innerHTML = data.lease_details.land_name;
                         document.getElementById("appli_no").innerHTML = data.lease_details.application_no;
                         document.getElementById("allot_no").innerHTML = data.lease_details.allotment_no;
-                        document.getElementById('Cutomercompany_type').innerHTML = data.comapany_detail.company_type ;
-                        document.getElementById('Cutomercompany_name').innerHTML = data.comapany_detail.company ;
-                        
-                      
+                        document.getElementById('Cutomercompany_type').innerHTML = data.comapany_detail.typeOfUnit;
+                        document.getElementById('Cutomercompany_name').innerHTML = data.comapany_detail.nameofUnit;
+                        document.getElementById('CutomernameOfPromoteer').innerHTML = data.comapany_detail.nameOfPromoteer;
+                        document.getElementById('CutomercantactNo').innerHTML = data.comapany_detail.cantactNo;
+
+
                         $("#loader1").css("display", "none");
-                        $('#edit_customer').modal('show');
+                        $('#view_registration_customer').modal('show');
                     }
                 });
             }
@@ -319,42 +243,34 @@
                         console.log(data);
                         $("#history_view").empty();
                         for (var i = 0; i < data.lease_history.length; i++) {
-                            if(data.lease_history[i].company_name==null)
-                                {
-                                    data.lease_history[i].company_name="N/A";
-                                }
-                            if(data.lease_history[i].allotment_no==null)
-                            {
-                                data.lease_history[i].allotment_no="N/A";
+                            if (data.lease_history[i].company_name == null) {
+                                data.lease_history[i].company_name = "N/A";
+                            }
+                            if (data.lease_history[i].allotment_no == null) {
+                                data.lease_history[i].allotment_no = "N/A";
                             }
 
-                            if(data.lease_history[i].registration_no==null)
-                                {
-                                    data.lease_history[i].registration_no="N/A";
-                                }
-                            if(data.lease_history[i].application_date==null)
-                            {
-                                data.lease_history[i].application_date="N/A";
+                            if (data.lease_history[i].registration_no == null) {
+                                data.lease_history[i].registration_no = "N/A";
+                            }
+                            if (data.lease_history[i].application_date == null) {
+                                data.lease_history[i].application_date = "N/A";
                             }
 
-                            if(data.lease_history[i].allotment_date==null)
-                                {
-                                    data.lease_history[i].allotment_date="N/A";
-                                }
-                            if(data.lease_history[i].pcc_date==null)
-                            {
-                                data.lease_history[i].pcc_date="N/A";
+                            if (data.lease_history[i].allotment_date == null) {
+                                data.lease_history[i].allotment_date = "N/A";
+                            }
+                            if (data.lease_history[i].pcc_date == null) {
+                                data.lease_history[i].pcc_date = "N/A";
                             }
 
-                            if(data.lease_history[i].transfer_amount==null)
-                                {
-                                    data.lease_history[i].transfer_amount="N/A";
-                                }
-                            if(data.lease_history[i].land_price==null)
-                            {
-                                data.lease_history[i].land_price="N/A";
+                            if (data.lease_history[i].transfer_amount == null) {
+                                data.lease_history[i].transfer_amount = "N/A";
                             }
-                            $("#history_view").append("<tr><td><a href='{{url('land/customercompany/view')}}/"+data.lease_history[i].company_id+"'>" + data.lease_history[i].company_name + "</a></td><td>"  +data.lease_history[i].allotment_no + "</td><td>"+ data.lease_history[i].registration_no + "</td><td>" + data.lease_history[i].application_date + "</td><td>" + data.lease_history[i].application_date + "</td><td>" + data.lease_history[i].allotment_date +"</td><td>" + data.lease_history[i].pcc_date+ "</td><td>" + data.lease_history[i].transfer_amount+ "</td><td>" + data.lease_history[i].land_price+ "</td></tr>");
+                            if (data.lease_history[i].land_price == null) {
+                                data.lease_history[i].land_price = "N/A";
+                            }
+                            $("#history_view").append("<tr><td><a href='{{url('land/customercompany/view')}}/" + data.lease_history[i].company_id + "'>" + data.lease_history[i].company_name + "</a></td><td>" + data.lease_history[i].allotment_no + "</td><td>" + data.lease_history[i].registration_no + "</td><td>" + data.lease_history[i].application_date + "</td><td>" + data.lease_history[i].application_date + "</td><td>" + data.lease_history[i].allotment_date + "</td><td>" + data.lease_history[i].pcc_date + "</td><td>" + data.lease_history[i].transfer_amount + "</td><td>" + data.lease_history[i].land_price + "</td></tr>");
                         }
                         $("#loader1").css("display", "none");
                         $('#history').modal('show');
@@ -377,7 +293,6 @@
                     success: function (data) {
                         console.log(data);
                         document.getElementById('lease_id').value = data.id;
-
                         $("#loader1").css("display", "none");
                         $('#land_transfer').modal('show');
                     }
@@ -400,93 +315,73 @@
                         $("#customer_details").empty();
                         $("#leaseInvoice_data").empty();
                         console.log(data);
-                        for(var i=0;i<data.ltdpvt.length; i++)
-                            {
-                               if((data.ltdpvt.company_type)=='proprietorship')
-                                {
-                                     var customer_type="Proprietorship";
+                        for (var i = 0; i < data.ltdpvt.length; i++) {
+                            if ((data.ltdpvt.company_type) == 'proprietorship') {
+                                var customer_type = "Proprietorship";
+                            }
+                            else {
+                                if (data.ltdpvt[i].is_director == 0) {
+                                    var customer_type = "Share Holder"
                                 }
-                                else
-                                {
-                                    if(data.ltdpvt[i].is_director==0)
-                                    {
-                                    var customer_type="Share Holder"
-                                    }
-                                    else
-                                    {
-                                        var customer_type=" Director ";
-                                    }
+                                else {
+                                    var customer_type = " Director ";
                                 }
-                                if(data.ltdpvt[i].f_name==null)
-                                {
-                                    data.ltdpvt[i].f_name="N/A";
-                                }
-                                if(data.ltdpvt[i].l_name==null)
-                                {
-                                    data.ltdpvt[i].l_name="N/A";
-                                }
-                                if(data.ltdpvt[i].mobile==null)
-                                {
-                                    data.ltdpvt[i].mobile="N/A";
-                                }
-                                if(data.ltdpvt[i].company_name==null)
-                                {
-                                    data.ltdpvt[i].company_name="N/A";
-                                }
-                                if(data.ltdpvt[i].email==null)
-                                {
-                                    data.ltdpvt[i].email="N/A";
-                                }
+                            }
+                            if (data.ltdpvt[i].f_name == null) {
+                                data.ltdpvt[i].f_name = "N/A";
+                            }
+                            if (data.ltdpvt[i].l_name == null) {
+                                data.ltdpvt[i].l_name = "N/A";
+                            }
+                            if (data.ltdpvt[i].mobile == null) {
+                                data.ltdpvt[i].mobile = "N/A";
+                            }
+                            if (data.ltdpvt[i].company_name == null) {
+                                data.ltdpvt[i].company_name = "N/A";
+                            }
+                            if (data.ltdpvt[i].email == null) {
+                                data.ltdpvt[i].email = "N/A";
+                            }
                             //   if(data.itdpvt[i].f_name==null)
                             //   {
-                                $("#customer_details").append("<tr><td>"+data.ltdpvt[i].f_name+"&nbsp;"+data.ltdpvt[i].l_name+"</td><td>"+customer_type+"</td><td>"+data.ltdpvt[i].mobile+"</td><td>"+data.ltdpvt[i].company+"</td><td>"+data.ltdpvt[i].email+"</td></tr>");
+                            $("#customer_details").append("<tr><td>" + data.ltdpvt[i].f_name + "&nbsp;" + data.ltdpvt[i].l_name + "</td><td>" + customer_type + "</td><td>" + data.ltdpvt[i].mobile + "</td><td>" + data.ltdpvt[i].company + "</td><td>" + data.ltdpvt[i].email + "</td></tr>");
                             //   }
                             //   else
                             //   {
                             //       $("#customer_details").hide();
                             //   }
-                                   
-                               }
-                            for(var i=0;i<data.leaseInvoice.length; i++)
-                            {
-                                if(data.leaseInvoice[i].based_rent==null)
-                                {
-                                    data.leaseInvoice[i].based_rent="N/A";
-                                }
-                                if(data.leaseInvoice[i].insurance==null)
-                                {
-                                    data.leaseInvoice[i].insurance="N/A";
-                                }
-                                if(data.leaseInvoice[i].additional_charge==null)
-                                {
-                                    data.leaseInvoice[i].additional_charge="N/A";
-                                }
-                                if(data.leaseInvoice[i].net_payable==null)
-                                {
-                                    data.leaseInvoice[i].net_payable="N/A";
-                                }
-                                if(data.leaseInvoice[i].start_date==null)
-                                {
-                                    data.leaseInvoice[i].start_date="N/A";
-                                }
-                                if(data.leaseInvoice[i].tax==null)
-                                {
-                                    data.leaseInvoice[i].tax="N/A";
-                                }
-                                if(data.leaseInvoice[i].maintanance==null)
-                                {
-                                    data.leaseInvoice[i].maintanance="N/A";
-                                }
-                                if(data.leaseInvoice[i].net_pay==null)
-                                {
-                                    data.leaseInvoice[i].net_pay="N/A";
-                                }
-                                if(data.leaseInvoice[i].lease_time==null)
-                                {
-                                    data.leaseInvoice[i].lease_time="N/A";
-                                }
-                                $("#leaseInvoice_data").append("<tr><td>"+data.leaseInvoice[i].based_rent+"</td><td>"+data.leaseInvoice[i].insurance+"</td><td>"+data.leaseInvoice[i].additional_charge+"</td><td>"+data.leaseInvoice[i].net_payable+"</td><td>"+data.leaseInvoice[i].start_date+"</td><td>"+data.leaseInvoice[i].tax+"</td><td>"+data.leaseInvoice[i].maintanance+"</td><td>"+data.leaseInvoice[i].net_pay+"</td><td>"+data.leaseInvoice[i].lease_time+"</td><td>");
+
+                        }
+                        for (var i = 0; i < data.leaseInvoice.length; i++) {
+                            if (data.leaseInvoice[i].based_rent == null) {
+                                data.leaseInvoice[i].based_rent = "N/A";
                             }
+                            if (data.leaseInvoice[i].insurance == null) {
+                                data.leaseInvoice[i].insurance = "N/A";
+                            }
+                            if (data.leaseInvoice[i].additional_charge == null) {
+                                data.leaseInvoice[i].additional_charge = "N/A";
+                            }
+                            if (data.leaseInvoice[i].net_payable == null) {
+                                data.leaseInvoice[i].net_payable = "N/A";
+                            }
+                            if (data.leaseInvoice[i].start_date == null) {
+                                data.leaseInvoice[i].start_date = "N/A";
+                            }
+                            if (data.leaseInvoice[i].tax == null) {
+                                data.leaseInvoice[i].tax = "N/A";
+                            }
+                            if (data.leaseInvoice[i].maintanance == null) {
+                                data.leaseInvoice[i].maintanance = "N/A";
+                            }
+                            if (data.leaseInvoice[i].net_pay == null) {
+                                data.leaseInvoice[i].net_pay = "N/A";
+                            }
+                            if (data.leaseInvoice[i].lease_time == null) {
+                                data.leaseInvoice[i].lease_time = "N/A";
+                            }
+                            $("#leaseInvoice_data").append("<tr><td>" + data.leaseInvoice[i].based_rent + "</td><td>" + data.leaseInvoice[i].insurance + "</td><td>" + data.leaseInvoice[i].additional_charge + "</td><td>" + data.leaseInvoice[i].net_payable + "</td><td>" + data.leaseInvoice[i].start_date + "</td><td>" + data.leaseInvoice[i].tax + "</td><td>" + data.leaseInvoice[i].maintanance + "</td><td>" + data.leaseInvoice[i].net_pay + "</td><td>" + data.leaseInvoice[i].lease_time + "</td><td>");
+                        }
                         document.getElementById('ids').value = data.lease_details.Id;
                         document.getElementById('cust_ids').value = data.leasedata.cust_id;
                         document.getElementById("plot_no").innerHTML = data.lease_details.plot_no;
@@ -496,7 +391,7 @@
                         // document.getElementById('e_f_name').innerHTML = data.f_name;
                         document.getElementById('Cutomercompany_type').innerHTML = data.lease_details.company_type;
                         document.getElementById('Cutomercompany_name').innerHTML = data.lease_details.company_name;
-                        
+
                         // document.getElementById('e_occupation').innerHTML = data.occupation;
                         // document.getElementById('e_dob').innerHTML = data.dob;
                         // document.getElementById('e_mobile').innerHTML = data.mobile;
@@ -529,7 +424,7 @@
                         document.getElementById('e_additional_charge').value = addCharge;
                         document.getElementById('e_netpaybill').value = netPay;
                         document.getElementById('e_yers').value = lTime;
-                        document.getElementById('e_start_date').value = Sdate;tag_n
+                        document.getElementById('e_start_date').value = Sdate; tag_n
                         var val = netPayable;
                         if (val == 'monthly') {
                             $('input[name=net_payable][value=' + val + ']').prop('checked', true);
@@ -541,7 +436,7 @@
                         document.getElementById('submitbtn').innerHTML = "Update";
 
                         $("#loader1").css("display", "none");
-                        // $('#edit_customer').modal('show');
+                        // $('#view_registration_customer').modal('show');
                         // window.location("editSave_registration");
                         return redirect('editSave_registration');
                     }
@@ -551,7 +446,7 @@
             var error = err.message;
             alert(error)
         }
-    
+
 
     </script>
     <script type="text/javascript">
@@ -588,7 +483,7 @@
     </script>
 
     <!--  Modal content for the above example -->
-    <div class="modal fade" id="edit_customer" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none">
+    <div class="modal fade" id="view_registration_customer" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -597,7 +492,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ URL::to('land/create/assign-customer')}}" method="POST" id="FormValidation" enctype="multipart/form-data" autocomplete="off">
+                <form action="#"  id="FormValidation" enctype="multipart/form-data" autocomplete="off">
                     @csrf
                     <input type="hidden" name="ids" id="ids">
                     <input type="hidden" name="cust_ids" id="cust_ids">
@@ -664,204 +559,69 @@
                                         </div>
                                     </div>
                                     <div class="tab-pane" id="CustView" role="tabpanel" aria-labelledby="profile-tab-2">
-                                        <!-- <div class="col-md-12">
-                                            <div class="row">
-                                                <div class="col-md-5">
-                                                    <div class="row form-group">
-                                                        <label class="col-sm-5 control-label" for="example-input-normal">First Name :- </label>
-                                                        <div class="col-sm-7">
-                                                            <b style="color: #F47C11;" id="e_f_name"></b>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-5">
-                                                    <div class="row form-group">
-                                                        <label class="col-sm-5 control-label" for="example-input-normal">Last Name :- </label>
-                                                        <div class="col-sm-7">
-                                                            <b style="color: #F47C11;" id="e_l_name"></b>
-                                                        </div>
+                                       
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="row form-group">
+                                                    <label class="col-sm-5 control-label" for="example-input-normal">Company Name :- </label>
+                                                    <div class="col-sm-7">
+                                                        <b style="color: #F47C11;" id="Cutomercompany_name"></b>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-md-5">
-                                                    <div class="row form-group">
-                                                        <label class="col-sm-5 control-label" for="example-input-normal">Gender :- </label>
-                                                        <div class="col-sm-7">
-                                                            <b style="color: #F47C11;" id="e_gender"></b>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-5">
-                                                    <div class="row form-group">
-                                                        <label class="col-sm-5 control-label" for="example-input-normal">Occupation :- </label>
-                                                        <div class="col-sm-7">
-                                                            <b style="color: #F47C11;" id="e_occupation"></b>
-                                                        </div>
+                                            <div class="col-md-6">
+                                                <div class="row form-group">
+                                                    <label class="col-sm-5 control-label" for="example-input-normal">Company Type :- </label>
+                                                    <div class="col-sm-7" style="text-transform: capitalize;">
+                                                        <b style="color: #F47C11;" id="Cutomercompany_type"></b>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-md-5">
-                                                    <div class="row form-group">
-                                                        <label class="col-sm-5 control-label" for="example-input-normal">DOB :- </label>
-                                                        <div class="col-sm-7">
-                                                            <b style="color: #F47C11;" id="e_dob"></b>
-                                                        </div>
+                                            <div class="col-md-6">
+                                                <div class="row form-group">
+                                                    <label class="col-sm-5 control-label" for="example-input-normal">Person Name :- </label>
+                                                    <div class="col-sm-7" style="text-transform: capitalize;">
+                                                        <b style="color: #F47C11;" id="CutomernameOfPromoteer"></b>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-5">
-                                                    <div class="row form-group">
-                                                        <label class="col-sm-5 control-label" for="example-input-normal">Contact :- </label>
-                                                        <div class="col-sm-7">
-                                                            <b style="color: #F47C11;" id="e_mobile"></b>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                      
-                                            </div>-->
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="row form-group">
-                                                        <label class="col-sm-5 control-label" for="example-input-normal">Company Name :- </label>
-                                                        <div class="col-sm-7">
-                                                            <b style="color: #F47C11;" id="Cutomercompany_name"></b>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="row form-group">
-                                                        <label class="col-sm-5 control-label" for="example-input-normal">Company Type :- </label>
-                                                        <div class="col-sm-7" style="text-transform: capitalize;">
-                                                            <b style="color: #F47C11;"  id="Cutomercompany_type"></b>
-                                                        </div>
-                                                    </div>
-                                                </div> 
                                             </div>
-                                               
-                                            <table class="table" style="font-size:10px">
-                                                <thead>
-                                                    <tr>
-                                                    <th>Name</th>
-                                                    <th>Customer Type</th>
-                                                    <th>Mobile No.</th>
-                                                    <th>Company Name</th>
-                                                    <th>Email Id</th>
-                                                    </tr>
-                                                </thead >
-                                            <tbody id="customer_details">
-                                            </tbody>
-                                            </table>  
+                                            <div class="col-md-6">
+                                                <div class="row form-group">
+                                                    <label class="col-sm-5 control-label" for="example-input-normal">Contact No.:- </label>
+                                                    <div class="col-sm-7" style="text-transform: capitalize;">
+                                                        <b style="color: #F47C11;" id="CutomercantactNo"></b>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
                                     </div>
 
                                     <div class="tab-pane" id="LeaseView" role="tabpanel" aria-labelledby="message-tab-2">
-                                   
+
                                         <div class="col-md-12">
 
-                                           <div id="ViewTrans"  class="col-md-12">
-                                            <table class="table" style="font-size:10px">
-                                                <thead>
-                                                    <tr>
-                                                    <th>Based Rent</th>
-                                                    <th>Insurance </th>
-                                                    <th>Additional Charge.</th>
-                                                    <th>Payable Time.</th>
-                                                    <th>Starting Date</th>
-                                                    <th>Taxes</th>
-                                                    <th>Maintanance </th>
-                                                    <th>Payment Frequency</th>
-                                                    <th>Lease Time</th>
-                                                    </tr>      
-                                                </thead >
-
-                                            <tbody id="leaseInvoice_data">
-
-                                            </tbody>
-                                            </table>
-                                                <!-- <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="row form-group">
-                                                            <label class="col-sm-5 control-label" for="example-input-normal">Based Rent :- </label>
-                                                            <div class="col-sm-7">
-                                                                <b style="color: #F47C11;" id="v_based_rent"></b>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="row form-group">
-                                                            <label class="col-sm-5 control-label" for="example-input-normal">Taxes :- </label>
-                                                            <div class="col-sm-7">
-                                                                <b style="color: #F47C11;" id="v_taxes"></b>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="row form-group">
-                                                            <label class="col-sm-5 control-label" for="example-input-normal">Insurance :- </label>
-                                                            <div class="col-sm-7">
-                                                                <b style="color: #F47C11;" id="v_insurance"></b>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="row form-group">
-                                                            <label class="col-sm-5 control-label" for="example-input-normal">Maintanance :- </label>
-                                                            <div class="col-sm-7">
-                                                                <b style="color: #F47C11;" id="v_maintanance"></b>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="row form-group">
-                                                            <label class="col-sm-5 control-label" for="example-input-normal">Additional Charge :- </label>
-                                                            <div class="col-sm-7">
-                                                                <b style="color: #F47C11;" id="v_additional_charge"></b>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="row form-group">
-                                                            <label class="col-sm-5 control-label" for="example-input-normal">Payment Frequency :- </label>
-                                                            <div class="col-sm-7">
-                                                                <b style="color: #F47C11;" id="v_netpay"></b>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="row form-group">
-                                                            <label class="col-sm-5 control-label" for="example-input-normal">Payable Time :- </label>
-                                                            <div class="col-sm-7">
-                                                                <b style="color: #F47C11;" id="v_netpaybill"></b>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-5">
-                                                        <div class="row form-group">
-                                                            <label class="col-sm-5 control-label" for="example-input-normal">Lease Time :- </label>
-                                                            <div class="col-sm-7">
-                                                                <b style="color: #F47C11;" id="v_yers"></b><b style="color: #F47C11;" id="v_lease_duration"></b>
-                                                            </div>
-                                                        </div>
-                                                    </div> 
-                                                    <div class="col-md-6">
-                                                        <div class="row form-group">
-                                                            <label class="col-sm-5 control-label" for="example-input-normal">Starting Date :- </label>
-                                                            <div class="col-sm-7">
-                                                                <b style="color: #F47C11;" id="v_start_date"></b>
-                                                            </div>
-                                                      </div> -->
-                                                    <!-- </div>
-                             
-                                                </div> --> 
+                                            <div id="ViewTrans" class="col-md-12">
+                                                <table class="table" style="font-size:10px">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Based Rent</th>
+                                                            <th>Insurance </th>
+                                                            <th>Additional Charge.</th>
+                                                            <th>Payable Time.</th>
+                                                            <th>Starting Date</th>
+                                                            <th>Taxes</th>
+                                                            <th>Maintanance </th>
+                                                            <th>Payment Frequency</th>
+                                                            <th>Lease Time</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="leaseInvoice_data">
+                                                    </tbody>
+                                                </table>
                                             </div>
-                                            
-                                            <div class="row" id="EditTrans" style="display: none;">
+
+                                            <!-- <div class="row" id="EditTrans" style="display: none;">
                                                 <div class="row">
                                                     <div class="col-md-4">
                                                         <div class="row form-group">
@@ -884,7 +644,7 @@
                                                         <div class="row form-group">
                                                             <label class="col-sm-12 control-label" for="example-input-normal">Insurance</label>
                                                             <div class="col-sm-7">
-                                                                <input type="text" class="form-control" name="insurance" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')" id="e_insurance" required="" aria-required="true">                                                            </div>
+                                                                <input type="text" class="form-control" name="insurance" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')" id="e_insurance" required="" aria-required="true"> </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -894,7 +654,7 @@
                                                         <div class="row form-group">
                                                             <label class="col-sm-12 control-label" for="example-input-normal">Maintanance</label>
                                                             <div class="col-sm-7">
-                                                                <input type="text" class="form-control" name="maintanance" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')" id="e_maintanance" required="" aria-required="true">                                                            </div>
+                                                                <input type="text" class="form-control" name="maintanance" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')" id="e_maintanance" required="" aria-required="true"> </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
@@ -919,7 +679,8 @@
                                                 <div class="row">
                                                     <div class="col-md-4">
                                                         <div class="row form-group">
-                                                            <label class="col-sm-12 control-label" for="example-input-normal" style="display: flex;">Payment Frequency</label>                                                            <div class="col-sm-7">
+                                                            <label class="col-sm-12 control-label" for="example-input-normal" style="display: flex;">Payment Frequency</label>
+                                                            <div class="col-sm-7">
                                                                 <div class="radio radio-info form-check-inline">
                                                                     <input type="radio" id="inlineRadio1" value="monthly" name="net_payable" id="months">
                                                                     <label for="inlineRadio1"> Monthly </label>
@@ -927,9 +688,9 @@
                                                                 <div class="radio form-check-inline">
                                                                     <input type="radio" id="inlineRadio2" checked="checked" value="yearly" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')" name="net_payable" id="year">
                                                                     <label for="inlineRadio2"> Yearly </label>
-                                                                </div>                                                        
+                                                                </div>
                                                             </div>
-                                                            </div>
+                                                        </div>
                                                     </div>
 
                                                     <div class="col-md-4">
@@ -937,7 +698,7 @@
                                                             <label class="col-sm-12 control-label" for="example-input-normal"><span id="tag_n">Year</span>(s)</label>
                                                             <div class="col-sm-7">
                                                                 <input type="text" class="form-control" name="lease_time" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')" id="e_yers" required="" aria-required="true">
-                                                                <input type="hidden" class="form-control" name="lease_duration" id="time_duration" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')">                                                            </div>
+                                                                <input type="hidden" class="form-control" name="lease_duration" id="time_duration" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')"> </div>
                                                         </div>
                                                     </div>
 
@@ -948,14 +709,14 @@
                                                                 <div class="form-group">
                                                                     <input type="text" class="form-control autodate" placeholder="mm/dd/yyyy" name="start_date" id="e_start_date" required="" aria-required="true">
                                                                     <div class="input-group-append">
-                                                                       
+
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                
+
 
                                                 <!-- <div class="col-md-4" style="margin-top: 6px;">
                                                     <label class="col-sm-12 control-label" for="example-input-normal">Based Rent</label>
@@ -1023,8 +784,9 @@
                                                             <span class="input-group-text"><i class="md md-event"></i></span>
                                                         </div>
                                                     </div>
-                                                </div> -->
-                                            </div><!--end of row-->
+                                                </div>
+                                            </div> -->
+                                            <!--end of row-->
                                         </div>
                                     </div>
                                 </div>
@@ -1032,7 +794,7 @@
                         </div>
                     </div>
                     <div class="col-md-12" id="submitbtndiv" style="text-align: right;">
-                        <button type="submit" id="submitbtn" class="btn btn-outline-primary waves-effect waves-light m-b-5">submit</button>
+                        <!-- <button type="submit" id="submitbtn" class="btn btn-outline-primary waves-effect waves-light m-b-5">submit</button> -->
                         <button type="button" data-dismiss="modal" class="btn btn-secondary waves-effect m-b-5">Close</button>
                     </div>
                 </form>
@@ -1389,204 +1151,204 @@
                                                 <span class="input-group-text"><i class="md md-event"></i></span>
                                             </div>
                                         </div> -->
-                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-12" style="text-align: right;">
-                        <button type="submit" class="btn btn-outline-primary waves-effect waves-light m-b-5">Save</button>
-                        <button type="button" class="btn btn-secondary waves-effect m-b-5">Reset</button>
-                    </div>
-                </form>
             </div>
+            <div class="col-md-12" style="text-align: right;">
+                <button type="submit" class="btn btn-outline-primary waves-effect waves-light m-b-5">Save</button>
+                <button type="button" class="btn btn-secondary waves-effect m-b-5">Reset</button>
+            </div>
+            </form>
         </div>
     </div>
+</div>
 
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#additional_charge').on('change', function () {
-                var value = $(this).val();
-                var bs = Number(document.getElementById('based_rent').value);
-                var tax = Number(document.getElementById('taxes').value);
-                var ins = Number(document.getElementById('insurance').value);
-                var mainti = Number(document.getElementById('maintanance').value);
-                var adi = Number(document.getElementById('additional_charge').value);
-                var pay = bs + tax + ins + mainti + adi;
-                document.getElementById('netpaybill').value = pay;
-            });
-
-            $("input[name$='add_net_payable']").click(function () {
-                var test = $(this).val();
-                if (test == 'monthly') {
-                    document.getElementById('add_tag_n').textContent = 'Month';
-                    document.getElementById('add_time_duration').value = 'm';
-                } else {
-                    document.getElementById('add_tag_n').textContent = 'Year';
-                    document.getElementById('add_time_duration').value = 'yr';
-                }
-            });
-
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#additional_charge').on('change', function () {
+            var value = $(this).val();
+            var bs = Number(document.getElementById('based_rent').value);
+            var tax = Number(document.getElementById('taxes').value);
+            var ins = Number(document.getElementById('insurance').value);
+            var mainti = Number(document.getElementById('maintanance').value);
+            var adi = Number(document.getElementById('additional_charge').value);
+            var pay = bs + tax + ins + mainti + adi;
+            document.getElementById('netpaybill').value = pay;
         });
 
-    </script>
+        $("input[name$='add_net_payable']").click(function () {
+            var test = $(this).val();
+            if (test == 'monthly') {
+                document.getElementById('add_tag_n').textContent = 'Month';
+                document.getElementById('add_time_duration').value = 'm';
+            } else {
+                document.getElementById('add_tag_n').textContent = 'Year';
+                document.getElementById('add_time_duration').value = 'yr';
+            }
+        });
+
+    });
+
+</script>
 
 
-    <div class="modal fade bd-example-modal-lg" id="history" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">History</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <table class="table" style="font-size:10px">
-                    <thead>
-                        <tr>
-                            
-                            <th>Company Name</th>
-                            <th>Allotment No.</th>
-                            <th>Registration No.</th>
-                            <th>Application Date.</th>
-                            <th>Allotment Date.</th>
-                            <th>Registration Date.</th>
-                            
-                            <th>Pcc Date</th>
-                            <th>Transfer Amount</th>
-                            <th>Land Price</th>
-                            
-                            <!-- <th>Company Type</th> -->
-                        </tr>
-                    </thead>
-                    <tbody id="history_view">
-                    </tbody>
-                </table>
+<div class="modal fade bd-example-modal-lg" id="history" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">History</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
+            <table class="table" style="font-size:10px">
+                <thead>
+                    <tr>
+
+                        <th>Company Name</th>
+                        <th>Allotment No.</th>
+                        <th>Registration No.</th>
+                        <th>Application Date.</th>
+                        <th>Allotment Date.</th>
+                        <th>Registration Date.</th>
+
+                        <th>Pcc Date</th>
+                        <th>Transfer Amount</th>
+                        <th>Land Price</th>
+
+                        <!-- <th>Company Type</th> -->
+                    </tr>
+                </thead>
+                <tbody id="history_view">
+                </tbody>
+            </table>
         </div>
     </div>
-    <div class="modal fade bd-example-modal-lg" id="land_transfer" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel"> Land Transfer</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <!-- Customer -->
-                <div class="card" id="customerList" style="display: block;">
-                    <!-- Ajax Page Loader -->
-                    <div class="preload loaderpopupbox modelloader" id="modelloader" style="display:none;">
-                        <div class="popup">
-                            <center>
-                                <span class="loader10" style="display:block;"><img src="{{url('public/assets/images/loader.gif')}}" height="70" /></span>
-                            </center>
-                        </div>
+</div>
+<div class="modal fade bd-example-modal-lg" id="land_transfer" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"> Land Transfer</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!-- Customer -->
+            <div class="card" id="customerList" style="display: block;">
+                <!-- Ajax Page Loader -->
+                <div class="preload loaderpopupbox modelloader" id="modelloader" style="display:none;">
+                    <div class="popup">
+                        <center>
+                            <span class="loader10" style="display:block;"><img src="{{url('public/assets/images/loader.gif')}}" height="70" /></span>
+                        </center>
                     </div>
-                    <!-- Close -->
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="md-form mt-0">
-                                    (<b style="color:#E94810">Note:- </b>Search customer for transfer Registration with Name, Email, Phone, Mobile)<br><br>
-                                    <input class="form-control search" onclick="SearchCustomer()" autocomplete="off" id="csearch" type="text" placeholder="Search Customer" aria-label="Search" autofocus>
-                                </div>&nbsp;&nbsp;&nbsp;<i class="fa fa-search"></i>
-                                <br>
-                                <br>
-                                <div id="customer_transfer_list"></div>
-                            </div>
-                            <br><br><br>
-                        </div>
+                </div>
+                <!-- Close -->
+                <div class="card-body">
+                    <div class="row">
                         <div class="col-sm-12">
-                            <div class="" id="contrannsfer" style="display: none;">
-                                <form action="{{url('land/ragistration/transfer')}}" method="post">
-                                    @csrf
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <div class="form-group">
+                            <div class="md-form mt-0">
+                                (<b style="color:#E94810">Note:- </b>Search customer for transfer Registration with Name, Email, Phone, Mobile)<br><br>
+                                <input class="form-control search" onclick="SearchCustomer()" autocomplete="off" id="csearch" type="text" placeholder="Search Customer" aria-label="Search" autofocus>
+                            </div>&nbsp;&nbsp;&nbsp;<i class="fa fa-search"></i>
+                            <br>
+                            <br>
+                            <div id="customer_transfer_list"></div>
+                        </div>
+                        <br><br><br>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="" id="contrannsfer" style="display: none;">
+                            <form action="{{url('land/ragistration/transfer')}}" method="post">
+                                @csrf
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
 
-                                                <label for="field-1" class="control-label">Application No.</label>
-                                                <input type="hidden" name="cusID" id="custo_id">
-                                                <!-- <input type="hidden" name="cust_email" id="cust_email"> -->
-                                                <input type="hidden" name="cust_phone" id="cust_phone">
-                                                <input type="hidden" name="customer_name" id="customer_name">
-                                                <input type="hidden" name="customer_email_id" id="customer_email_id">
-                                                <input type="hidden" name="lease_id" id="lease_id">                                                
-                                                <input type="text" class="form-control" placeholder="Application No" name="application_no">
-                                            </div>
+                                            <label for="field-1" class="control-label">Application No.</label>
+                                            <input type="hidden" name="cusID" id="custo_id">
+                                            <!-- <input type="hidden" name="cust_email" id="cust_email"> -->
+                                            <input type="hidden" name="cust_phone" id="cust_phone">
+                                            <input type="hidden" name="customer_name" id="customer_name">
+                                            <input type="hidden" name="customer_email_id" id="customer_email_id">
+                                            <input type="hidden" name="lease_id" id="lease_id">
+                                            <input type="text" class="form-control" placeholder="Application No" name="application_no">
                                         </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label for="field-1" class="control-label">Allotment No</label>
-                                                <input type="text" class="form-control" placeholder="Allotment No" name="allotment_no">
-                                            </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="field-1" class="control-label">Allotment No</label>
+                                            <input type="text" class="form-control" placeholder="Allotment No" name="allotment_no">
                                         </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label for="field-1" class="control-label">Registration No</label>
-                                                <input type="text" class="form-control" placeholder="Registration No" name="registration_no">
-                                            </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="field-1" class="control-label">Registration No</label>
+                                            <input type="text" class="form-control" placeholder="Registration No" name="registration_no">
                                         </div>
+                                    </div>
 
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label for="field-1" class="control-label">Application Date</label>
-                                                <input type="text" class="form-control dateFilter" type="text" placeholder="dd-mm-yyyy" name="application_date">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="field-1" class="control-label">Application Date</label>
+                                            <input type="text" class="form-control dateFilter" type="text" placeholder="dd-mm-yyyy" name="application_date">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="field-1" class="control-label">Allotment Date</label>
+                                            <input type="text" class="form-control dateFilter" type="text" placeholder="dd-mm-yyyy" name="allotment_date">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="field-1" class="control-label">Registration Date</label>
+                                            <input type="text" class="form-control dateFilter" type="text" placeholder="dd-mm-yyyy" name="registration_date">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="field-1" class="control-label">PCC Date</label>
+                                            <input type="text" class="form-control dateFilter" type="text" placeholder="dd-mm-yyyy" name="pcc_date">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="field-1" class="control-label">Transfer Amount</label>
+                                            <input type="text" class="form-control" placeholder="" name="transfer_amount">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="field-1" class="control-label">Land Price</label>
+                                            <input type="text" class="form-control" placeholder="" name="land_price">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3"><br><br>
+                                        <div class="form-group">
+
+                                            <!-- <input type="checkbox" name="all_tearm"> -->
+                                            <div class="checkbox checkbox-info">
+                                                <input id="checkbox4" type="checkbox" name="all_tearm">
+                                                <label for="checkbox4">
+                                                    All Trems
+                                                </label>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label for="field-1" class="control-label">Allotment Date</label>
-                                                <input type="text" class="form-control dateFilter" type="text" placeholder="dd-mm-yyyy" name="allotment_date">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label for="field-1" class="control-label">Registration Date</label>
-                                                <input type="text" class="form-control dateFilter" type="text" placeholder="dd-mm-yyyy" name="registration_date">
-                                            </div>
-                                        </div>
-                                      
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label for="field-1" class="control-label">PCC Date</label>
-                                                <input type="text" class="form-control dateFilter" type="text" placeholder="dd-mm-yyyy" name="pcc_date">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label for="field-1" class="control-label">Transfer Amount</label>
-                                                <input type="text" class="form-control" placeholder="" name="transfer_amount">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label for="field-1" class="control-label">Land Price</label>
-                                                <input type="text" class="form-control" placeholder="" name="land_price">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-3"><br><br>
-                                            <div class="form-group">
-
-                                                <!-- <input type="checkbox" name="all_tearm"> -->
-                                                <div class="checkbox checkbox-info">
-                                                    <input id="checkbox4" type="checkbox" name="all_tearm">
-                                                    <label for="checkbox4">
-                                                        All Trems
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p style="font-size: 17px; font-weight: 700;">Lease Details</p>
-                                    <!-- <div class="row">
+                                </div>
+                                <p style="font-size: 17px; font-weight: 700;">Lease Details</p>
+                                <!-- <div class="row">
                                       <div class="col-md-4">
                                         <div class="row form-group">
                                           <label class="col-sm-3 control-label" for="example-input-normal">Base Rent </label>
@@ -1682,20 +1444,20 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="example-input-normal">Base Rent </label>
-                                            <input type="number" class="form-control"  name="based_rent" id="based_rent" required="" aria-required="true">
+                                            <input type="number" class="form-control" name="based_rent" id="based_rent" required="" aria-required="true">
                                         </div>
 
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="example-input-normal">Insurance </label>
-                                            <input type="number" class="form-control"  name="insurance" id="insurance" required="" aria-required="true">
+                                            <input type="number" class="form-control" name="insurance" id="insurance" required="" aria-required="true">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="example-input-normal">Maintanance </label>
-                                            <input type="number" class="form-control"  name="maintanance" id="maintanance" required="" aria-required="true">
+                                            <input type="number" class="form-control" name="maintanance" id="maintanance" required="" aria-required="true">
                                         </div>
                                     </div>
                                 </div>
@@ -1704,20 +1466,20 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="example-input-normal">Taxes </label>
-                                            <input type="number" class="form-control"   name="taxes" id="taxes" required="" aria-required="true">                                        </div>
+                                            <input type="number" class="form-control" name="taxes" id="taxes" required="" aria-required="true"> </div>
 
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="example-input-normal">Additional Charge </label> 
-                                            <input type="number" class="form-control"  name="additional_charge" id="additional_charge" required="" aria-required="true">
+                                            <label for="example-input-normal">Additional Charge </label>
+                                            <input type="number" class="form-control" name="additional_charge" id="additional_charge" required="" aria-required="true">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="example-input-normal">Net Payable </label>    
-                                            <input type="number" class="form-control"  name="netpaybill" id="netpaybill" required="" readonly="" aria-required="true">
-                         
+                                            <label for="example-input-normal">Net Payable </label>
+                                            <input type="number" class="form-control" name="netpaybill" id="netpaybill" required="" readonly="" aria-required="true">
+
                                         </div>
                                     </div>
                                 </div>
@@ -1729,119 +1491,119 @@
                                             <div class="radio radio-info form-check-inline" style="padding-left: 32px;">
                                                 <input type="radio" id="inlineRadio1" value="monthly" name="add_net_payable" id="net_payable">
                                                 <label for="inlineRadio1"> Monthly </label>
-                                              </div>
-                                              <div class="radio form-check-inline">
+                                            </div>
+                                            <div class="radio form-check-inline">
                                                 <input type="radio" id="inlineRadio2" value="yearly" name="add_net_payable" id="net_payable" checked="checked" style="width: 195px;">
                                                 <label for="inlineRadio2"> Yearly </label>
-                                              </div>
+                                            </div>
 
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="example-input-normal"><span id="add_tag_n">Year</span>(s) </label>
-                                            <input type="number" class="form-control"name="lease_time"  required="" aria-required="true">
-                                            <input type="hidden" class="form-control"  name="lease_duration" id="add_time_duration">
+                                            <input type="number" class="form-control" name="lease_time" required="" aria-required="true">
+                                            <input type="hidden" class="form-control" name="lease_duration" id="add_time_duration">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="example-input-normal">Starting Date </label>
                                             <input type="text" class="form-control autodate" placeholder="mm/dd/yyyy" name="start_date" id="start_date" required="" aria-required="true">
-                         
+
                                         </div>
                                     </div>
                                 </div>
                                 <hr>
-                                    <button role="button" type="submit" class="btn btn-outline-primary">Transfer</button>
-                                </form>
-                            </div>
+                                <button role="button" type="submit" class="btn btn-outline-primary">Transfer</button>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 </div>
 </div>
 <script type="text/javascript">
     $(document).ready(function () {
-      $('#additional_charge').on('change',function() { 
-        var value = $(this).val();
-        var bs = Number(document.getElementById('based_rent').value);
-        var tax = Number(document.getElementById('taxes').value);
-        var ins = Number(document.getElementById('insurance').value);
-        var mainti = Number(document.getElementById('maintanance').value);
-        var adi = Number(document.getElementById('additional_charge').value);
-        var pay = bs+tax+ins+mainti+adi;
-        document.getElementById('netpaybill').value=pay;
-      });
-  
-      $("input[name$='add_net_payable']").click(function() { 
-        var test = $(this).val();
-        if(test=='monthly'){
-          document.getElementById('add_tag_n').textContent ='Month';
-          document.getElementById('add_time_duration').value ='m';
-        }else{
-         document.getElementById('add_tag_n').textContent ='Year';
-         document.getElementById('add_time_duration').value ='yr';
-       }
-     });
-  
-    });
-  </script>
-<script type="text/javascript">
-  function SearchCustomer() {
-    $('.search').on('keyup', function() {
-      var query = $(this).val();
-      // alert(query);
-      if (query != '') {
-        $('#contrannsfer').css("display", "none");
-        $("#modelloader").css("display", "block");
-        $.ajaxSetup({
-          headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-          }
+        $('#additional_charge').on('change', function () {
+            var value = $(this).val();
+            var bs = Number(document.getElementById('based_rent').value);
+            var tax = Number(document.getElementById('taxes').value);
+            var ins = Number(document.getElementById('insurance').value);
+            var mainti = Number(document.getElementById('maintanance').value);
+            var adi = Number(document.getElementById('additional_charge').value);
+            var pay = bs + tax + ins + mainti + adi;
+            document.getElementById('netpaybill').value = pay;
         });
-        $.ajax({
-          url: "{{url('land/serachtransfercustomers/')}}" + '/' + query,
-          type: "GET",
-          success: function(data) {
-            document.getElementById("csearch").style.color = "";
-            $("#modelloader").css("display", "none");
-            $('#customer_transfer_list').html(data);
-          }
-        })
-      } else {
-        $('#customer_transfer_list').html("");
-      }
+
+        $("input[name$='add_net_payable']").click(function () {
+            var test = $(this).val();
+            if (test == 'monthly') {
+                document.getElementById('add_tag_n').textContent = 'Month';
+                document.getElementById('add_time_duration').value = 'm';
+            } else {
+                document.getElementById('add_tag_n').textContent = 'Year';
+                document.getElementById('add_time_duration').value = 'yr';
+            }
+        });
+
     });
-    $(document).on('click', 'td', function() {
-      var value = $(this).text();
-      $('#customer_transfer_list').html("");
-    });
-  };
 </script>
 <script type="text/javascript">
-  function addtransfercustomer(id) {
-    $("#modelloader").css("display", "block");
-    $.ajaxSetup({
-      headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      }
-    });
-    $.ajax({
-      url: "{{url('land/transfercustomer/add/')}}" + '/' + id,
-      method: "POST",
-      contentType: 'application/json',
-      success: function(data) {
-        console.log(data)
-        $("#modelloader").css("display", "none");
-      document.getElementById('customer_name').value = data.Company.company;
-        document.getElementById("custo_id").value = data.Company.id;
-        $('#contrannsfer').css("display", "block");
-      }
-    });
-  }
+    function SearchCustomer() {
+        $('.search').on('keyup', function () {
+            var query = $(this).val();
+            // alert(query);
+            if (query != '') {
+                $('#contrannsfer').css("display", "none");
+                $("#modelloader").css("display", "block");
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    url: "{{url('land/serachtransfercustomers/')}}" + '/' + query,
+                    type: "GET",
+                    success: function (data) {
+                        document.getElementById("csearch").style.color = "";
+                        $("#modelloader").css("display", "none");
+                        $('#customer_transfer_list').html(data);
+                    }
+                })
+            } else {
+                $('#customer_transfer_list').html("");
+            }
+        });
+        $(document).on('click', 'td', function () {
+            var value = $(this).text();
+            $('#customer_transfer_list').html("");
+        });
+    };
+</script>
+<script type="text/javascript">
+    function addtransfercustomer(id) {
+        $("#modelloader").css("display", "block");
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url: "{{url('land/transfercustomer/add/')}}" + '/' + id,
+            method: "POST",
+            contentType: 'application/json',
+            success: function (data) {
+                console.log(data)
+                $("#modelloader").css("display", "none");
+                document.getElementById('customer_name').value = data.Company.nameofUnit;
+                document.getElementById("custo_id").value = data.Company.id;
+                $('#contrannsfer').css("display", "block");
+            }
+        });
+    }
 </script>
