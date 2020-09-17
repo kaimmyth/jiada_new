@@ -34,10 +34,10 @@ Auth::routes();
 
 Route::get('user-profile', 'HomeController@UserProfile');
 Route::any('edit-userprofile', 'HomeController@UpdateProfile');
-
+Route::middleware('auth')->group(function () {
 Route::get('home', 'HomeController@index')->name('home');
 Route::get('dashboard', 'HomeController@Dashboard');
-
+});
 Route::prefix('land')->group(function () {
 	Route::any('listing', 'Landcontroller@index');
 	Route::any('edit/{id}', 'Landcontroller@UpdateLand');

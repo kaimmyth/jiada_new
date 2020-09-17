@@ -84,6 +84,7 @@ class EnterpriseController extends Controller
         $enterprises->email=$request->email;
         $enterprises->address=$request->address;
         $enterprises->district=$request->district;
+        $enterprises->number_of_employees=$request->number_of_employees;
         $enterprises->block=$request->block;
         $enterprises->sector=$request->sector;
         $enterprises->landType=$request->landType;

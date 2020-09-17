@@ -61,41 +61,14 @@
 
     <!-- Shop -->
     <div class="container-fluid" style="width: 80%;">
-    <div class="innerf-pages section" style="padding: 2em;">
+    <div class="innerf-pages section" style="padding: 2em;min-height:500px">
     
 		<div class="fh-container mx-auto">
 			<div class="row my-lg-5 mb-5">
 				<!-- grid left -->
 				<div class="side-bar col-lg-3">
                     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                        <div class="panel panel-default">
-                           
-                            <div class="panel-heading  show" role="tab" id="headingOne">
-                                <h4 class="panel-title">
-                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        <i class="more-less glyphicon glyphicon-plus"></i>
-                                        Industry
-                                    </a>
-                                </h4>
-                            </div>
-                            <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne" >
-                                <div class="panel-body">
-                                    <div class="left-side">
-                                        <form>
-                                            <!-- <span><input type="reset" value="Reset"></span><br> -->
-                                        <ul style="margin-top: 1em;">
-                                            @foreach($industries as $industry)
-                                                <li>
-                                                    <input type="checkbox" class="checked" name="industry_name[]" onclick="ajaxFunc()" value="{{$industry->id}}">
-                                                    <label for="industry_name">{{$industry->industires_name}}</label>
-                                                </li>
-                                            @endforeach	
-                                        </ul>
-                                    </div>
-                                </form>
-                                </div>
-                            </div>
-                        </div>
+                        
 
 
                         <div class="panel panel-default">
@@ -188,76 +161,7 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingSeven">
-                        <h4 class="panel-title">
-                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
-                                <i class="more-less glyphicon glyphicon-plus"></i>
-                                Input Materials
-                            </a>
-                        </h4>
-                    </div>
-                    <div id="collapseSeven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSeven">
-                        <div class="panel-body">
-                                <!--Waste Materials-->
-                                <div class="left-side">
-                                    <form>
-                                        <!-- <span><input type="reset" value="Reset"></span><br> -->
-                                    
-                                       
-                                    <div class="d-flex">
-                                        <ul style="margin-top: 1em;">
-                                       @foreach($materials as $material)
-                                            <li>
-                                                <input type="checkbox" class="checked" name="input_material_name[]" id="material_name" value="{{$material->id}}" onclick="ajaxFunc()">
-                                                <label for="color1">{{$material->material_name }}</label>
-                                            </li>
-                                         @endforeach  
-                                            
-                                        </ul>
-                                    </div>
-                                    </form>
-                                </div>	<!--end of leftside-->
-                            <!--input Materials-->    
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="panel panel-default">
-                <div class="panel-heading" role="tab" id="headingEight">
-                    <h4 class="panel-title">
-                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
-                            <i class="more-less glyphicon glyphicon-plus"></i>
-                            Waste Materials
-                        </a>
-                    </h4>
-                </div>
-                <div id="collapseEight" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingEight">
-                    <div class="panel-body">
-                            <!--Waste Materials-->
-                            <div class="left-side">
-                                <form>
-                                   <!-- <span><input type="reset" value="Reset"></span><br> -->
-                                    <div class="d-flex" style=" margin-top: 1em;">
-                                        <ul style="margin-top: 1em;">
-                                            @foreach($materials as $material)
-                                            <li>
-                                                <input type="checkbox" class="checked" name="waste_material_name[]" id="material_name" value="{{$material->id}}" onclick="ajaxFunc()">
-                                                <label for="color1">{{$material->material_name }}</label>
-                                            </li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                </form>
-                            </div>
-                            <!--Waste Materials-->    
-                    </div>
-                </div>
-            </div>
-                
-                        <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="headingTwo">
                                 <h4 class="panel-title">
                                     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -301,52 +205,7 @@
                                 </div>
                             </div>
                         </div>
-                   
-
-                <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingFive">
-                        <h4 class="panel-title">
-                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                                <i class="more-less glyphicon glyphicon-plus"></i>
-                                JIADA Region
-                            </a>
-                        </h4>
-                    </div>
-                    <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
-                        <div class="panel-body">
-                                 <!-- JIADA Region -->
-					<div class="left-side">
-                        <form>
-                            <!-- <span><input type="reset" value="Reset"></span><br> -->
-						<div class="d-flex">
-                            <ul style="margin-top: 1em;">
-								<li>
-									<input type="radio" class="checked" name="location_zone[]" id="location_zone" value="Adityapur" onclick="ajaxFunc()">
-									<label for="color1">Adityapur</label>
-								</li>
-                                <li>
-                                    <input type="radio" class="checked" name="location_zone[]" id="location_zone" value="Ranchi" onclick="ajaxFunc()">
-                                    <label for="color1">Ranchi</label>
-                                </li>
-                                <li>
-                                    <input type="radio" class="checked" name="location_zone[]" id="location_zone" value="Bokaro" onclick="ajaxFunc()">
-                                    <label for="color1">Bokaro</label>
-                                </li>
-                                <li>
-                                    <input type="radio" class="checked" name="location_zone[]" id="location_zone" value="SanthalPargana" onclick="ajaxFunc()">
-                                    <label for="color1">Santhal Pargana</label>
-                                </li>
-							</ul>
-						</div>
-                    </div>
-				<!-- </div> -->
-					<!-- //JIADA Region	-->
-                    </div>
-                </div>
-            </div>
                     </div><!-- panel-group -->
-
-
 				</div>
                 <!-- //grid left -->
 
@@ -379,22 +238,11 @@
                     </div>
                     <div class="job-single-sec">
                         <p class="my-2">
-                            <a href="{{$value_comp['company_portal_url']}}">{{$value_comp['company']}}</a>
+                            <a href="{{$value_comp['company_portal_url']}}">{{$value_comp['nameofUnit']}}</a>
                              
                             <span class="etlk">
-                                @if($value_comp['company_type']=="llp")
-                                ( LLP )
-                                @elseif($value_comp['company_type']=="ltd")
-                                ( PVT. LTD )
-                                @elseif($value_comp['company_type']=="public")
-                                ( PUBLIC )
-                                @elseif($value_comp['company_type']=="LTD")
-                                ( LTD )
-                                @elseif($value_comp['company_type']=="proprietorship")
-                                ( PROPRIETORSHIP )
-                                @else
+                            {{$value_comp['typeOfUnit']}}
                                 
-                                @endif
                                 </span>
                         </p>
                         <ul class="job-list-info">
@@ -407,8 +255,8 @@
                                 @if($value_comp['company_portal_url']!="")    
                                 <a href="{{$value_comp['company_portal_url']}}"><i class="fa fa-globe cllrr"></i>{{$value_comp['company_portal_url']}}</a>
                                 @endif
-                                @if($value_comp['company_email']!="")
-                                   <i class="fa fa-envelope" aria-hidden="true"></i>{{$value_comp['company_email']}}
+                                @if($value_comp['email']!="")
+                                   <i class="fa fa-envelope" aria-hidden="true"></i>{{$value_comp['email']}}
                                 @endif
                             </li>     
                         </ul>
@@ -455,15 +303,12 @@
 <script>
 function ajaxFunc(){
     // console.log("da");
-    var industry_ids = $("input[name='industry_name[]']:checked").map(function(){return $(this).val();}).get();
     var company_type_ids = $("input[name='comp_type[]']:checked").map(function(){return $(this).val();}).get();
     var company_size=$("input[name='company_size[]']:checked").map(function(){return $(this).val();}).get();
     var turn_over=$("input[name='turn_over[]']:checked").map(function(){return $(this).val();}).get();
     var location_zone=$("input[name='location_zone[]']:checked").map(function(){return $(this).val();}).get();
-    var input_material_ids = $("input[name='input_material_name[]']:checked").map(function(){return $(this).val();}).get();
-    var waste_material_ids = $("input[name='waste_material_name[]']:checked").map(function(){return $(this).val();}).get();
-
-    if((industry_ids!="") || (company_type_ids!="") || (input_material_ids!="")|| (waste_material_ids!="") ||(turn_over!="")||(location_zone!="")||(company_size!=""))
+    
+    if( (company_type_ids!="") ||(turn_over!="")||(location_zone!="")||(company_size!=""))
     {
         $.ajaxSetup({
             headers:{
@@ -472,7 +317,7 @@ function ajaxFunc(){
         });
         $.ajax({
             url:"{{url('unit-listing/industry-filter')}}",
-            data: {'industry_ids':industry_ids,'company_type_ids':company_type_ids,'waste_material_ids':waste_material_ids,'input_material_ids':input_material_ids,'company_size':company_size,'location_zone':location_zone,'turn_over':turn_over},
+            data: {'company_type_ids':company_type_ids,'company_size':company_size,'location_zone':location_zone,'turn_over':turn_over},
             method:"GET",
             contentType:'application/json',
             dataType:"json",
@@ -495,26 +340,9 @@ function ajaxFunc(){
                                     </div>
                                     <div class="job-single-sec">
                                         <p class="my-2">
-                                        <a href="`+data[i].company_portal_url+`" >`+data[i].company+`</a>
-                                            <span class="etlk">`;
-                                            if(data[i].company_type=="llp"){
-                                                to_append+=`( LLP )`;
-                                            }
-                                            else if(data[i].company_type=="ltd"){
-                                                to_append+=`( PVT. LTD )`;    
-                                            }
-                                            else if(data[i].company_type=="public"){
-                                                to_append+=`( PUBLIC )`;
-                                            }
-                                            else if(data[i].company_type=="LTD"){
-                                                to_append+=`( LTD )`;
-                                            }
-                                            else if(data[i].company_type=="proprietorship"){
-                                                to_append+=`( PROPRIETORSHIP )`;
-                                            }
-                                            else{
-
-                                            }
+                                        <a href="`+data[i].company_portal_url+`" >`+data[i].nameofUnit+`</a>
+                                            <span class="etlk">`
+                                                to_append+=data[i].typeOfUnit;
                                             to_append+=`</span>
                                         </p>
                                         <ul class="job-list-info">
@@ -528,8 +356,8 @@ function ajaxFunc(){
                                                 else{
                                                     to_append+=`<i class="fa fa-globe cllrr"></i>website`;
                                                 }
-                                                if(data[i].company_email!=""){
-                                                    to_append+=` <i class="fa fa-envelope" aria-hidden="true"></i>`+data[i].company_email;
+                                                if(data[i].email!=""){
+                                                    to_append+=` <i class="fa fa-envelope" aria-hidden="true"></i>`+data[i].email;
                                                 }
                                             to_append+=`</li>
                                         </ul>
@@ -581,9 +409,9 @@ function ajaxFunc(){
                                         <a href="http://itscient.com/automobile"></a>
                                         </h4>
                                     
-                                        <p class="my-2">`+ data[i].company + `</p>
+                                        <p class="my-2">`+ data[i].nameofUnit + `</p>
                                         <ul class="job-list-info">
-                                            <li> <i class='fas fa-briefcase'></i>`+ data[i].company_type+`</li>
+                                            <li> <i class='fas fa-briefcase'></i>`+ data[i].typeOfUnit+`</li>
                                                 
                                                 <li>
                                                 <i class="fas fa-map-marker-alt"></i>`+ data[i].address + `</li>`;
@@ -591,8 +419,8 @@ function ajaxFunc(){
                                         if(data[i].company_portal_url){
                                             to_append +=`<i class="fas fa-globe"></i>`+data[i].company_portal_url+` `;
                                         }
-                                        if(data[i].company_email){
-                                            to_append +=`<i class="fa fa-envelope" aria-hidden="true"></i>`+data[i].company_email;
+                                        if(data[i].email){
+                                            to_append +=`<i class="fa fa-envelope" aria-hidden="true"></i>`+data[i].email;
                                         }
                                         to_append+=`</li>`;
                                     to_append +=`</ul>

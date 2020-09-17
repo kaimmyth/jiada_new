@@ -117,8 +117,8 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <br><br>
-                            <label>Address:&nbsp;</label>
-                            <textarea class="form-control"  name="address" id="address">{{@$enterprises->address}}</textarea>
+                            <label>Address:&nbsp;<font style="color: red;font-size:large;">*</font></label>
+                            <textarea class="form-control"  name="address" id="address" required>{{@$enterprises->address}}</textarea>
                             <br><br>
                             <label>Land Type:&nbsp;<font style="color: red;font-size:large;">*</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                             <select class="form-control" name="landType"  id="landType" required>
@@ -173,7 +173,7 @@
                             <label>Product:&nbsp;<font style="color: red;font-size:large;">*</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </label>
                             <input type="text" name="products" class="form-control" value="{{@$enterprises->products}}" id="products" required>
                             <br><br>
-                            <label>TurnOver FY 17-18:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                            <label>Turn Over (FY {{date('Y', strtotime('-2 year'))}}-{{date('Y', strtotime('-1 year'))}}):&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                             <input type="text" min="1" class="form-control" value="{{@$enterprises->turnOverInFy1}}" name="turnOverInFy1" id="turnOverInFy1">
                         </div>
                     </div>
@@ -189,7 +189,7 @@
                                 <option @if(@$enterprises->typeOfUnit=="Micro") {{"Selected"}} @endif>Micro</option>
                             </select>
                             <br><br>
-                            <label>Turn Over (FY 18-19):&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </label>
+                            <label>Turn Over (FY {{date('Y', strtotime('-1 year'))}}-{{date('Y')}}):&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </label>
                             <input type="text" class="form-control" min="1" value="{{@$enterprises->turnOverInFy2}}" name="turnOverInFy2" id="turnOverInFy1">
                         </div>
                     </div>
@@ -208,7 +208,7 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label>No Of Male Employee(Direct):&nbsp;</label>
+                            <label>No Of Male Employee(Direct):&nbsp;<font style="color: red;font-size:large;">*</font></label>
                             <input type="text" class="form-control" min="1" value="{{@$enterprises->noofMaleEmployeeDirect}}" required name="noofMaleEmployeeDirect" id="noofMaleEmployeeDirect">
                             <br><br>
                             <label>Status Of Unit:&nbsp;<font style="color: red;font-size:large;">*</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </label>
@@ -223,8 +223,15 @@
 
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label>No Of Female Employee(Direct):&nbsp; </label>
+                            <label>No Of Female Employee(Direct):&nbsp;<font style="color: red;font-size:large;">*</font> </label>
                             <input type="text" class="form-control" min="1" value="{{@$enterprises->noofFemaleEmployeeDirect}}" required name="noofFemaleEmployeeDirect" id="noofFemaleEmployeeDirect">
+
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>No Of Total  Employee:&nbsp;<font style="color: red;font-size:large;">*</font> </label>
+                            <input type="text" class="form-control" min="1" value="{{@$enterprises->number_of_employees}}" required name="number_of_employees" id="number_of_employees">
 
                         </div>
                     </div>

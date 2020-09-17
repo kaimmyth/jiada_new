@@ -1,14 +1,5 @@
 @guest
-<script>
-	<? php Session:: flash('warning', 'You are not a Authoriesd User..!'); ?>
-		window.location = "{{ url('/') }}";
-</script>
-@if (Route::has('register'))
-<script>
-	<? php Session:: flash('warning', 'Your Session had been Expired..!'); ?>
-		window.location = "{{url('/')}}";
-</script>
-@endif
+
 @else
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -513,34 +504,8 @@
 					</ul>
 				</div>
 			</nav>
-			@if(session()->get('success')!="")
-			<script>
-				$(document).ready(function () {
-					swal({
-						title: "Success!",
-						text: "{{session()->get('success')}}",
-						icon: "success",
-					});
-				});
-			</script>
-			<?php
-            session()->forget('success');
-        ?>
-			@endif
-			@if(session()->get('danger')!="")
-			<script>
-				$(document).ready(function () {
-					swal({
-						title: "Error Occured!",
-						text: "{{session()->get('danger')}}",
-						icon: "error",
-					});
-				});
-			</script>
-			<?php
-            session()->forget('danger');
-        ?>
-			@endif
+			
+		
 			@if($errors!="")
 			@foreach ($errors->all() as $message)
 			<script>

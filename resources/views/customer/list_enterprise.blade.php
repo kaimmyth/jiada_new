@@ -62,7 +62,7 @@
                                                     <td>{{$value_e->address}}</td>
                                                     <td>{{$value_e->statusofUnit}}</td>
 
-                                                    <td>{{date('d/m/Y',strtotime($value_e->created_at))}}</td>
+                                                    <td class="text-right">{{date('d/m/Y',strtotime($value_e->created_at))}}</td>
                                                     <td class="actions">
                                                         &nbsp;&nbsp;&nbsp;
                                                         <a href="{{ URL::to('customer/fetch-enterprises',Crypt::encrypt($value_e->id))}}" class="on-default " data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="fas fa-edit" style="color:green;"></i></a>
