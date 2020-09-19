@@ -37,7 +37,7 @@ Route::any('edit-userprofile', 'HomeController@UpdateProfile');
 Route::middleware('auth')->group(function () {
 Route::get('home', 'HomeController@index')->name('home');
 Route::get('dashboard', 'HomeController@Dashboard');
-});
+
 Route::prefix('land')->group(function () {
 	Route::any('listing', 'Landcontroller@index');
 	Route::any('edit/{id}', 'Landcontroller@UpdateLand');
@@ -167,16 +167,6 @@ Route::post('add/subcategory', 'MasterController@Add_Subcategory');
 Route::get('subcategory/destroy/{id}', 'MasterController@Delete_Subcategory');
 Route::any('subcategory/edit/{id}', 'MasterController@Subcategory_Edit');
 
-/* Leads */
-Route::get('leads', 'LeadsController@index');
-Route::any('leads/create', 'LeadsController@Create');
-Route::any('filter-leads', 'LeadsController@FilterLeads');
-Route::get('leads/distroy/{id}', 'LeadsController@distroy');
-Route::get('leads/view/{id}', 'LeadsController@LeadsView');
-Route::any('leads/view/{id}', 'LeadsController@LeadsView');
-Route::get('leads/edit/{id}', 'LeadsController@edit');
-Route::post('leads/view/create/calleventtaskemail', 'LeadsController@CreateEventTaskCallEmail');
-Route::any('leads/bulk/upload', 'LeadsController@BulkUploadLeads');
 
 /* Priority */
 Route::get('priority_lavels', 'MasterController@PriorityLavels_Listing');
@@ -269,6 +259,9 @@ Route::get('uom_master', 'MasterController@Uom_Listing');
 Route::post('add/uom_master', 'MasterController@Add_Uom');
 Route::get('uom_master/destroy/{id}', 'MasterController@Delete_Uom');
 Route::any('uom_master/edit/{id}', 'MasterController@Uom_Edit');
+Route::get('create/compan_website/{id}', 'CompanyProfileController@web_create_form');
+Route::post('add/company_website', 'CompanyProfileController@add_comapany_details_website');
+});
 Route::get('/', function () {
 	return view('static-pages.index');
 });
@@ -304,8 +297,7 @@ Route::get('comapny-profile/{id}', 'CompanyProfileController@viewsite');
 Route::get('/unit', 'UnitListingController@get_industries_name');
 Route::get('unit-listing/industry-filter', 'UnitListingController@filter_industry');
 Route::post('savecontact', 'VisiterContactController@savecontact');
-Route::get('create/compan_website/{id}', 'CompanyProfileController@web_create_form');
-Route::post('add/company_website', 'CompanyProfileController@add_comapany_details_website');
+
 Route::get('portal/{company_name}', 'CompanyProfileController@viewportal');
 Route::get('list/all_unit', 'UnitListingController@view_all_unit');
 

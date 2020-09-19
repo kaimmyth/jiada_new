@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
     <link rel="stylesheet" href="{{url('public/login_assest/css/style.css')}}">
 
-    <title>IPSA  Login</title>
+    <title>Jiada  Login</title>
     <style>
         .mdl-textfield__label {
             margin-bottom: 0;
@@ -215,7 +215,7 @@ p {
                                             @endif
                                         </div>
                                 </div>
-                                <div class="col-lg-12 col-lg-offset-1 col-lg-offset-right-1 col-md-12 col-md-offset-1 col-md-offset-right-1 col-sm-12 col-xs-12 pull-right ">
+                                <div class="col-lg-12 col-lg-offset-1 col-lg-offset-right-1 col-md-12 col-md-offset-1 col-md-offset-right-1 col-sm-12 col-xs-12 pull-right " style="margin-top: -49px;">
                                     <button class="btn lt-register-btn">login <i class="icon-right "></i></button>
                                 </div><BR>
 
@@ -292,7 +292,7 @@ p {
             <!--center-block-->
 
             <div class="col-md-12 text-center" style="color:rgb(250, 248, 248); padding-top:50px;">
-                IPSA ©  BABA Software. All rights reserved.
+                Jiada ©  BABA Software. All rights reserved.
             </div>
         </div>
         
@@ -351,8 +351,17 @@ p {
 particlesJS("particle", options);
 
 </script>
-
-   
+<script>
+$( document ).ready(function() {
+    $(".BDC_CaptchaDiv").css('width',"280px");
+    $(".BDC_CaptchaDiv").css('height',"50px");
+    $(".BDC_CaptchaDiv").css('position',"relative");
+    $("#LoginCaptcha_CaptchaIconsDiv").css('left',"269px");
+    $("#LoginCaptcha_CaptchaIconsDiv").css('width',"24px !important");
+    $("#LoginCaptcha_CaptchaIconsDiv").css('position',"absolute");
+    $("#LoginCaptcha_CaptchaIconsDiv").css('top',0);
+});
+</script>
 </body>
 
 </html>

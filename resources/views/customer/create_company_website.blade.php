@@ -70,7 +70,10 @@
         @csrf
         <div class="row" id="dashboard-row">
             <div class="col-md-12">
-                <h4 class="pull-left page-title" style="color: #000; font-weight:200;"><i class="ion-arrow-right-b"></i> &nbsp;&nbsp;@if(@$editData->id!='') Update Customer Info @elseif(Auth::user()->users_role==3) Customize Web @else Create Customer @endif / <a href="javascript::void(0);" onclick="history.back();">Back</a></h4>
+                <h4 class="pull-left page-title" style="color: #000; font-weight:200;"><i class="ion-arrow-right-b"></i>
+                    &nbsp;&nbsp;@if(@$editData->id!='') Update Customer Info @elseif(Auth::user()->users_role==3)
+                    Customize Web @else Create Customer @endif / <a href="javascript::void(0);"
+                        onclick="history.back();">Back</a></h4>
                 <ol class="breadcrumb pull-right">
                     <!-- @if(Auth::user()->users_role==3)
                     <li><a href="{{ URL::to('home') }}">Dashboard</a></li>
@@ -92,19 +95,24 @@
                         <div class="form-group">
                             <input type="hidden" name="comp_id" value="{{$customer_details->id}}">
                             <label for="field-6" class="control-label">Unit Name<font color="red">*</font></label>
-                            <input type="text" readonly class="form-control" name="company" id="company" value="{{$customer_details->nameofUnit}}" required="" aria-required="true" placeholder="">
+                            <input type="text" readonly class="form-control" name="company" id="company"
+                                value="{{$customer_details->nameofUnit}}" required="" aria-required="true"
+                                placeholder="">
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="field-6" class="control-label">Unit Website<font color="red">*</font></label>
-                            <input type="text" class="form-control" name="company_portal_url" id="company" value="{{$customer_details->company_portal_url}}" required="" aria-required="true" placeholder="">
+                            <input type="text" class="form-control" name="company_portal_url" id="company"
+                                value="{{$customer_details->company_portal_url}}" required="" aria-required="true"
+                                placeholder="">
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="field-6" class="control-label">Unit Description</label>
-                            <textarea name="company_description" class="form-control" style="height: 36px;">{{$customer_details->company_description}}</textarea>
+                            <textarea name="company_description" class="form-control"
+                                style="height: 36px;">{{$customer_details->company_description}}</textarea>
                         </div>
                     </div>
                 </div>
@@ -118,9 +126,11 @@
                             <div class="form-group">
                                 <label for="field-6" class="control-label">Welcome Heading</label>
                                 @if($customer_details->welcome_heading)
-                                <input type="text" class="form-control" name="welcome_heading" readonly value="{{ $customer_details->welcome_heading}}" aria-required="true">
+                                <input type="text" class="form-control" name="welcome_heading" readonly
+                                    value="{{ $customer_details->welcome_heading}}" aria-required="true">
                                 @else
-                                <input type="text" class="form-control" name="welcome_heading" value=" " aria-required="true">
+                                <input type="text" class="form-control" name="welcome_heading" value=" "
+                                    aria-required="true">
                                 @endif
                             </div>
                         </div>
@@ -128,9 +138,11 @@
                             <div class="form-group">
                                 <label for="field-6" class="control-label">Welcome description</label>
                                 @if($customer_details->welcome_desc)
-                                <textarea class="form-control" rows="4" cols="50" name="welcome_desc" id="welcome_desc">{{$customer_details->welcome_desc}}</textarea>
+                                <textarea class="form-control" rows="4" cols="50" name="welcome_desc"
+                                    id="welcome_desc">{{$customer_details->welcome_desc}}</textarea>
                                 @else
-                                <textarea class="form-control" rows="4" cols="50" name="welcome_desc" id="welcome_desc"></textarea>
+                                <textarea class="form-control" rows="4" cols="50" name="welcome_desc"
+                                    id="welcome_desc"></textarea>
                                 @endif
 
                             </div>
@@ -147,9 +159,11 @@
                                 <div class="form-group">
                                     <label for="field-6" class="control-label">Material Heading</label>
                                     @if($customer_details->mate_heading)
-                                    <input type="text" class="form-control" name="mate_heading" readonly value="{{ $customer_details->mate_heading}}" aria-required="true">
+                                    <input type="text" class="form-control" name="mate_heading" readonly
+                                        value="{{ $customer_details->mate_heading}}" aria-required="true">
                                     @else
-                                    <input type="text" class="form-control" name="mate_heading" value=" " aria-required="true">
+                                    <input type="text" class="form-control" name="mate_heading" value=" "
+                                        aria-required="true">
                                     @endif
                                 </div>
                             </div>
@@ -157,9 +171,11 @@
                                 <div class="form-group">
                                     <label for="field-6" class="control-label">Material Head Description</label>
                                     @if($customer_details->mate_description)
-                                    <textarea class="form-control" rows="4" cols="50" name="mate_description" id="mate_description">{{$customer_details->mate_description}}</textarea>
+                                    <textarea class="form-control" rows="4" cols="50" name="mate_description"
+                                        id="mate_description">{{$customer_details->mate_description}}</textarea>
                                     @else
-                                    <textarea class="form-control" rows="4" cols="50" name="mate_description" placeholder="Material description" id="mate_description"></textarea>
+                                    <textarea class="form-control" rows="4" cols="50" name="mate_description"
+                                        placeholder="Material description" id="mate_description"></textarea>
                                     @endif
                                 </div>
                             </div>
@@ -171,10 +187,12 @@
                                 <div class="form-group">
                                     <input type="hidden" name="mat_web_id[]" value="{{$material->id}}">
                                     <label for="field-6" class="control-label">Material Name</label>
-                                    <input type="text" class="form-control" name="mat_web_name[]" id="mat_web_name" value="{{$material->mat_web_name}}" aria-required="true" placeholder="">
+                                    <input type="text" class="form-control mat_web" name="mat_web_name[]" id="mat_web_name"
+                                        value="{{$material->mat_web_name}}" aria-required="true" placeholder="">
                                 </div>
                                 <div>
-                                    <button type="button" class="btn btn-outline-danger delete-button-web-material"><i class="fa fa-times" title="Remove"></i></button>
+                                    <button type="button" class="btn btn-outline-danger delete-button-web-material" style="margin-top: 23px;"><i
+                                            class="fa fa-times" title="Remove"></i></button>
                                 </div>
                             </div>
                             @endforeach
@@ -184,16 +202,20 @@
                                     <div class="form-group">
                                         <input type="hidden" name="mat_web_id[]">
                                         <label for="field-6" class="control-label">Material Name</label>
-                                        <input type="text" class="form-control" name="mat_web_name[]" id="mat_web_name" aria-required="true" placeholder="Material Name">
+                                        <input type="text" class="form-control mat_web" name="mat_web_name[]" id="mat_web_name"
+                                            aria-required="true" placeholder="Material Name">
                                     </div>
                                 </div>
                                 <div class="col-md-1">
-                                    <button type="button" class="btn btn-outline-danger delete-button-web-material" style="height: 34px;margin-top: 16px;"><i class="fa fa-times" title="Remove"></i></button>
+                                    <button type="button" class="btn btn-outline-danger delete-button-web-material"
+                                        style="height: 34px;margin-top: 23px;"><i class="fa fa-times" title="Remove"></i></button>
                                 </div>
 
                                 <div class=" plss1">
                                     <tr>
-                                        <span style="text-align:right;" colspan="2"><i class="fa fa-plus-circle" title="Add More" aria-hidden="true" style="color:green;" onclick="web_mat_section();"></i></span>
+                                        <span style="text-align:right;" colspan="2"><i class="fa fa-plus-circle"
+                                                title="Add More" aria-hidden="true" style="color:green;"
+                                                onclick="web_mat_section();"></i></span>
                                     </tr>
                                 </div>
                                 <div id="mat_web_append"></div>
@@ -215,7 +237,8 @@
                                 <input type="file" class="form-control" name="comapny_banner" aria-required="true">
                                 @if($customer_details->banner)
                                 <input type="hidden" name="company_banner_pre" value="{{$customer_details->banner}}">
-                                <a href="{{-- url('public/company_doc/'.$customer_details->banner) --}}">{{$customer_details->banner}}</a>
+                                <a
+                                    href="{{-- url('public/company_doc/'.$customer_details->banner) --}}">{{$customer_details->banner}}</a>
                                 @endif
                             </div>
                         </div>
@@ -224,21 +247,25 @@
                                 <label for="field-6" class="control-label">Company Logo</label>
                                 <input type="file" class="form-control" name="comapny_logo" aria-required="true">
                                 @if($customer_details->company_logo)
-                                <input type="hidden" name="company_logo_pre" value="{{$customer_details->company_logo}}">
-                                <a href="{{-- url('public/company_doc/'.$customer_details->company_logo) --}}">{{$customer_details->company_logo}}</a>
+                                <input type="hidden" name="company_logo_pre"
+                                    value="{{$customer_details->company_logo}}">
+                                <a
+                                    href="{{-- url('public/company_doc/'.$customer_details->company_logo) --}}">{{$customer_details->company_logo}}</a>
                                 @endif
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="field-6" class="control-label">Header Color</label>
-                                <input type="text" class="form-control" name="color" id="color" value="{{$customer_details->header_color}}" aria-required="true" placeholder="">
+                                <input type="text" class="form-control" name="color" id="color"
+                                    value="{{$customer_details->header_color}}" aria-required="true" placeholder="">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="field-6" class="control-label">Banner Header</label>
-                                <input type="text" class="form-control" name="banner_heading" id="header_heading" value="{{$customer_details->banner_heading}}" aria-required="true" placeholder="">
+                                <input type="text" class="form-control" name="banner_heading" id="header_heading"
+                                    value="{{$customer_details->banner_heading}}" aria-required="true" placeholder="">
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -259,14 +286,16 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="field-6" class="control-label">Banner Description</font></label>
-                                <textarea class="form-control" rows="1" cols="50" name="banner_description" placeholder="Banner description" id="header_description">@if($customer_details->banner_description) {{$customer_details->banner_description}} @endif</textarea>
+                                <textarea class="form-control" rows="1" cols="50" name="banner_description"
+                                    placeholder="Banner description"
+                                    id="header_description">@if($customer_details->banner_description) {{$customer_details->banner_description}} @endif</textarea>
                             </div>
                         </div>
 
                     </div>
                 </div>
             </div>
-           
+
 
             <!-- Ashish code End -->
             <div class="card-body">
@@ -276,29 +305,33 @@
                 @if(count($company_services)!=0)
                 @foreach($company_services as $key_services => $value_services)
                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <input type="hidden" name="service_id[]" value="{{$value_services->id}}">
-                                <label for="field-6" class="control-label">Service Name</label>
-                                <input type="text" class="form-control" name="service_name[]" id="service_name" value="{{$value_services->services_name}}" aria-required="true" placeholder="">
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="field-6" class="control-label">Services Heading</label>
-                                <input type="text" class="form-control" name="services_heading[]" value="{{$value_services->services_heading}}" aria-required="true" placeholder="">
-                            </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input type="hidden" name="service_id[]" value="{{$value_services->id}}">
+                            <label for="field-6" class="control-label">Service Name</label>
+                            <input type="text" class="form-control" name="service_name[]" id="service_name"
+                                value="{{$value_services->services_name}}" aria-required="true" placeholder="">
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="field-6" class="control-label">Services Heading</label>
+                            <input type="text" class="form-control" name="services_heading[]"
+                                value="{{$value_services->services_heading}}" aria-required="true" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label for="field-6" class="control-label">Services Description</label>
-                            <textarea class="form-control" name="services_description[]" value="{{$value_services->services_description}}">{{$value_services->services_description}}</textarea>
+                            <textarea class="form-control" name="services_description[]"
+                                value="{{$value_services->services_description}}">{{$value_services->services_description}}</textarea>
                             <!-- <input type="text" class="form-control"  name="services_description" id="services_description" required="" aria-required="true" placeholder=""> -->
                         </div>
                     </div>
-                    <button type="button" class="btn btn-outline-danger delete-button-material"><i class="fa fa-times" title="Remove"></i></button>
+                    <div class="col-md-3">
+                        <button type="button" class="btn btn-outline-danger delete-button-material" style="margin-top: 23px;"><i
+                                class="fa fa-times" title="Remove"></i></button>
+                    </div>
                 </div>
                 @endforeach
                 @else
@@ -308,13 +341,15 @@
                             <div class="form-group">
                                 <input type="hidden" name="service_id[]">
                                 <label for="field-6" class="control-label">Service Name</label>
-                                <input type="text" class="form-control" name="service_name[]" id="service_name" aria-required="true" placeholder="">
+                                <input type="text" class="form-control" name="service_name[]" id="service_name"
+                                    aria-required="true" placeholder="">
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="field-6" class="control-label">Services Heading</label>
-                                <input type="text" class="form-control" name="services_heading[]" aria-required="true" placeholder="">
+                                <input type="text" class="form-control" name="services_heading[]" aria-required="true"
+                                    placeholder="">
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -325,13 +360,15 @@
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-outline-danger delete-button-material" style="    margin-top: 1em;"><i class="fa fa-times" title="Remove"></i></button>
+                            <button type="button" class="btn btn-outline-danger delete-button-material"
+                            style="margin-top: 23px;"><i class="fa fa-times" title="Remove"></i></button>
                         </div>
                         <div class="col-md-3">
                             <div class="plss4">
                                 <tr>
                                     <span style="text-align:right;" colspan="2">
-                                        <i class="fa fa-plus-circle" aria-hidden="true" style="color:green;" title="Add More" onclick="service_section();"></i>
+                                        <i class="fa fa-plus-circle" aria-hidden="true" style="color:green;"
+                                            title="Add More" onclick="service_section();"></i>
                                     </span>
                                 </tr>
                             </div>
@@ -340,112 +377,129 @@
                             <div class="row" id="service_iteams_append"></div>
 
                         </div>
-                        @endif
                     </div>
                 </div>
-                <hr>
-                <div class="card-body">
-                    <!--<div class="card-header">-->
-                    <h4 style="border-bottom: 1px dashed#999;">Products</h4>
+                @endif
+                <div class="row" id="service_iteams_append" class="product_append">
+                </div>
+                <div class="plss1" style="margin-top: 0em;">
+                    <tr>
+                        <span style="text-align:right;" colspan="2">
+                            <i class="fa fa-plus-circle" aria-hidden="true" title="Add More" style="color:green;"
+                                onclick="service_section();"></i>
+                        </span>
+                    </tr>
+                </div>
+            </div>
+            <hr>
+
+            <div class="card-body">
+                <!--<div class="card-header">-->
+                <h4 style="border-bottom: 1px dashed#999;">Products</h4>
+                <div class="card" style="padding: 1em;">
                     <!--</div>-->
                     @if(count($company_product)!=0)
                     @foreach($company_product as $key_product=>$value_product)
-                    <div class="row col-md-12">
-                        <div class="card" style="padding: 1em;">
-
-                            <div class="col-md-12">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <input type="hidden" name="product_id[]" value="{{$value_product->id}}">
-                                        <label for="field-6" class="control-label">Product Name</label>
-                                        <input type="text" class="form-control" name="product_name[]" value="{{$value_product['product_name']}}" id="service_name" aria-required="true" placeholder="">
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="field-6" class="control-label">Product Heading</label>
-                                        <input type="text" class="form-control" name="product_heading[]" value="{{$value_product['product_heading']}}" aria-required="true" placeholder="">
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="field-6" class="control-label">Product Image</label>
-                                        <input type="file" class="form-control" name="product_image[]" aria-required="true" multiple="">
-                                        @if($value_product['product_heading']!="")
-                                        <input type="hidden" name="product_image_pre[]" value="{{$value_product['product_image']}}">
-                                        <a href="{{url('public/company_doc/'.$value_product['product_image'])}}">{{$value_product['product_image']}}</a>
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-10">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="field-6" class="control-label">Product Description</label>
-                                        <textarea class="form-control" name="product_description[]">{{$value_product['product_description']}}</textarea>
-                                    </div>
-                                </div>
-                                <div >
-                                    <button type="button" class="btn btn-outline-danger delete-button-material"><i class="fa fa-times" title="Remove"></i></button>
-                                </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <input type="hidden" name="product_id[]" value="{{$value_product->id}}">
+                                <label for="field-6" class="control-label">Product Name</label>
+                                <input type="text" class="form-control" name="product_name[]"
+                                    value="{{$value_product['product_name']}}" id="service_name" aria-required="true"
+                                    placeholder="">
                             </div>
                         </div>
-                        @endforeach
-                        @else
-                        <div class="card" style="padding: 1em;">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="field-6" class="control-label">Product Heading</label>
+                                <input type="text" class="form-control" name="product_heading[]"
+                                    value="{{$value_product['product_heading']}}" aria-required="true" placeholder="">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="field-6" class="control-label">Product Image</label>
+                                <input type="file" class="form-control" name="product_image[]" aria-required="true"
+                                    multiple="">
+                                @if($value_product['product_heading']!="")
+                                <input type="hidden" name="product_image_pre[]"
+                                    value="{{$value_product['product_image']}}">
+                                <a
+                                    href="{{url('public/company_doc/'.$value_product['product_image'])}}">{{$value_product['product_image']}}</a>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="field-6" class="control-label">Product Description</label>
+                                <textarea class="form-control"
+                                    name="product_description[]">{{$value_product['product_description']}}</textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <button type="button" class="btn btn-outline-danger delete-button-material" style="margin-top: 23px;"><i
+                                    class="fa fa-times" title="Remove"></i></button>
+                        </div>
+                    </div>
+                    @endforeach
+                    @else
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <input type="hidden" name="product_id[]">
 
-                            <div class="row col-md-12">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <input type="hidden" name="product_id[]">
-
-                                        <label for="field-6" class="control-label">Product Name</label>
-                                        <input type="text" class="form-control" name="product_name[]" id="service_name" aria-required="true" placeholder="">
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="field-6" class="control-label">Product Heading</label>
-                                        <input type="text" class="form-control" name="product_heading[]" aria-required="true" placeholder="">
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="field-6" class="control-label">Product Image</label>
-                                        <input type="file" class="form-control" name="product_image[]" aria-required="true" placeholder="" multiple="">
-                                    </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="form-group">
-                                        <label for="field-6" class="control-label">Product Description</label>
-                                        <textarea class="form-control" name="product_description[]"></textarea>
-                                    </div>
-                                </div>
-                                <div >
-                                    <button type="button" class="btn btn-outline-danger delete-button-material" style="margin-top: 1em;"><i class="fa fa-times" title="Remove"></i></button>
+                                <label for="field-6" class="control-label">Product Name</label>
+                                <input type="text" class="form-control" name="product_name[]" id="service_name"
+                                    aria-required="true" placeholder="">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="field-6" class="control-label">Product Heading</label>
+                                <input type="text" class="form-control" name="product_heading[]" aria-required="true"
+                                    placeholder="">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="field-6" class="control-label">Product Image</label>
+                                <input type="file" class="form-control" name="product_image[]" aria-required="true"
+                                    placeholder="" multiple="">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label for="field-6" class="control-label">Product Description</label>
+                                    <textarea class="form-control" name="product_description[]"></textarea>
                                 </div>
                             </div>
-                            @endif
-                            <div class="row" id="product_section_append" class="product_append">
-                            </div>
-                            <div class=" plss1" style="margin-top: 0em;">
-                                <tr>
-                                    <span style="text-align:right;" colspan="2">
-                                        <i class="fa fa-plus-circle" aria-hidden="true" title="Add More" style="color:green;" onclick="product_section();"></i>
-                                    </span>
-                                </tr>
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-outline-danger delete-button-material"
+                                    style="margin-top: 23px;"><i class="fa fa-times" title="Remove"></i></button>
                             </div>
                         </div>
                     </div>
+                    @endif
+                    <div class="row" id="product_section_append" class="product_append">
+                    </div>
+                    <div class="plss1" style="margin-top: 0em;">
+                        <tr>
+                            <span style="text-align:right;" colspan="2">
+                                <i class="fa fa-plus-circle" aria-hidden="true" title="Add More" style="color:green;"
+                                    onclick="product_section();"></i>
+                            </span>
+                        </tr>
+                    </div>
+                </div>
 
-                    </div>
-            </div>  
-                    </div>
-            </div>
-                    <div class="col-md-10">
-                        <center><input type="submit" class="btn btn-outline-primary" value="Submit" style=" padding: 6px 22px;margin-top: -93px;font-size: 14px;"></center>
-                        <!--<input type="submit" class="btn btn-outline-primary" value="Submit">-->
-                    </div>
+
+                <div class="col-md-10">
+                    <center><input type="submit" class="btn btn-outline-primary" value="Submit"
+                            style=" padding: 6px 22px;font-size: 14px;"></center>
+                    <!--<input type="submit" class="btn btn-outline-primary" value="Submit">-->
+                </div>
         </form>
     </div>
 </div>
@@ -479,7 +533,7 @@
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <button type="button" class="btn btn-outline-danger delete-button-material" > <i class="fa fa-times" title="Remove"></i></button>
+                                <button type="button" class="btn btn-outline-danger delete-button-material" style="margin-top: 23px;" > <i class="fa fa-times" title="Remove"></i></button>
                             </div>
                     </div>`;
         $("#product_section_append").append(product_item);
@@ -496,7 +550,7 @@
                                 </div>
 
                             </div>
-                                <button type="button" class="btn btn-outline-danger delete-button-web-material pull-right " style="height: 35px;margin-top: 1em;" ><i class="fa fa-times" title="Remove"></i></button>
+                                <button type="button" class="btn btn-outline-danger delete-button-web-material pull-right " style="height: 35px;margin-top: 23px;" ><i class="fa fa-times" title="Remove"></i></button>
                         </div>`;
         $("#mat_web_append").append(web_mat_iteams);
     }
@@ -523,7 +577,7 @@
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <button type="button" class="btn btn-outline-danger delete-button-material " title="Remove"><i class="fa fa-times" title="Remove"></i></button>
+                                <button type="button" class="btn btn-outline-danger delete-button-material " style="margin-top: 23px;" title="Remove"><i class="fa fa-times" title="Remove"></i></button>
                             </div>
                         </div>
                         `;
@@ -539,7 +593,7 @@
             $(this).closest(".row").remove();
         });
         $("body").delegate(".delete-button-web-material", "click", function () {
-            $(this).closest(".col-md-10").remove();
+            $(this).closest(".mat_web").remove();
         });
     });
 </script>

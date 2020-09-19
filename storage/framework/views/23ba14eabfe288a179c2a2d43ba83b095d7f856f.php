@@ -382,4 +382,4 @@ $( document ).ready(function() {
 </script>
 </body>
 
-</html><?php /**PATH C:\xampp\htdocs\jiada_new\resources\views/admin/portal_login.blade.php ENDPATH**/ ?>
+</html><?php /**PATH C:\xampp\htdocs\jiada_new\resources\views/auth/login.blade.php ENDPATH**/ ?>
