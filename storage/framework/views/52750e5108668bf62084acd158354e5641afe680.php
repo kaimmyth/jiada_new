@@ -24,10 +24,10 @@
       <!-- Page-Title -->
       <div class="row" id="dashboard-row">
         <div class="col-sm-12">
-          <h4 class="pull-left page-title" style="color: #000; font-weight:200;"><i class="ion-arrow-right-b"></i> &nbsp;&nbsp;Land: &nbsp; @if(@$editData->id!='') Edit  @else Add  @endif / <a href="javascript::void(0);" onclick="history.back();">Back</a></h4>
+          <h4 class="pull-left page-title" style="color: #000; font-weight:200;"><i class="ion-arrow-right-b"></i> &nbsp;&nbsp;Land: &nbsp; <?php if(@$editData->id!=''): ?> Edit  <?php else: ?> Add  <?php endif; ?> / <a href="javascript::void(0);" onclick="history.back();">Back</a></h4>
           <ol class="breadcrumb pull-right">
-            <!-- <li><a href="{{ URL::to('home') }}">Home</a></li>
-            <li><a href="{{URL::to('land/listing')}}">land</a></li>
+            <!-- <li><a href="<?php echo e(URL::to('home')); ?>">Home</a></li>
+            <li><a href="<?php echo e(URL::to('land/listing')); ?>">land</a></li>
             <li class="active">Add land</li> -->
           </ol>
         </div>
@@ -41,9 +41,9 @@
               <div class="card-body">
 
                 <div class="row gutters justify-content-left">
-                  <form action="{{url('land/add')}}" method="post" id="FormValidation" required="" aria-required="true" enctype="multipart/form-data">
-                    @csrf
-                    <input type="hidden" name="ids" value="{{$editData->id ?? ''}}">
+                  <form action="<?php echo e(url('land/add')); ?>" method="post" id="FormValidation" required="" aria-required="true" enctype="multipart/form-data">
+                    <?php echo csrf_field(); ?>
+                    <input type="hidden" name="ids" value="<?php echo e($editData->id ?? ''); ?>">
                     <div class="card-body">
                       <div class="row">
                         <div class="col-sm-12">
@@ -53,11 +53,11 @@
                                 <label for="field-4" class="control-label">Area/Zone</label>
                                 <select class="form-control" name="area" id="area" required="" aria-required="true">
                                   <option value="">Select Zone</option>
-                                  @foreach($zone as $key=>$val)
-                                  @if($val->sector_zone!='')
-                                  <option value="{{$val->sector_zone}}" @if(@$val->sector_zone==@$editData->area){{'selected'}} @endif>{{$val->sector_zone}}</option>
-                                  @endif
-                                  @endforeach
+                                  <?php $__currentLoopData = $zone; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$val): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                  <?php if($val->sector_zone!=''): ?>
+                                  <option value="<?php echo e($val->sector_zone); ?>" <?php if(@$val->sector_zone==@$editData->area): ?><?php echo e('selected'); ?> <?php endif; ?>><?php echo e($val->sector_zone); ?></option>
+                                  <?php endif; ?>
+                                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </select>
                               </div>
                             </div>
@@ -66,11 +66,11 @@
                                 <label for="field-4" class="control-label">Sector/Phase</label>
                                 <select class="form-control" name="sector" id="sector">
                                   <option value="">Select Sectors</option>
-                                  @foreach($phase as $key=>$val)
-                                  @if($val->phase!='')
-                                  <option value="{{$val->phase}}" @if(@$val->phase==@$editData->sector ?? ''){{'selected'}} @endif >{{$val->phase}}</option>
-                                  @endif
-                                  @endforeach
+                                  <?php $__currentLoopData = $phase; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$val): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                  <?php if($val->phase!=''): ?>
+                                  <option value="<?php echo e($val->phase); ?>" <?php if(@$val->phase==@$editData->sector ?? ''): ?><?php echo e('selected'); ?> <?php endif; ?> ><?php echo e($val->phase); ?></option>
+                                  <?php endif; ?>
+                                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </select>
                               </div>
                             </div>
@@ -79,11 +79,11 @@
                                 <label for="field-4" class="control-label">Block</label>
                                 <select class="form-control" name="block" id="block">
                                   <option value="">Select Block</option>
-                                  @foreach($block as $key=>$val)
-                                  @if($val->block!='')
-                                  <option value="{{$val->block}}" @if(@$val->block==@$editData->block ?? ''){{'selected'}} @endif >{{$val->block}}</option>
-                                  @endif
-                                  @endforeach
+                                  <?php $__currentLoopData = $block; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$val): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                  <?php if($val->block!=''): ?>
+                                  <option value="<?php echo e($val->block); ?>" <?php if(@$val->block==@$editData->block ?? ''): ?><?php echo e('selected'); ?> <?php endif; ?> ><?php echo e($val->block); ?></option>
+                                  <?php endif; ?>
+                                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </select>
                               </div>
                             </div>
@@ -92,13 +92,13 @@
                             <div class="col-md-3">
                               <div class="form-group">
                                 <label for="field-4" class="control-label">Plot No</label>
-                                <input type="text" class="form-control" name="plot_no" id="plot_no"   value="{{$editData->plot_no ?? ''}}" placeholder="Numbers" required="" aria-required="true">
+                                <input type="text" class="form-control" name="plot_no" id="plot_no"   value="<?php echo e($editData->plot_no ?? ''); ?>" placeholder="Numbers" required="" aria-required="true">
                               </div>
                             </div>
                             <div class="col-md-3">
                               <div class="form-group">
                                 <label for="field-1" class="control-label">Plot Name</label>
-                                <input type="text" class="form-control" name="land_name" id="land_name" value="{{$editData->land_name ?? ''}}" placeholder="Enter Plot Name" required="" aria-required="true">
+                                <input type="text" class="form-control" name="land_name" id="land_name" value="<?php echo e($editData->land_name ?? ''); ?>" placeholder="Enter Plot Name" required="" aria-required="true">
                               </div>
                             </div>
                             <div class="col-md-3">
@@ -106,18 +106,18 @@
                                 <label for="field-1" class="control-label">Select UoM</label>
                                 <select class="form-control" name="plot_size" id="plot_size" required="" aria-required="true">
                                   <option value="">Select UOM</option>
-                                  <option @if(@$editData->uom=='sq.mtr'){{'selected'}}@endif value="sq.mtr">Square Meter</option>
-                                  <option @if(@$editData->uom=='sq.inch'){{'selected'}}@endif value="sq.inch">Square Inch</option>
-                                  <option @if(@$editData->uom=='sq.ft'){{'selected'}}@endif value="sq.ft">Square feet</option>
-                                  <option @if(@$editData->uom=='acre'){{'selected'}}@endif value="acre">Acre</option>
-                                  <option @if(@$editData->uom=='hectare'){{'selected'}}@endif value="hectare">Hectare</option>
+                                  <option <?php if(@$editData->uom=='sq.mtr'): ?><?php echo e('selected'); ?><?php endif; ?> value="sq.mtr">Square Meter</option>
+                                  <option <?php if(@$editData->uom=='sq.inch'): ?><?php echo e('selected'); ?><?php endif; ?> value="sq.inch">Square Inch</option>
+                                  <option <?php if(@$editData->uom=='sq.ft'): ?><?php echo e('selected'); ?><?php endif; ?> value="sq.ft">Square feet</option>
+                                  <option <?php if(@$editData->uom=='acre'): ?><?php echo e('selected'); ?><?php endif; ?> value="acre">Acre</option>
+                                  <option <?php if(@$editData->uom=='hectare'): ?><?php echo e('selected'); ?><?php endif; ?> value="hectare">Hectare</option>
                                 </select>
                               </div>
                             </div>
                             <div class="col-md-3">
                               <div class="form-group">
                                 <label for="field-1" class="control-label">Size</label>
-                                <input type="text" class="form-control" name="plot_value" id="plot_value"  min="1" value="{{$editData->plot_size ?? ''}}" placeholder="Size" required="" aria-required="true">
+                                <input type="text" class="form-control" name="plot_value" id="plot_value"  min="1" value="<?php echo e($editData->plot_size ?? ''); ?>" placeholder="Size" required="" aria-required="true">
                               </div>
                             </div>
                           </div>
@@ -125,13 +125,13 @@
                             <div class="col-md-12">
                               <div class="form-group no-margin">
                                 <label for="field-7" class="control-label">Address Line 1</label>
-                                <textarea class="form-control autogrow" name="address" id="address" placeholder="Write your address Line 1  here...." style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 104px" required>{{$editData->address1 ?? ''}}</textarea>
+                                <textarea class="form-control autogrow" name="address" id="address" placeholder="Write your address Line 1  here...." style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 104px" required><?php echo e($editData->address1 ?? ''); ?></textarea>
                               </div>
                             </div>
                             <div class="col-md-12">
                               <div class="form-group no-margin">
                                 <label for="field-7" class="control-label">Address Line 2</label>
-                                <textarea class="form-control autogrow" name="address2" id="address2" placeholder="Write your address Line 2 here...." style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 104px" required>{{$editData->address2 ?? ''}}</textarea>
+                                <textarea class="form-control autogrow" name="address2" id="address2" placeholder="Write your address Line 2 here...." style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 104px" required><?php echo e($editData->address2 ?? ''); ?></textarea>
                               </div>
                             </div>
 
@@ -141,12 +141,12 @@
                                 <!-- <input type="text" class="form-control"  placeholder="Ex:-noida,kanpur.." required="" aria-required="true"> -->
                                 <select class="form-control" name="city" id="city" required="" aria-required="true">
                                   <option value="">Select City</option>
-                                  <option @if(@$editData->city=='Jamshedpur'){{'selected'}}@endif value="Jamshedpur">Jamshedpur</option>
-                                  <option @if(@$editData->city=='Ranchi'){{'selected'}}@endif value="Ranchi">Ranchi</option>
-                                  <option @if(@$editData->city=='Bokaro'){{'selected'}}@endif value="Bokaro">Bokaro</option>
-                                  <option @if(@$editData->city=='Dhanbad'){{'selected'}}@endif value="Dhanbad">Dhanbad</option>
-                                  <option @if(@$editData->city=='Saraikela kharsawan'){{'selected'}}@endif value="Saraikela kharsawan">Saraikela kharsawan</option>
-                                  <option @if(@$editData->city=='East Singhbhum'){{'selected'}}@endif value="East Singhbhum">East Singhbhum</option>
+                                  <option <?php if(@$editData->city=='Jamshedpur'): ?><?php echo e('selected'); ?><?php endif; ?> value="Jamshedpur">Jamshedpur</option>
+                                  <option <?php if(@$editData->city=='Ranchi'): ?><?php echo e('selected'); ?><?php endif; ?> value="Ranchi">Ranchi</option>
+                                  <option <?php if(@$editData->city=='Bokaro'): ?><?php echo e('selected'); ?><?php endif; ?> value="Bokaro">Bokaro</option>
+                                  <option <?php if(@$editData->city=='Dhanbad'): ?><?php echo e('selected'); ?><?php endif; ?> value="Dhanbad">Dhanbad</option>
+                                  <option <?php if(@$editData->city=='Saraikela kharsawan'): ?><?php echo e('selected'); ?><?php endif; ?> value="Saraikela kharsawan">Saraikela kharsawan</option>
+                                  <option <?php if(@$editData->city=='East Singhbhum'): ?><?php echo e('selected'); ?><?php endif; ?> value="East Singhbhum">East Singhbhum</option>
                                 </select>
                               </div>
                             </div>
@@ -156,7 +156,7 @@
                                 <!--<input type="text" class="form-control"  placeholder="Ex:-delhi,uttar pradesh.." required="" aria-required="true">-->
                                 <select class="form-control" name="state" id="state" required="" aria-required="true">
                                   <option value="">Select State</option>
-                                  <option @if(@$editData->state=='Jharkhand'){{'selected'}}@endif value="Jharkhand">Jharkhand</option>
+                                  <option <?php if(@$editData->state=='Jharkhand'): ?><?php echo e('selected'); ?><?php endif; ?> value="Jharkhand">Jharkhand</option>
                                 </select>
                               </div>
                             </div>
@@ -167,7 +167,7 @@
                                 <!--<input type="text" class="form-control"  placeholder="Ex:-India,US,UK.." required="" aria-required="true"> -->
                                 <select class="form-control" name="country" id="country" required="" aria-required="true">
                                   <option value="">Select Country</option>
-                                  <option @if(@$editData->country=='india'){{'selected'}}@endif value="india">India</option>
+                                  <option <?php if(@$editData->country=='india'): ?><?php echo e('selected'); ?><?php endif; ?> value="india">India</option>
                                 </select>
                               </div>
                             </div>
@@ -175,7 +175,7 @@
                             <div class="col-md-3">
                               <div class="form-group">
                                 <label for="field-3" class="control-label">Pincode</label>
-                                <input class="form-control" type="number" maxlength="6"   minlength="6" min="1" name="pincode" id="pincode" value="{{$editData->pincode ?? ''}}" placeholder="Ex:-123456" required="" aria-required="true">
+                                <input class="form-control" type="number" maxlength="6"   minlength="6" min="1" name="pincode" id="pincode" value="<?php echo e($editData->pincode ?? ''); ?>" placeholder="Ex:-123456" required="" aria-required="true">
                               </div>
                             </div>
                           </div>
@@ -183,23 +183,23 @@
                             <div class="col-md-4">
                               <div class="form-group">
                                 <label for="field-3" class="control-label">Documents</label>
-                                <input class="form-control" type="file" name="documents" id="documents" value="{{$editData->documents ?? ''}}" placeholder="" aria-required="true" multiple="">
-                                @if(@$editData->documents)
-                                <a target="_blank" href="{{url('public/landdocuments/'.$editData->documents)}}" style="line-height:normal">{{$editData->documents}}</a>
-                                @endif
+                                <input class="form-control" type="file" name="documents" id="documents" value="<?php echo e($editData->documents ?? ''); ?>" placeholder="" aria-required="true" multiple="">
+                                <?php if(@$editData->documents): ?>
+                                <a target="_blank" href="<?php echo e(url('public/landdocuments/'.$editData->documents)); ?>" style="line-height:normal"><?php echo e($editData->documents); ?></a>
+                                <?php endif; ?>
                               </div>
                             </div>
                             <div class="col-md-1"> </div>
                             <div class="col-md-3" style="margin-left: 4.5%;">
                               <div class="form-group">
                                 <label for="field-3" class="control-label">latitute</label>
-                                <input class="form-control" type="number" name="latitute" id="latitute" min="1" value="{{$editData->latitute ?? ''}}" placeholder=""  aria-required="true">
+                                <input class="form-control" type="number" name="latitute" id="latitute" min="1" value="<?php echo e($editData->latitute ?? ''); ?>" placeholder=""  aria-required="true">
                               </div>
                             </div>
                             <div class="col-md-3">
                               <div class="form-group">
                                 <label for="field-3" class="control-label">longitute</label>
-                                <input class="form-control" type="number" name="longitute" id="longitute" min="1" value="{{$editData->longitute ?? ''}}" placeholder=""  aria-required="true">
+                                <input class="form-control" type="number" name="longitute" id="longitute" min="1" value="<?php echo e($editData->longitute ?? ''); ?>" placeholder=""  aria-required="true">
                               </div>
                             </div>
 
@@ -263,16 +263,16 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="{{ URL::to('land/create/assign-customer')}}" method="POST" id="FormValidation" enctype="multipart/form-data" autocomplete="off">
-        @csrf
-        <input type="hidden" name="land_id" id="land_id" class="form-control" placeholder="" readonly="" value="{{$editData1->id ?? $editData->id ?? ''}}" readonly>
+      <form action="<?php echo e(URL::to('land/create/assign-customer')); ?>" method="POST" id="FormValidation" enctype="multipart/form-data" autocomplete="off">
+        <?php echo csrf_field(); ?>
+        <input type="hidden" name="land_id" id="land_id" class="form-control" placeholder="" readonly="" value="<?php echo e($editData1->id ?? $editData->id ?? ''); ?>" readonly>
         <div class="modal-body">
           <div class="row">
             <div class="col-md-5">
               <div class="row form-group">
                 <label class="col-sm-5 control-label" for="example-input-normal">Plot No.</label>
                 <div class="col-sm-7">
-                  <b style="color: #F01260"> {{$editData1->plot_no ?? $editData->plot_no ?? ''}}</b>
+                  <b style="color: #F01260"> <?php echo e($editData1->plot_no ?? $editData->plot_no ?? ''); ?></b>
                 </div>
               </div>
             </div>
@@ -280,7 +280,7 @@
               <div class="row form-group">
                 <label class="col-sm-5 control-label" for="example-input-normal">Plot Name</label>
                 <div class="col-sm-7">
-                  <b style="color: #F0125B">{{ucwords($editData1->land_name ?? $editData->land_name ?? '')}}</b>
+                  <b style="color: #F0125B"><?php echo e(ucwords($editData1->land_name ?? $editData->land_name ?? '')); ?></b>
                 </div>
               </div>
             </div>
@@ -541,4 +541,4 @@
       </form>
     </div>
   </div>
-</div>
+</div><?php /**PATH C:\xampp\htdocs\jiada_new\resources\views/land/add_land.blade.php ENDPATH**/ ?>

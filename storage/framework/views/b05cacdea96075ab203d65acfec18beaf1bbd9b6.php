@@ -449,7 +449,7 @@
 						</li>
 						<li class="nav navbar float-left">
 
-							<img src="<?php echo e(asset('public/form/images/toplogo.png')); ?>" style="height:60px;float:left;margin-left: 9px;">
+							<img src="<?php echo e(asset('public/form/images/Jharkhand_logo.PNG')); ?>" style="height:60px;float:left;margin-left: 9px;">
 							<form role="search" class="navbar-form">
 								<h4 style="margin-top: 16px;color: #fff;">Jharkhand Industrial Area Development Authority</h4>
 							</form>
@@ -492,8 +492,6 @@
 								<img src="<?php if(@$logo->logo!=''): ?> <?php echo e(@$logo->logo); ?> <?php else: ?> <?php echo e(asset('public/assets/images/users/avatar-1.jpg')); ?> <?php endif; ?>" alt="user-img" class="rounded-circle"> &nbsp;&nbsp;<?php echo e(Auth::user()->name); ?> </a>
 							<ul class="dropdown-menu">
 								<li><a href="<?php echo e(url('user-profile')); ?>" class="dropdown-item"><i class="md md-face-unlock mr-2"></i> Profile</a></li>
-								<li><a href="javascript:void(0)" class="dropdown-item"><i class="md md-settings mr-2"></i> Settings</a></li>
-								<li><a href="javascript:void(0)" class="dropdown-item"><i class="md md-lock mr-2"></i> Lock screen</a></li>
 								<li><a href="<?php echo e(route('logout')); ?>" onclick="event.preventDefault();
 									document.getElementById('logout-form').submit();" class="dropdown-item"><i class="md md-settings-power mr-2"></i> <?php echo e(__('Logout')); ?></a></li>
 								<form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST" style="display: none;">

@@ -239,10 +239,10 @@
 						<li><a href="{{ url('priority_lavels')}}">PRIORITY LEVELS</a></li>
 						<li><a href="{{ url('users')}}">USERS</a></li>
 						<li><a href="{{ url('uom_master')}}">UoM</a></li>
-						<li><a href="{{ url('entity_master')}}" class="waves-effect">ENTITY </span></a></li>
+						<!-- <li><a href="{{ url('entity_master')}}" class="waves-effect">ENTITY </span></a></li> -->
 						<!--<li><a href="{{ url('pcc_master')}}" class="waves-effect"><i class="ion-android-add-contact"></i>&nbsp;&nbsp;<span>PCC ACTION</span></a></li>			-->
-						<li><a href="{{ url('industries_master')}}" class="waves-effect">INDUSTRIES </a></li>
-						<li><a href="{{ url('material_master')}}" class="waves-effect">MATERIAL</a></li>
+						<!-- <li><a href="{{ url('industries_master')}}" class="waves-effect">INDUSTRIES </a></li> -->
+						<!-- <li><a href="{{ url('material_master')}}" class="waves-effect">MATERIAL</a></li> -->
 						<!--   <a href="{{ URL::to('company')}}" class="waves-effect"><span>Company </span></a> -->
 					</ul>
 				</li>
@@ -319,9 +319,7 @@
 				    @endif
 				
 				@endif
-				<li>
-				    <a href="{{ url::to('message') }}" class="waves-effect"><i class="fa fa-globe fa-w-16" style="width: 1em;display: inline-block;font-size: 17px;line-height: 17px;margin-left: 3px;margin-right: 15px;text-align: center;vertical-align: middle;width: 20px;"></i>&nbsp;&nbsp;<span>MESSAGES</span></a>
-			    </li>
+				
 				@if(in_array(9, @$module_id))
 				<li class="has_sub">
 					<a href="#" class="waves-effect"><i class="ion-settings"></i>&nbsp;&nbsp;SETTINGS<span class="pull-right"><i class="md md-add"></i></span></a>
@@ -332,12 +330,12 @@
 						<li><a href="{{ url('category')}}">CATEGORIES</a></li>
 						<li><a href="{{ url('subcategory')}}">SUB-CATEGORIES</a></li>
 						<li><a href="{{ url('priority_lavels')}}">PRIORITY LEVELS</a></li>
-						<li><a href="{{ url('users')}}">USERS</a></li>
+						<!-- <li><a href="{{ url('users')}}">USERS</a></li> -->
 						<li><a href="{{ url('uom_master')}}">UoM</a></li>
-						<li><a href="{{ url('entity_master')}}" class="waves-effect">ENTITY </span></a></li>
+						<!-- <li><a href="{{ url('entity_master')}}" class="waves-effect">ENTITY </span></a></li> -->
 						<!--<li><a href="{{ url('pcc_master')}}" class="waves-effect"><i class="ion-android-add-contact"></i>&nbsp;&nbsp;<span>PCC ACTION</span></a></li>			-->
-						<li><a href="{{ url('industries_master')}}" class="waves-effect">INDUSTRIES </a></li>
-						<li><a href="{{ url('material_master')}}" class="waves-effect">MATERIAL</a></li>
+						<!-- <li><a href="{{ url('industries_master')}}" class="waves-effect">INDUSTRIES </a></li> -->
+						<!-- <li><a href="{{ url('material_master')}}" class="waves-effect">MATERIAL</a></li> -->
 						
 						<!--   <a href="{{ URL::to('company')}}" class="waves-effect"><span>Company </span></a> -->
 					</ul>

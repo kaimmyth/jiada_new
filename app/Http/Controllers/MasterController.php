@@ -30,6 +30,7 @@ use App\Status;
 use App\module;
 use App\user_permission;
 use Crypt;
+use Hash;
 use Auth;
 
 
@@ -139,53 +140,6 @@ class MasterController extends Controller
 		$delete = DB::table('status')->where('id', '=', $id)->delete();
 		return back();
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 	/* sub Department*/
@@ -418,7 +372,7 @@ class MasterController extends Controller
 			'email' => $request->email,
 			'username' => $request->user_name,
 			'phone' => $request->phone,
-			'password' => bcrypt($request->password),
+			'password' => Hash::make($request->password),
 			'status' => $request->status,
 			'created_at' => date('Y-m-d H:i:s'),
 		);
@@ -430,7 +384,7 @@ class MasterController extends Controller
 		$add_user->username=$request->user_name;
 		$add_user->designation=$request->designation;
 		$add_user->phone=$request->phone;
-		$add_user->password=bcrypt($request->password);
+		$add_user->password=Hash::make($request->password);
 		$add_user->status=1;
 		$add_user->created_at=date('Y-m-d H:i:s');
 		$add_user->save();
@@ -480,7 +434,7 @@ class MasterController extends Controller
 		$add_user->username=$request->user_name;
 		$add_user->designation=$request->designation;
 		$add_user->phone=$request->phone;
-		$add_user->password=bcrypt($request->password);
+		$add_user->password=Hash::make($request->password);
 		$add_user->status=$request->status;
 		$add_user->created_at=date('Y-m-d H:i:s');
 		$add_user->save();

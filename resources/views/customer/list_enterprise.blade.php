@@ -37,7 +37,13 @@
                                 <div class="row"><br><br><br>
 
                                     <div class="col-md-12 col-sm-12 col-12">
-                                        <a href="{{url('customer/add-enterprises')}}"><button type="button" class="btn btn-purple btn-rounded waves-effect waves-light m-b-5" style="float:right; margin-top: 1%;"><i class="md md-add-circle-outline"></i> Add</button></a><br>
+                                        @if($user_id!=1)
+                                            @if(@$module_permission['is_add']=='yes')
+                                            <a href="{{url('customer/add-enterprises')}}"><button type="button" class="btn btn-purple btn-rounded waves-effect waves-light m-b-5" style="float:right; margin-top: 1%;"><i class="md md-add-circle-outline"></i> Add</button></a><br>
+                                            @endif
+                                            @else
+                                            <a href="{{url('customer/add-enterprises')}}"><button type="button" class="btn btn-purple btn-rounded waves-effect waves-light m-b-5" style="float:right; margin-top: 1%;"><i class="md md-add-circle-outline"></i> Add</button></a><br>
+                                        @endif
                                         <table id="datatable1" class="table  table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <thead style="background: #b6e9ff;">
                                                 <tr>
@@ -65,9 +71,23 @@
                                                     <td class="text-right">{{date('d/m/Y',strtotime($value_e->created_at))}}</td>
                                                     <td class="actions">
                                                         &nbsp;&nbsp;&nbsp;
+                                                        @if($user_id!=1)
+                                                        @if(@$module_permission['is_edit']=='yes')
                                                         <a href="{{ URL::to('customer/fetch-enterprises',Crypt::encrypt($value_e->id))}}" class="on-default " data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="fas fa-edit" style="color:green;"></i></a>
+                                                        @endif
+                                                        @else
+                                                        <a href="{{ URL::to('customer/fetch-enterprises',Crypt::encrypt($value_e->id))}}" class="on-default " data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="fas fa-edit" style="color:green;"></i></a>
+                                                        @endif
+                                                        @if($user_id!=1)
+                                                        @if(@$module_permission['is_delete']=='yes')
                                                         <a href="{{ URL::to('customer/delete-enterprises',Crypt::encrypt($value_e->id))}}" class="on-default remove-row" onclick="return confirm('Are you sure you want to delete this item?');" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="fas fa-trash" style="color:red;"></i></a>
+                                                        @endif
+                                                        @else
+                                                        <a href="{{ URL::to('customer/delete-enterprises',Crypt::encrypt($value_e->id))}}" class="on-default remove-row" onclick="return confirm('Are you sure you want to delete this item?');" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="fas fa-trash" style="color:red;"></i></a>
+                                                        @endif
+                                                        @if(Auth::user()->id==1)
                                                         <a href="{{ URL::to('create/compan_website',$value_e->id)}}" class="on-default remove-row" data-toggle="tooltip" data-original-title="Create Website" data-placement="top"><i class="fas fa-globe"></i></a>
+                                                        @endif
                                                     </td>
                                                 </tr>
                                                 @endforeach

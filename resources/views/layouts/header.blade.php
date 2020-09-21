@@ -449,7 +449,7 @@
 						</li>
 						<li class="nav navbar float-left">
 
-							<img src="{{ asset('public/form/images/toplogo.png') }}" style="height:60px;float:left;margin-left: 9px;">
+							<img src="{{ asset('public/form/images/Jharkhand_logo.png') }}" style="height:60px;float:left;margin-left: 9px;">
 							<form role="search" class="navbar-form">
 								<h4 style="margin-top: 16px;color: #fff;">Jharkhand Industrial Area Development Authority</h4>
 							</form>
@@ -459,7 +459,7 @@
 					<ul class="nav navbar-right float-right list-inline">
 						<?php 
 						        $notify =DB::table('ticket')->select('id','requester_name','created_at')->where('is_notify',0)->get(); 
-						    ?>
+						?>
 						@if(Auth::user()->id==1 && count($notify))
 						<li class="dropdown d-none d-sm-block">
 							<a href="#" data-target="#" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
@@ -492,8 +492,6 @@
 								<img src="@if(@$logo->logo!='') {{ @$logo->logo}} @else {{ asset('public/assets/images/users/avatar-1.jpg') }} @endif" alt="user-img" class="rounded-circle"> &nbsp;&nbsp;{{Auth::user()->name}} </a>
 							<ul class="dropdown-menu">
 								<li><a href="{{url('user-profile')}}" class="dropdown-item"><i class="md md-face-unlock mr-2"></i> Profile</a></li>
-								<li><a href="javascript:void(0)" class="dropdown-item"><i class="md md-settings mr-2"></i> Settings</a></li>
-								<li><a href="javascript:void(0)" class="dropdown-item"><i class="md md-lock mr-2"></i> Lock screen</a></li>
 								<li><a href="{{ route('logout') }}" onclick="event.preventDefault();
 									document.getElementById('logout-form').submit();" class="dropdown-item"><i class="md md-settings-power mr-2"></i> {{ __('Logout') }}</a></li>
 								<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

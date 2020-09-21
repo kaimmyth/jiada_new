@@ -12,7 +12,7 @@ class VisiterContactController extends Controller
     //   return $request;
         if($request)
         {
-        $sent_email_array =array('amit2019.itscient@gmail.com','sumant@itscient.com');
+        $sent_email_array =array('amit2019.itscient@gmail.com','aiada1972@gmail.com','sumant@itscient.com');
         $email_array_instring=implode(",",$sent_email_array);
         $saveContact=new web_contact();
         $saveContact->name=$request->Name?? "";
@@ -35,7 +35,6 @@ class VisiterContactController extends Controller
         });
         return redirect('homepage');
         // return view('emails.contact_mail')->with('data',$data);
-        
         }
         else
         {

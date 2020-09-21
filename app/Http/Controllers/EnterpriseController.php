@@ -16,8 +16,20 @@ class EnterpriseController extends Controller
     {
         $enterprises=Enterprise::where('status',1)->get();
         // return $enterprises;
+        if(Auth::check() && Auth::user()->users_role == 2)
+      {
+        $land_permission=Session::get('all_module_permission');
+        foreach($land_permission as $key=>$value_land)
+        {
+          if($value_land['permission_value']==4)
+          {
+            $module_permission=$value_land;
+          }
+        }
+      }
+    $user_id=Session::get('gorgID');
         $data['content'] = 'customer.list_enterprise';
-      return view('layouts.content', compact('data'))->with('enterprises',$enterprises);
+      return view('layouts.content', compact('data'))->with('enterprises',$enterprises)->with('user_id',$user_id)->with('module_permission',$module_permission ?? " ");
     }
     public function view_add()
     {
